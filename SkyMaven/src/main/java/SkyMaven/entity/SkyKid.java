@@ -22,7 +22,15 @@ public class SkyKid extends User implements Saisie{
 	@JoinColumn(name="closet_id", foreignKey=@ForeignKey(name="SKYKID_CLOSET_ID_FK"))
 	private Equipement equipement = new Equipement();
 	
+<<<<<<< HEAD
 	@Column(name="winged_light")
+=======
+	private Integer id;
+	private String nom; // Pseudo sur le site (notre app)
+	// private double taille = 0; // peut aller de -2000 (Chibi) à +2000
+	// private boolean chibi = false;
+	private Equipment armoire = new Equipment();
+>>>>>>> main
 	private int nbEnfant = 0;
 	
 	@OneToMany
@@ -153,12 +161,21 @@ public class SkyKid extends User implements Saisie{
 		this.nom = nom;
 	}
 
+<<<<<<< HEAD
 	public Equipement getEquipement() {
 		return equipement;
 	}
 
 	public void setEquipement(Equipement equipement) {
 		this.equipement = equipement;
+=======
+	public Equipment getArmoire() {
+		return armoire;
+	}
+
+	public void setArmoire(Equipment armoire) {
+		this.armoire = armoire;
+>>>>>>> main
 	}
 
 	public int getNbEnfant() {
