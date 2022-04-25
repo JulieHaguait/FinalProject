@@ -1,36 +1,47 @@
 package SkyMaven.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import java.util.Set;
 
+@Entity
+@SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
 public class SkyKid extends User implements Saisie{
 	
 	// --- Attributs
 	
-	private Integer id;
-	private String nom; // Pseudo sur le site (notre app)
-	// private double taille = 0; // peut aller de -2000 (Chibi) à +2000
-	// private boolean chibi = false;
+	@Column(name="pseudo")
+	private String nom;
+
+	@OneToOne
+	@JoinColumn(name="dressing_id", foreignKey=@ForeignKey(name="SKYKID_DRESSING_ID_FK"))
+	@Column(name="dressing")
 	private Armoire armoire = new Armoire();
+	
+	@Column(name="winged_light")
 	private int nbEnfant = 0;
-	private Compte compte;
+	
+	@OneToMany
+	@JoinColumn(name="devise_id", foreignKey=@ForeignKey(name="SKYKID_DEVISE_ID_FK"))
+	private Set<Devise> devise;
+	
+	@Column(name="wing_buff")
 	private int wingBuff = 0;
 	
 	// --- Constructeurs
-	
-	public SkyKid(String nom)
-	{
-		this.nom = nom;
-		this.compte = new Compte(0.0, 0.0, 0.0);
-	}
-	
-	public SkyKid(String nom, double bougieBlanche, double bougieEden, double nbCoeur)
-	{
-		this.nom = nom;
-		this.compte = new Compte(bougieBlanche, bougieEden, nbCoeur);
+	public SkyKid() {
+		
 	}
 	
 	
 	// --- Méthodes
-
+/*
 	public void offrirCoeur(SkyKid s)
 	{
 		// tester si assez de bougie blanche
@@ -61,7 +72,7 @@ public class SkyKid extends User implements Saisie{
 	}
 */
 
-	public void visiteRealm(String nomRealm)
+/*	public void visiteRealm(String nomRealm)
 	{
 
 		int enfantsPerdus = 0;
@@ -121,7 +132,7 @@ public class SkyKid extends User implements Saisie{
 			}	
 		
 		
-	}
+	}*/
 	
 	// --- Getters / Setters
 	public Integer getId() {
@@ -156,14 +167,6 @@ public class SkyKid extends User implements Saisie{
 		this.nbEnfant = nbEnfant;
 	}
 
-	public Compte getCompte() {
-		return compte;
-	}
-
-	public void setCompte(Compte c) {
-		this.compte = c;
-	}
-
 	public int getWingBuff() {
 		return wingBuff;
 	}
@@ -171,14 +174,5 @@ public class SkyKid extends User implements Saisie{
 	public void setWingBuff(int wingBuff) {
 		this.wingBuff = wingBuff;
 	}
-	
-	
-	// --- To String
-	@Override
-	public String toString() {
-		return "SkyKid [ nom=" + nom + ", " + ", armoire=" + armoire + "]";
-	}
-
-
 	
 }
