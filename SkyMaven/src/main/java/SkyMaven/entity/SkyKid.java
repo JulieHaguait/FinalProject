@@ -15,14 +15,12 @@ import java.util.Set;
 public class SkyKid extends User implements Saisie{
 	
 	// --- Attributs
-	
 	@Column(name="pseudo")
 	private String nom;
 
 	@OneToOne
-	@JoinColumn(name="dressing_id", foreignKey=@ForeignKey(name="SKYKID_DRESSING_ID_FK"))
-	@Column(name="dressing")
-	private Armoire armoire = new Armoire();
+	@JoinColumn(name="closet_id", foreignKey=@ForeignKey(name="SKYKID_CLOSET_ID_FK"))
+	private Equipement equipement = new Equipement();
 	
 	@Column(name="winged_light")
 	private int nbEnfant = 0;
@@ -33,6 +31,10 @@ public class SkyKid extends User implements Saisie{
 	
 	@Column(name="wing_buff")
 	private int wingBuff = 0;
+	
+	@OneToMany
+	@JoinColumn(name = "found_spirit_id", foreignKey = @ForeignKey(name = "SKYKID_FOUNDSPIRIT_ID_FK"))
+	private Set<Esprit> espritsTrouves;
 	
 	// --- Constructeurs
 	public SkyKid() {
@@ -151,12 +153,12 @@ public class SkyKid extends User implements Saisie{
 		this.nom = nom;
 	}
 
-	public Armoire getArmoire() {
-		return armoire;
+	public Equipement getEquipement() {
+		return equipement;
 	}
 
-	public void setArmoire(Armoire armoire) {
-		this.armoire = armoire;
+	public void setEquipement(Equipement equipement) {
+		this.equipement = equipement;
 	}
 
 	public int getNbEnfant() {
@@ -174,5 +176,26 @@ public class SkyKid extends User implements Saisie{
 	public void setWingBuff(int wingBuff) {
 		this.wingBuff = wingBuff;
 	}
+
+
+	public Set<Devise> getDevise() {
+		return devise;
+	}
+
+
+	public void setDevise(Set<Devise> devise) {
+		this.devise = devise;
+	}
+
+
+	public Set<Esprit> getEspritsTrouves() {
+		return espritsTrouves;
+	}
+
+
+	public void setEspritsTrouves(Set<Esprit> espritsTrouves) {
+		this.espritsTrouves = espritsTrouves;
+	}
+	
 	
 }

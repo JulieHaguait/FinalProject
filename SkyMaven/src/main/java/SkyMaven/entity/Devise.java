@@ -1,14 +1,16 @@
 package SkyMaven.entity;
 
-public class Compte {
+
+public class Devise {
+	
+	private ////////
 	
 	private Double bougieBlanche;
 	private Double bougieEden;
 	private Double nbCoeur;
-	// private int totalFragCoeur;
 	
 	// --- Constructeur
-	public Compte(Double bougieBlanche, Double bougieEden, Double nbCoeur) {
+	public Devise(Double bougieBlanche, Double bougieEden, Double nbCoeur) {
 		this.bougieBlanche = bougieBlanche;
 		this.bougieEden = bougieEden;
 		this.nbCoeur = nbCoeur;
@@ -102,11 +104,6 @@ public class Compte {
 		this.nbCoeur = nbCoeur;
 	}
 
-	// --- ToString
-	@Override
-	public String toString() {
-		return "Compte [bougieBlanche=" + bougieBlanche + ", bougieEden=" + bougieEden + ", nbCoeur=" + nbCoeur + "]";
-	}
 	
 	
 	
