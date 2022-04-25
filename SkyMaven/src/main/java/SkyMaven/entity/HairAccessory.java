@@ -5,18 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "mask")
-@DiscriminatorValue("M")
-public class Masque extends Cosmetic {
+@Table(name = "hair_accessory")
+@DiscriminatorValue("HA")
+public class HairAccessory extends Cosmetic {
 
 	
-	public Masque() {
+	
+	public HairAccessory() {
 		
 	}
 	
-	public Masque(String libelle, int prix) {
+	public HairAccessory(String libelle, int prix) {
 		super(libelle, prix);
-		
 	}
 
 }

@@ -9,7 +9,7 @@ public class SkyKid extends User implements Saisie{
 	private String nom; // Pseudo sur le site (notre app)
 	// private double taille = 0; // peut aller de -2000 (Chibi) à +2000
 	// private boolean chibi = false;
-	private Armoire armoire = new Armoire();
+	private Equipment armoire = new Equipment();
 	private int nbEnfant = 0;
 	private Compte compte;
 	private int wingBuff = 0;
@@ -140,11 +140,11 @@ public class SkyKid extends User implements Saisie{
 		this.nom = nom;
 	}
 
-	public Armoire getArmoire() {
+	public Equipment getArmoire() {
 		return armoire;
 	}
 
-	public void setArmoire(Armoire armoire) {
+	public void setArmoire(Equipment armoire) {
 		this.armoire = armoire;
 	}
 
