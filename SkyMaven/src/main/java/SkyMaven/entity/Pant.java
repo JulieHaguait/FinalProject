@@ -7,14 +7,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pants")
 @DiscriminatorValue("P")
-public class Tenue extends Cosmetic {
+public class Pant extends Cosmetic {
 
 	
-	public Tenue(){
+	public Pant(){
 		
 	}
 	
-	public Tenue(String libelle, int prix) {
+	public Pant(String libelle, int prix) {
 		super(libelle, prix);
 	}
 

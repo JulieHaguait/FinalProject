@@ -7,15 +7,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "hair_accessory")
 @DiscriminatorValue("HA")
-public class AccessoireCheveux extends Cosmetic {
+public class HairAccessory extends Cosmetic {
 
 	
 	
-	public AccessoireCheveux() {
+	public HairAccessory() {
 		
 	}
 	
-	public AccessoireCheveux(String libelle, int prix) {
+	public HairAccessory(String libelle, int prix) {
 		super(libelle, prix);
 	}
 
