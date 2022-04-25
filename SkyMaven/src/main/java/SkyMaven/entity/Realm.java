@@ -1,5 +1,5 @@
 package SkyMaven.entity;
 
-public enum RealmName {
+public enum Realm {
 	Aube, Prairie, Foret, Vallee, Desert, ChambreForte;
 }
