@@ -1,8 +1,9 @@
 package test;
 
 import java.util.Scanner;
-import model.Compte;
-import model.Saisie;
+
+import SkyMaven.entity.Compte;
+import SkyMaven.entity.Saisie;
 
 public class Test implements Saisie {
 
