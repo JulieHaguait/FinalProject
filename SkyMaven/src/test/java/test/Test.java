@@ -2,7 +2,7 @@ package test;
 
 import java.util.Scanner;
 
-import SkyMaven.entity.Compte;
+import SkyMaven.entity.Devise;
 import SkyMaven.entity.Saisie;
 
 public class Test implements Saisie {
