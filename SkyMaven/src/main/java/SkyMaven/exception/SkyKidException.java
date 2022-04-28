@@ -1,4 +1,4 @@
-package SkyKid.exception;
+package SkyMaven.exception;
 
 public class SkyKidException {
 
