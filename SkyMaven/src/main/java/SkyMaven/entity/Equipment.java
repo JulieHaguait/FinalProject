@@ -118,12 +118,6 @@ public class Equipment {
 			return false;
 		Equipment other = (Equipment) obj;
 		return Objects.equals(id, other.id);
-	}
-	
-	
-	
-	
-	
-	
+	}	
 
 }

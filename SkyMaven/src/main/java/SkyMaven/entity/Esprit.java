@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -34,6 +35,12 @@ public class Esprit {
 	@OneToOne
 	@JoinColumn(name = "tree_id", foreignKey = @ForeignKey(name = "SPIRIT_TREE_ID_FK"))
 	private Arbre arbre;
+	
+	@ManyToOne
+	@JoinColumn(name = "skykid_id", foreignKey = @ForeignKey(name = "SPIRIT_SKYKID_ID_FK"))
+	private SkyKid skyKid;
+	
+	
 	
 	// --- Constructor
 	
@@ -80,9 +87,6 @@ public class Esprit {
 			return false;
 		Esprit other = (Esprit) obj;
 		return Objects.equals(id, other.id);
-	}
-	
-	
-	
+	}	
 
 }

@@ -2,6 +2,7 @@ package SkyMaven.entity;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +16,6 @@ public class Cape extends Cosmetic {
 	
 	public Cape(String libelle, int prix) {
 		super(libelle, prix);
-		
 	}
 
 }

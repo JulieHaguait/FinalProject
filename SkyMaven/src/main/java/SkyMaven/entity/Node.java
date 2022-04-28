@@ -27,97 +27,103 @@ public class Node {
 	@JoinColumn(name = "node_Enfants_id", foreignKey = @ForeignKey(name = "NODE_NODE_ENFANTS_ID_FK"))
 	private Node nodeEnfants;
 	
-	@OneToMany(mappedBy = "musicSheet" )
+	@OneToOne(mappedBy = "node")
 	private MusicSheet musicSheet;
-	@OneToMany(mappedBy = "prop")
+	@OneToOne(mappedBy = "node")
 	private Prop prop;
-	@OneToMany(mappedBy = "cosmetic")
+	@OneToOne(mappedBy = "node")
 	private Cosmetic cosmetic;
-	@OneToMany(mappedBy = "sort")
-	private Sort sort;
-	@OneToMany(mappedBy = "emote")
+	@OneToOne(mappedBy = "node")
+	private Spell spell;
+	@OneToOne(mappedBy = "node")
 	private Emote emote;
-	@OneToMany(mappedBy = "wingBuff")
+	@OneToOne(mappedBy = "node")
 	private WingBuff wingBuff;
-	@OneToMany(mappedBy = "coeurAchat")
-	@column(name="buy_heart")
-	private CoeurAchat coeurAchat;
+	@OneToOne(mappedBy = "node")
+	@Column(name="buy_heart")
+	private HeartBuying heartBuying;
 	
 
-	// Constructeur
-	public Node(Node nodeParents, Item item) {
-		this.nodeParents = nodeParents;
-		this.item = item;
-	}
+	// --- Constructeur
 	public Node() {
 		super();
 	}
 
-	// getters & setters
-
-
+	// --- Getters & setters
 	public Node getNodeEnfants() {
 		return nodeEnfants;
 	}
+	
 	public void setNodeEnfants(Node nodeEnfants) {
 		this.nodeEnfants = nodeEnfants;
 	}
+	
 	public MusicSheet getMusicSheet() {
 		return musicSheet;
 	}
+		
 	public void setMusicSheet(MusicSheet musicSheet) {
 		this.musicSheet = musicSheet;
 	}
+	
 	public Prop getProp() {
 		return prop;
 	}
+	
 	public void setProp(Prop prop) {
 		this.prop = prop;
 	}
+	
 	public Cosmetic getCosmetic() {
 		return cosmetic;
 	}
+	
 	public void setCosmetic(Cosmetic cosmetic) {
 		this.cosmetic = cosmetic;
 	}
-	public Sort getSort() {
-		return sort;
+	
+	public Spell getSort() {
+		return spell;
 	}
-	public void setSort(Sort sort) {
-		this.sort = sort;
+	
+	public void setSort(Spell spell) {
+		this.spell = spell;
 	}
+	
 	public Emote getEmote() {
 		return emote;
 	}
+	
 	public void setEmote(Emote emote) {
 		this.emote = emote;
 	}
+	
 	public WingBuff getWingBuff() {
 		return wingBuff;
 	}
+	
 	public void setWingBuff(WingBuff wingBuff) {
 		this.wingBuff = wingBuff;
 	}
-	public CoeurAchat getCoeurAchat() {
-		return coeurAchat;
+	
+	public HeartBuying getCoeurAchat() {
+		return heartBuying;
 	}
-	public void setCoeurAchat(CoeurAchat coeurAchat) {
-		this.coeurAchat = coeurAchat;
+	
+	public void setCoeurAchat(HeartBuying heartBuying) {
+		this.heartBuying = heartBuying;
 	}
-
-
-
 
 	public Long getId() {
 		return id;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
 	
 	
-	// hashCode
-	
+	// --- HashCode	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

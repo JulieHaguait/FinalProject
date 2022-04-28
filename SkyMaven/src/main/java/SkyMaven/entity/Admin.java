@@ -7,9 +7,12 @@ import javax.persistence.SequenceGenerator;
 @SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
 public class Admin extends User {
 
+	public Admin() {
+		super();
+	}
+
 	
 	// gerer la BDD
-	
-	
+
 	
 }

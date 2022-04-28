@@ -28,14 +28,12 @@ public class Arbre {
 
 	
 	// --- Constructor
-	
 	public Arbre() {
 		super();
 	}
 
 	
-	// --- Getters / Setters
-	
+	// --- Getters / Setters	
 	public Long getId() {
 		return id;
 	}
@@ -51,7 +49,8 @@ public class Arbre {
 	public void setNodes(Set<Node> nodes) {
 		this.nodes = nodes;
 	}
-
+	
+	// -- HashCode
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
