@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Entity
 @SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
-public class SkyKid extends User implements Saisie{
+public class SkyKid extends User {
 	
 	// --- Attributs
 	@Column(name="pseudo")
@@ -20,33 +20,73 @@ public class SkyKid extends User implements Saisie{
 
 	@OneToOne
 	@JoinColumn(name="closet_id", foreignKey=@ForeignKey(name="SKYKID_CLOSET_ID_FK"))
-	private Equipement equipement = new Equipement();
+	private Equipment equipement = new Equipment();
 	
-<<<<<<< HEAD
 	@Column(name="winged_light")
-=======
-	private Integer id;
-	private String nom; // Pseudo sur le site (notre app)
-	// private double taille = 0; // peut aller de -2000 (Chibi) à +2000
-	// private boolean chibi = false;
-	private Equipment armoire = new Equipment();
->>>>>>> main
 	private int nbEnfant = 0;
 	
-	@OneToMany
-	@JoinColumn(name="devise_id", foreignKey=@ForeignKey(name="SKYKID_DEVISE_ID_FK"))
+	@OneToMany(mappedBy="monnaie")
 	private Set<Devise> devise;
 	
 	@Column(name="wing_buff")
 	private int wingBuff = 0;
 	
-	@OneToMany
-	@JoinColumn(name = "found_spirit_id", foreignKey = @ForeignKey(name = "SKYKID_FOUNDSPIRIT_ID_FK"))
+	@OneToMany(mappedBy="skyKid")
 	private Set<Esprit> espritsTrouves;
 	
 	// --- Constructeurs
 	public SkyKid() {
 		
+	}
+
+	
+	// --- Getters / Setters
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public Equipment getEquipement() {
+		return equipement;
+	}
+
+	public void setEquipement(Equipment equipement) {
+		this.equipement = equipement;
+	}
+
+	public int getNbEnfant() {
+		return nbEnfant;
+	}
+
+	public void setNbEnfant(int nbEnfant) {
+		this.nbEnfant = nbEnfant;
+	}
+
+	public Set<Devise> getDevise() {
+		return devise;
+	}
+
+	public void setDevise(Set<Devise> devise) {
+		this.devise = devise;
+	}
+
+	public int getWingBuff() {
+		return wingBuff;
+	}
+
+	public void setWingBuff(int wingBuff) {
+		this.wingBuff = wingBuff;
+	}
+
+	public Set<Esprit> getEspritsTrouves() {
+		return espritsTrouves;
+	}
+
+	public void setEspritsTrouves(Set<Esprit> espritsTrouves) {
+		this.espritsTrouves = espritsTrouves;
 	}
 	
 	
@@ -143,76 +183,6 @@ public class SkyKid extends User implements Saisie{
 		
 		
 	}*/
-	
-	// --- Getters / Setters
-	public Integer getId() {
-		return id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-<<<<<<< HEAD
-	public Equipement getEquipement() {
-		return equipement;
-	}
-
-	public void setEquipement(Equipement equipement) {
-		this.equipement = equipement;
-=======
-	public Equipment getArmoire() {
-		return armoire;
-	}
-
-	public void setArmoire(Equipment armoire) {
-		this.armoire = armoire;
->>>>>>> main
-	}
-
-	public int getNbEnfant() {
-		return nbEnfant;
-	}
-
-	public void setNbEnfant(int nbEnfant) {
-		this.nbEnfant = nbEnfant;
-	}
-
-	public int getWingBuff() {
-		return wingBuff;
-	}
-
-	public void setWingBuff(int wingBuff) {
-		this.wingBuff = wingBuff;
-	}
-
-
-	public Set<Devise> getDevise() {
-		return devise;
-	}
-
-
-	public void setDevise(Set<Devise> devise) {
-		this.devise = devise;
-	}
-
-
-	public Set<Esprit> getEspritsTrouves() {
-		return espritsTrouves;
-	}
-
-
-	public void setEspritsTrouves(Set<Esprit> espritsTrouves) {
-		this.espritsTrouves = espritsTrouves;
-	}
-	
 	
 }

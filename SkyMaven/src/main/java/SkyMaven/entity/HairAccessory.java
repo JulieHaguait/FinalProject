@@ -8,8 +8,6 @@ import javax.persistence.Table;
 @Table(name = "hair_accessory")
 @DiscriminatorValue("HA")
 public class HairAccessory extends Cosmetic {
-
-	
 	
 	public HairAccessory() {
 		

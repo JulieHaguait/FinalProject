@@ -27,24 +27,28 @@ public class SpellSlot {
 	public SpellSlot(int quantite) {
 		this.quantite=quantite;
 	}
-	
-	
+		
 	public Long getId() {
 		return Id;
 	}
+	
 	public void setId(Long id) {
 		Id = id;
 	}
+	
 	public int getQuantite() {
 		return quantite;
 	}
+	
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(Id);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

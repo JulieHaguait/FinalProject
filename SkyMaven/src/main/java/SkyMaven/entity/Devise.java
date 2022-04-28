@@ -1,22 +1,48 @@
 package SkyMaven.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
+@Entity
+@SequenceGenerator(name="seqDevise", sequenceName="seq_devise", initialValue=100, allocationSize=1)
 public class Devise {
-	
-	private ////////
-	
-	private Double bougieBlanche;
-	private Double bougieEden;
-	private Double nbCoeur;
+		
+	@Id
+	private Long id;
+	@ManyToOne
+	@JoinColumn(name="money_id", foreignKey=@ForeignKey(name="DEVISE_MONEY_ID_FK"))
+	private Monnaie monnaie;
 	
 	// --- Constructeur
-	public Devise(Double bougieBlanche, Double bougieEden, Double nbCoeur) {
-		this.bougieBlanche = bougieBlanche;
-		this.bougieEden = bougieEden;
-		this.nbCoeur = nbCoeur;
+	public Devise() {
+
 	}
 
 	
+	// --- Getters / Setters
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Monnaie getMonnaie() {
+		return monnaie;
+	}
+
+	public void setMonnaie(Monnaie monnaie) {
+		this.monnaie = monnaie;
+	}
+
+	/*
 	// --- Methodes	
 	public void deposer(Double depot, String type_money)
 	{
@@ -34,7 +60,8 @@ public class Devise {
 		}
 		
 	}
-	
+	*/
+	/*
 	public void acheter(Node n)
 	{
 		int prix = n.getItem().getPrix();
@@ -77,32 +104,7 @@ public class Devise {
 		}
 		return check;
 	}
-	
-	
-	// --- Getters / Setters
-	public Double getBougieBlanche() {
-		return bougieBlanche;
-	}
-
-	public void setBougieBlanche(Double bougieBlanche) {
-		this.bougieBlanche = bougieBlanche;
-	}
-
-	public Double getBougieEden() {
-		return bougieEden;
-	}
-
-	public void setBougieEden(Double bougieEden) {
-		this.bougieEden = bougieEden;
-	}
-
-	public Double getNbCoeur() {
-		return nbCoeur;
-	}
-
-	public void setNbCoeur(Double nbCoeur) {
-		this.nbCoeur = nbCoeur;
-	}
+	*/
 
 	
 	

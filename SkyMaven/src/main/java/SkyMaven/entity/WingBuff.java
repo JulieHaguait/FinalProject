@@ -3,6 +3,7 @@ package SkyMaven.entity;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.ForeignKey;
 
@@ -11,7 +12,7 @@ import javax.persistence.ForeignKey;
 
 public class WingBuff extends Item {
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "node_id", foreignKey = @ForeignKey(name = "WINGBUFF_NODE_ID_FK"))
 	private Node node;
 
@@ -19,7 +20,6 @@ public class WingBuff extends Item {
 	{
 		super();
 	}
-	
 	
 	public WingBuff(int prix)
 	{
