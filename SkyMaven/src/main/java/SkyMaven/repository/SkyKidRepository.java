@@ -1,5 +1,5 @@
 package SkyMaven.repository;
 
-public class SkyKidRepository {
+public interface SkyKidRepository {
 
 }
