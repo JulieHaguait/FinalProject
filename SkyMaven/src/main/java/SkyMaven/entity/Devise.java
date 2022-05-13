@@ -18,6 +18,7 @@ public class Devise {
 	@ManyToOne
 	@JoinColumn(name="money_id", foreignKey=@ForeignKey(name="DEVISE_MONEY_ID_FK"))
 	private Monnaie monnaie;
+	private double quantite;
 	
 	// --- Constructeur
 	public Devise() {
@@ -42,6 +43,20 @@ public class Devise {
 		this.monnaie = monnaie;
 	}
 
+
+	public double getQuantite() {
+		return quantite;
+	}
+
+
+	public void setQuantite(double quantite) {
+		this.quantite = quantite;
+	}
+
+	
+	
+	
+	
 	/*
 	// --- Methodes	
 	public void deposer(Double depot, String type_money)
