@@ -6,7 +6,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cape")
 @DiscriminatorValue("C")
 public class Cape extends Cosmetic {
 

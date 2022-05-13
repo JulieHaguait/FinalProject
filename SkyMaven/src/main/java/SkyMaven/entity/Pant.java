@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pants")
 @DiscriminatorValue("P")
 public class Pant extends Cosmetic {
 
