@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import SkyMaven.entity.Emote;
+import SkyMaven.entity.HeartBuying;
 import SkyMaven.entity.Item;
 import SkyMaven.entity.MusicSheet;
 import SkyMaven.entity.Prop;
 import SkyMaven.entity.WingBuff;
-import SkyMaven.entity.CoeurAchat;
 import SkyMaven.repository.ItemRepository;
 
 
@@ -40,8 +40,8 @@ public class ItemService {
 		return itemRepository.findAllWingBuff();
 	}
 	
-	public List<CoeurAchat> findAllCoeurAchat() {
-		return itemRepository.findAllCoeurAchat();
+	public List<HeartBuying> findAllHeartBuying() {
+		return itemRepository.findAllHeartBuying();
 	}
 
 	public Item getById(Long id) {

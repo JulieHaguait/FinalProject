@@ -5,13 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import SkyMaven.entity.Cosmetic;
 import SkyMaven.entity.Emote;
+import SkyMaven.entity.HeartBuying;
 import SkyMaven.entity.Item;
 import SkyMaven.entity.MusicSheet;
 import SkyMaven.entity.Prop;
 import SkyMaven.entity.WingBuff;
-import SkyMaven.entity.CoeurAchat;
 
 
 
@@ -30,6 +29,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 	@Query("Select w from WingBuff w")
 	List<WingBuff> findAllWingBuff();
 	
-	@Query("Select c from CoeurAchat")
-	List<CoeurAchat> findAllCoeurAchat();
+	@Query("Select hb from HeartBuying hb")
+	List<HeartBuying> findAllHeartBuying();
 }

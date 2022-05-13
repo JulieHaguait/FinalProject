@@ -14,8 +14,8 @@ public class NodeService {
 	@Autowired
 	private NodeRepository nodeRepository;
 
-	public List<Node> getAll() {
-		return nodeRepository.findAll();
+	public List<Node> getAllByArbre(Long arbre) {
+		return nodeRepository.findAllByArbreId(arbre);
 	}
 
 	public Node getById(Long id) {

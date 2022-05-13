@@ -21,11 +21,16 @@ public class EquipmentService {
 	CosmeticService cs;
 	
 	
-	public Equipment update(Item item) {
-		if(item instanceof Prop) {
-			return equipmentRepository.save(item);
-		}
-		return equipmentRepository.save((Cosmetic) item);
+	public Equipment update(Equipment e) {
+		Equipment equipEnBase = new Equipment();
+		equipEnBase.setId(e.getId());
+		equipEnBase.setCape(e.getCape());
+		equipEnBase.setHair(e.getHair());
+		equipEnBase.setMasque(e.getMasque());
+		equipEnBase.setPant(e.getPant());
+		equipEnBase.setProp(e.getProp());
+		
+		return equipmentRepository.save(equipEnBase);
 	}
 	
 	
