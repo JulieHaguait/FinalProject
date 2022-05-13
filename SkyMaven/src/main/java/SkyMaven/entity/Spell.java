@@ -12,6 +12,8 @@ import javax.persistence.ForeignKey;
 @Table(name="spell")
 @SequenceGenerator(name="seqItem", sequenceName="seq_item", initialValue=100, allocationSize=1)
 public class Spell extends Item{
+	
+	private int level;
 
 	private String descriptionAction;
 	
@@ -33,6 +35,7 @@ public class Spell extends Item{
 	public String getDescriptionAction() {
 		return descriptionAction;
 	}
+	
 
 	public void setDescriptionAction(String descriptionAction) {
 		this.descriptionAction = descriptionAction;
@@ -45,6 +48,17 @@ public class Spell extends Item{
 	public void setNode(Node node) {
 		this.node = node;
 	}
+	
+
+	public int getLevel() {
+		return level;
+	}
+
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
 
 	public Spell randomSpell()
 	{

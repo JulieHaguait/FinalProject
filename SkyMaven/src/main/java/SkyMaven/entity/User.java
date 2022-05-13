@@ -17,7 +17,7 @@ public abstract class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqUser")
-	protected Integer id;
+	protected Long id;
 	protected String login;
 	protected String password;
 
@@ -25,11 +25,12 @@ public abstract class User {
 		
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -65,6 +66,9 @@ public abstract class User {
 		User other = (User) obj;
 		return Objects.equals(id, other.id);
 	}
+
+
+
 
 }
 
