@@ -2,14 +2,17 @@ package SkyMaven.entity;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-@MappedSuperclass
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name="user")
+@SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
 public abstract class User {
 	
 	@Id

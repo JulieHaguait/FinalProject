@@ -32,7 +32,7 @@ public class SkyKid extends User {
 	private int wingBuff = 0;
 	
 	@OneToMany(mappedBy="skyKid")
-	private Set<Esprit> espritsTrouves;
+	private Set<ArbreInProgress> trips;
 	
 	// --- Constructeurs
 	public SkyKid() {
@@ -81,12 +81,12 @@ public class SkyKid extends User {
 		this.wingBuff = wingBuff;
 	}
 
-	public Set<Esprit> getEspritsTrouves() {
-		return espritsTrouves;
+	public Set<ArbreInProgress> getArbreInProgress() {
+		return trips;
 	}
 
-	public void setEspritsTrouves(Set<Esprit> espritsTrouves) {
-		this.espritsTrouves = espritsTrouves;
+	public void setArbreInProgress(Set<ArbreInProgress> trips) {
+		this.trips = trips;
 	}
 	
 	
