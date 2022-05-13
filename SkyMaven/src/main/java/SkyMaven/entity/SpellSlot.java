@@ -5,10 +5,15 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.ForeignKey;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "spell_slot")
@@ -16,6 +21,10 @@ import javax.persistence.Id;
 public class SpellSlot {
 
 	private int quantite;
+	
+	@OneToOne
+	@JoinColumn(name = "spell", foreignKey = @ForeignKey(name = "EQUIPMENT_SPELL_ID_FK"))
+	private Spell spell;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqSpellSlot")
@@ -34,6 +43,13 @@ public class SpellSlot {
 	
 	public void setId(Long id) {
 		Id = id;
+	}
+	
+	public Spell getSpell() {
+		return spell;
+	}
+	public void setSpell(Spell spell) {
+		this.spell = spell;
 	}
 	
 	public int getQuantite() {

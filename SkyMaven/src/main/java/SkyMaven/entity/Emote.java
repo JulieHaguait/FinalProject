@@ -27,9 +27,9 @@ public class Emote extends Item {
 	}
 	
 	
-	public Emote(String libelle, int niveau)
+	public Emote(String libelle, int level)
 	{
-		super(libelle, niveau);
+		super(libelle, level);
 	}
 
 	public Emote(String libelle, int prix, int level)
