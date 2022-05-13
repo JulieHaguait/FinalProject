@@ -34,9 +34,6 @@ public class Equipment {
 	@JoinColumn(name = "hair", foreignKey = @ForeignKey(name = "EQUIPMENT_HAIR_ID_FK"))
 	private Cheveux hair;
 	@OneToOne
-	@JoinColumn(name = "hair_accessory", foreignKey = @ForeignKey(name = "EQUIPMENT_HAIR_ACCESSORY_ID_FK"))
-	private HairAccessory acces;
-	@OneToOne
 	@JoinColumn(name = "prop", foreignKey = @ForeignKey(name = "EQUIPMENT_PROP_ID_FK"))
 	private Prop prop;
 	
@@ -85,14 +82,6 @@ public class Equipment {
 
 	public void setHair(Cheveux hair) {
 		this.hair = hair;
-	}
-
-	public HairAccessory getAcces() {
-		return acces;
-	}
-
-	public void setAcces(HairAccessory acces) {
-		this.acces = acces;
 	}
 
 	public Prop getProp() {
