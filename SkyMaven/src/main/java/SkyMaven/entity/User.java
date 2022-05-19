@@ -10,14 +10,31 @@ import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name="user")
 @SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
+@JsonTypeInfo(
+		use=JsonTypeInfo.Id.NAME,
+		include=JsonTypeInfo.As.PROPERTY,
+		property="type"
+		)
+@JsonSubTypes({
+	@Type(value=Admin.class, name="admin"),
+	@Type(value=SkyKid.class, name="skykid"),
+})
+
 public abstract class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqUser")
+	@JsonView(JsonViews.Common.class)
 	protected Long id;
+	@JsonView(JsonViews.Common.class)
 	protected String login;
 	protected String password;
 

@@ -11,8 +11,4 @@ public class Admin extends User {
 		super();
 	}
 
-	
-	// gerer la BDD
-
-	
 }

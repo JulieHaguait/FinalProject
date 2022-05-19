@@ -51,4 +51,8 @@ public class UserService {
 	public void delete(User user) {
 		userRepository.delete(user);
 	}
+
+	public SkyKid getSkyKidWithAllInfos(Long id) {
+		return userRepository.findAllInfos(id).orElseThrow(RuntimeException::new);
+	}
 }

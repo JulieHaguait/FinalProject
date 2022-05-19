@@ -14,6 +14,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 
 @Entity
 @Table(name="monnaie")
@@ -25,8 +27,11 @@ public abstract class Monnaie {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqMonnaie")
 	@SequenceGenerator(name = "seqMonnaie", sequenceName = "seq_monnaie", initialValue = 100, allocationSize = 1)
 	@Column(name = "id")
+	@JsonView(JsonViews.Common.class)
 	protected Long id;
+	
 	@Column(name="tag")
+	@JsonView(JsonViews.Common.class)
 	protected String libelle;
 	
 	public Monnaie() {

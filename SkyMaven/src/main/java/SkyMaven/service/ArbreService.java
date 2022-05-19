@@ -15,16 +15,17 @@ import SkyMaven.service.NodeService;
 
 @Service
 public class ArbreService {
-@Autowired 
-private ArbreRepository arbreRepository;
-@Autowired
-NodeService nds;
+	
+	@Autowired 
+	private ArbreRepository arbreRepository;
+	@Autowired
+	NodeService nds;
 
-	/*
+	
 	public List<Arbre> getAll() {
 		return arbreRepository.findAll();
 	}
-*/
+
 	public Arbre getById(Long id) {
 		return arbreRepository.findById(id).orElseThrow(RuntimeException::new);
 	}

@@ -9,15 +9,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @SequenceGenerator(name="seqDevise", sequenceName="seq_devise", initialValue=100, allocationSize=1)
 public class Devise {
 		
 	@Id
+	@JsonView(JsonViews.Common.class)
 	private Long id;
+	
 	@ManyToOne
 	@JoinColumn(name="money_id", foreignKey=@ForeignKey(name="DEVISE_MONEY_ID_FK"))
+	@JsonView(JsonViews.Common.class)
 	private Monnaie monnaie;
+	
+	@JsonView(JsonViews.Common.class)
 	private double quantite;
 	
 	// --- Constructeur
