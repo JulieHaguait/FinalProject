@@ -14,4 +14,6 @@ public interface NodeRepository extends JpaRepository<Node, Long> {
 	List<Node> findAllNodeEnfants(@Param("nodeEnfant") Node nodeEnfant);
 
 	List<Node> findAllByArbreId(Long arbre);
+	
+	List<Node> findAllByArbreInProgressId(Long arbreInProgress);
 }
