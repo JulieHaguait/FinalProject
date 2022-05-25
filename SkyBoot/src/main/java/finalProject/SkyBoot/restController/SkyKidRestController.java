@@ -22,7 +22,6 @@ public class SkyKidRestController {
 	@Autowired
 	private UserService userService;
 	
-	
 	// accueil avec toutes les infos
 	// vu qu'on veut afficher la completion des arbres
 	// arbreInProgress
