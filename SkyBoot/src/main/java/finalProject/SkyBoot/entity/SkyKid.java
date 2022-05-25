@@ -17,10 +17,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class SkyKid extends User {
 	
 	// --- Attributs
-	@Column(name="pseudo")
-	@JsonView(JsonViews.Common.class)
-	private String nom;
-
 	@OneToOne
 	@JoinColumn(name="closet_id", foreignKey=@ForeignKey(name="SKYKID_CLOSET_ID_FK"))
 	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
@@ -51,14 +47,6 @@ public class SkyKid extends User {
 	}
 	
 	// --- Getters / Setters
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
 	public Equipment getEquipement() {
 		return equipement;
 	}

@@ -19,6 +19,13 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithArbre;
+import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithNodeBought;
+import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithNodeBoughtWithNodeRef;
+import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithRealm;
+import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithSkyKid;
+import finalProject.SkyBoot.entity.JsonViews.Common;
+
 @Entity
 @Table(name = "tree_in_progress")
 @SequenceGenerator(name = "seqTrip", sequenceName = "seq_trip", initialValue = 1, allocationSize = 1)
@@ -28,28 +35,28 @@ public class ArbreInProgress {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqTrip")
 	private Long id;
 
-	@JsonView({ JsonViews.Common.class })
+	@JsonView({ Common.class })
 	private double progression;
 
 	@OneToOne
 	@JoinColumn(name = "tree_id", foreignKey = @ForeignKey(name = "TRIP_TREE_ID_FK"))
-	@JsonView(JsonViews.ArbreInProgressWithArbre.class)
+	@JsonView(ArbreInProgressWithArbre.class)
 	private Arbre tref;
 
 	@ManyToOne
 	@JoinColumn(name = "skykid_id", foreignKey = @ForeignKey(name = "TRIP_SKYKID_ID_FK"))
-	@JsonView(JsonViews.ArbreInProgressWithSkyKid.class)
+	@JsonView(ArbreInProgressWithSkyKid.class)
 	private SkyKid skyKid;
 
-	@OneToMany
-	@JsonView(JsonViews.ArbreInProgressWithNodeBought.class)
+	@OneToMany(mappedBy = "tripProgress")
+	@JsonView({ArbreInProgressWithNodeBought.class, ArbreInProgressWithNodeBoughtWithNodeRef.class})
 	private Set<Node> nodeBought;
 	
-	@OneToMany
-	//JsonView plus tard !
+	@OneToMany(mappedBy = "tripRef")
+	@JsonView(ArbreInProgressWithNodeBoughtWithNodeRef.class)
 	private Set<Node> nodeRef;
 	
-	@JsonView(JsonViews.ArbreInProgressWithRealm.class)
+	@JsonView(ArbreInProgressWithRealm.class)
 	@Enumerated(EnumType.STRING)
 	private Realm realm;
 
