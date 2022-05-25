@@ -2,7 +2,7 @@
 .*/.DS_Store
 
 target/
-.classpath
+*/.classpath
 
 # file java eclipse
 .metadata
