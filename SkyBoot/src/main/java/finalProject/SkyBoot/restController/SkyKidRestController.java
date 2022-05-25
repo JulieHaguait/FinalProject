@@ -51,7 +51,7 @@ public class SkyKidRestController {
 	
 	
 	//@GetMapping("/{id}/gestion")
-	
+	// Patch
 	// modif login
 	// modif nom / pseudo
 	
