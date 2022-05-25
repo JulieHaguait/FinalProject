@@ -6,6 +6,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.ForeignKey;
 
 
@@ -16,6 +19,7 @@ public class HeartBuying extends Item{
 
 	@OneToOne
 	@JoinColumn(name = "node_id", foreignKey = @ForeignKey(name = "HEARTBUYING_NODE_ID_FK"))
+	@JsonView(JsonViews.ItemWithNode.class)
 	private Node node;
 
 

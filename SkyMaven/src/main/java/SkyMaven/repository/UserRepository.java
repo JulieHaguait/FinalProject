@@ -10,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 import SkyMaven.entity.Admin;
 import SkyMaven.entity.SkyKid;
 import SkyMaven.entity.User;
-;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
@@ -19,9 +18,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Optional<User> seConnecter(@Param("login") String login, @Param("password") String password);
 
 	
-	@Query("Select s from SkyKid s")
+	@Query("Select u from User u where type=skykid")
 	List<SkyKid> findAllSkyKid();
 
-	@Query("Select a from Admin a")
+	@Query("Select u from User u where type=admin")
 	List<Admin> findAllAdmin();
+	
+	@Query("Select u from User u left join fetch u.equipment left join fetch u.devise where u.id=:id")
+	Optional<SkyKid> findAllInfos(@Param("id") Long id);
 }

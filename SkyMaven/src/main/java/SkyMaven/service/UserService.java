@@ -1,11 +1,15 @@
 package SkyMaven.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import SkyMaven.entity.Admin;
+import SkyMaven.entity.ArbreInProgress;
+import SkyMaven.entity.Devise;
+import SkyMaven.entity.Equipment;
 import SkyMaven.entity.SkyKid;
 import SkyMaven.entity.User;
 import SkyMaven.repository.UserRepository;
@@ -15,6 +19,13 @@ import SkyMaven.repository.UserRepository;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private EquipmentService equipmentService;
+	@Autowired
+	private ArbreInProgressService tripService;
+	
+	@Autowired
+	private DeviseService deviseService;
 	
 	public List<User> getAll(){
 		return userRepository.findAll();
@@ -50,5 +61,35 @@ public class UserService {
 	
 	public void delete(User user) {
 		userRepository.delete(user);
+	}
+
+	public void deleteByIdSkyKid(Long id) {
+		SkyKid user = new SkyKid();
+		user.setId(id);
+		//suppression en cascade de l'equipment
+		Equipment e = user.getEquipement();	
+		equipmentService.deleteById(e.getId());
+		//suppression de toute types de monnaie associee au compte
+		Set <Devise> ds = user.getDevise();
+		for(Devise d : ds) {
+            deviseService.delete(d);
+		}
+		//suppression de tous les trip associees au compte
+		Set <ArbreInProgress> trips = user.getTrips();
+		for(ArbreInProgress trip : trips) {
+            tripService.deleteById(trip.getId());
+		}
+		delete(user);
+	}
+	
+	public void deleteByIdAdmin(Long id) {
+		Admin user = new Admin();
+		user.setId(id);
+		delete(user);
+	}
+		
+
+	public SkyKid getSkyKidWithAllInfos(Long id) {
+		return userRepository.findAllInfos(id).orElseThrow(RuntimeException::new);
 	}
 }

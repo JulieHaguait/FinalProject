@@ -9,13 +9,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "prop")
 @SequenceGenerator(name="seqItem", sequenceName="seq_item", initialValue=100, allocationSize=1)
 public class Prop extends Item{
+	
 	@OneToOne
 	@JoinColumn(name="node_id",foreignKey = @ForeignKey(name="PROP_NODE_ID_FK"))
+	@JsonView(JsonViews.ItemWithNode.class)
 	protected Node node;
+	
+	@JsonView(JsonViews.Common.class)
 	private String descriptionAction;
 	
 	

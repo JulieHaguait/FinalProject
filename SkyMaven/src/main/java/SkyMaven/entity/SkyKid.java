@@ -4,10 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.util.Set;
 
 @Entity
@@ -16,23 +18,32 @@ public class SkyKid extends User {
 	
 	// --- Attributs
 	@Column(name="pseudo")
+	@JsonView(JsonViews.Common.class)
 	private String nom;
 
 	@OneToOne
 	@JoinColumn(name="closet_id", foreignKey=@ForeignKey(name="SKYKID_CLOSET_ID_FK"))
+	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
 	private Equipment equipement = new Equipment();
 	
 	@Column(name="winged_light")
+	@JsonView(JsonViews.Common.class)
 	private int nbEnfant = 0;
 	
 	@OneToMany(mappedBy="monnaie")
+	@JsonView(JsonViews.Common.class)
 	private Set<Devise> devise;
 	
 	@Column(name="wing_buff")
+	@JsonView(JsonViews.Common.class)
 	private int wingBuff = 0;
 	
 	@OneToMany(mappedBy="skyKid")
+	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
 	private Set<ArbreInProgress> trips;
+	
+	
+	// private Set<SkyKid> friends;
 	
 	// --- Constructeurs
 	public SkyKid() {
@@ -81,13 +92,15 @@ public class SkyKid extends User {
 		this.wingBuff = wingBuff;
 	}
 
-	public Set<ArbreInProgress> getArbreInProgress() {
+	public Set<ArbreInProgress> getTrips() {
 		return trips;
 	}
 
-	public void setArbreInProgress(Set<ArbreInProgress> trips) {
+
+	public void setTrips(Set<ArbreInProgress> trips) {
 		this.trips = trips;
 	}
+
 	
 	
 	// --- Méthodes

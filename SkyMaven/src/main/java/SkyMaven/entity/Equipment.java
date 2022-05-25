@@ -12,28 +12,40 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "equipment")
 @SequenceGenerator(name = "seqEquipment", sequenceName = "seq_equipment", initialValue = 1, allocationSize = 1)
 public class Equipment {
 
 	@Id
+	@JsonView(JsonViews.Common.class)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEquipment")
 	private Long id;
 	
 	@OneToOne
+	@JsonView(JsonViews.Common.class)
 	@JoinColumn(name = "cape", foreignKey = @ForeignKey(name = "EQUIPMENT_CAPE_ID_FK"))
 	private Cape cape;
+	
 	@OneToOne
+	@JsonView(JsonViews.Common.class)
 	@JoinColumn(name = "mask", foreignKey = @ForeignKey(name = "EQUIPMENT_MASK_ID_FK"))
 	private Masque masque;
+	
 	@OneToOne
+	@JsonView(JsonViews.Common.class)
 	@JoinColumn(name = "pant", foreignKey = @ForeignKey(name = "EQUIPMENT_PANT_ID_FK"))
 	private Pant pant;
+	
 	@OneToOne
+	@JsonView(JsonViews.Common.class)
 	@JoinColumn(name = "hair", foreignKey = @ForeignKey(name = "EQUIPMENT_HAIR_ID_FK"))
 	private Cheveux hair;
+	
 	@OneToOne
+	@JsonView(JsonViews.Common.class)
 	@JoinColumn(name = "prop", foreignKey = @ForeignKey(name = "EQUIPMENT_PROP_ID_FK"))
 	private Prop prop;
 	

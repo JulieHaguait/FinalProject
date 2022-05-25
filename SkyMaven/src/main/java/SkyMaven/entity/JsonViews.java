@@ -26,4 +26,13 @@ public class JsonViews {
 	public static class ArbreInProgressWithRealm extends Common {
 
 	}
+	
+	public static class SkyKidWithTripEquipment extends Common{
+		
+	}
+	
+	public static class ItemWithNode extends SkyKidWithTripEquipment{
+		
+	}
+	
 }

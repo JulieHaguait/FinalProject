@@ -2,16 +2,16 @@ package SkyMaven.entity;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "cosmetique")
@@ -19,8 +19,10 @@ import javax.persistence.Table;
 @DiscriminatorColumn(name = "type",discriminatorType = DiscriminatorType.STRING,length = 2)
 @SequenceGenerator(name="seqItem", sequenceName="seq_item", initialValue=100, allocationSize=1)
 public class Cosmetic extends Item{
+	
 	@OneToOne
 	@JoinColumn(name="node_id",foreignKey = @ForeignKey(name="COSMETIC_NODE_ID_FK"))
+	@JsonView(JsonViews.ItemWithNode.class)
 	protected Node node;
 	
 	public Cosmetic(){
@@ -31,13 +33,5 @@ public class Cosmetic extends Item{
 	{
 		super(libelle,prix);
 	}
-	
-	public void seChanger(Cosmetic c)
-	{
-		// if(c instance of Cape)
-		// armoire.getCapeActuel() = (Cape) c
-	}
-	
-	
 
 }

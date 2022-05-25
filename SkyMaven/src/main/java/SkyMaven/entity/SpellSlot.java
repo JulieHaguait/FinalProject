@@ -10,7 +10,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.ForeignKey;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -20,16 +20,18 @@ import javax.persistence.JoinColumn;
 @SequenceGenerator(name = "seqSpellSlot", sequenceName = "seq_spellSlot", initialValue = 1, allocationSize = 1)
 public class SpellSlot {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqSpellSlot")
+	@JsonView(JsonViews.Common.class)
+	private Long Id;
+	
+	@JsonView(JsonViews.Common.class)
 	private int quantite;
 	
 	@OneToOne
 	@JoinColumn(name = "spell", foreignKey = @ForeignKey(name = "EQUIPMENT_SPELL_ID_FK"))
+	@JsonView(JsonViews.Common.class)
 	private Spell spell;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqSpellSlot")
-	private Long Id;
-
 
 	public SpellSlot() {
 	}
@@ -76,8 +78,6 @@ public class SpellSlot {
 		SpellSlot other = (SpellSlot) obj;
 		return Objects.equals(Id, other.Id);
 	}
-	
-	
 	
 	
 }

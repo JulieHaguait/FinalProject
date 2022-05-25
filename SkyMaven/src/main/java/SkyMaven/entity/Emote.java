@@ -2,10 +2,12 @@ package SkyMaven.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.ForeignKey;
 
 @Entity
@@ -13,10 +15,12 @@ import javax.persistence.ForeignKey;
 @SequenceGenerator(name="seqItem", sequenceName="seq_item", initialValue=100, allocationSize=1)
 public class Emote extends Item {
 	
+	@JsonView(JsonViews.Common.class)
 	private int level;
 	
 	@OneToOne
 	@JoinColumn(name = "node_id", foreignKey = @ForeignKey(name = "EMOTE_NODE_ID_FK"))
+	@JsonView(JsonViews.ItemWithNode.class)
 	private Node node;
 	
 	// --- Constructeur	

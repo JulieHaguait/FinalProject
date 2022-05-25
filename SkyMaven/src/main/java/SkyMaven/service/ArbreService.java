@@ -12,11 +12,13 @@ import SkyMaven.repository.ArbreRepository;
 
 @Service
 public class ArbreService {
-	@Autowired
+	
+	@Autowired 
 	private ArbreRepository arbreRepository;
 	@Autowired
 	NodeService nds;
 
+	
 	public List<Arbre> getAll() {
 		return arbreRepository.findAll();
 	}
