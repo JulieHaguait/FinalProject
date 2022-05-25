@@ -90,14 +90,6 @@ public class Node {
 		this.cosmetic = cosmetic;
 	}
 	
-	public Spell getSort() {
-		return spell;
-	}
-	
-	public void setSort(Spell spell) {
-		this.spell = spell;
-	}
-	
 	public Emote getEmote() {
 		return emote;
 	}
