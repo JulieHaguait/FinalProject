@@ -1,9 +1,12 @@
 package SkyWeb.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -35,5 +38,21 @@ public class SkyKidRestController {
 	public SkyKid getInventaire(@PathVariable Long id) {
 		return userService.getSkyKidWithAllInfos(id);
 	}
+	
+	// Supprimer son compte
+	@DeleteMapping("/{id}/gestion")
+	@JsonView(JsonViews.Common.class)
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable Long id) {
+		userService.deleteByIdSkyKid(id);
+	}
+	
+	@PostMapping("/inscription")
+	
+	
+	@GetMapping("/{id}/gestion")
+	
+	// modif login
+	// modif nom / pseudo
 	
 }

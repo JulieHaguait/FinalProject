@@ -1,5 +1,7 @@
 package SkyMaven.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,20 @@ public class EquipmentService {
 		return equipmentRepository.save(equipEnBase);
 	}
 	
+	public void delete(Equipment e) {
+		//Optional<Equipment> equipEnBase = equipmentRepository.findById(e.getId()).orElseThrow(RuntimeException::new);
+		e.setCape(null);
+		e.setHair(null);
+		e.setMasque(null);
+		e.setPant(null);
+		e.setProp(null);
+		equipmentRepository.delete(e);
+	}
 	
+	public void deleteById(Long id){
+		Equipment e = new Equipment();
+		e.setId(id);
+		delete(e);
+	}
 	
 }

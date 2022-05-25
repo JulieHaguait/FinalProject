@@ -92,15 +92,6 @@ public class SkyKid extends User {
 		this.wingBuff = wingBuff;
 	}
 
-	public Set<ArbreInProgress> getArbreInProgress() {
-		return trips;
-	}
-
-	public void setArbreInProgress(Set<ArbreInProgress> trips) {
-		this.trips = trips;
-	}
-
-
 	public Set<ArbreInProgress> getTrips() {
 		return trips;
 	}

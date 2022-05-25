@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,14 +55,14 @@ public class AdminRestController {
 	}
 
 	// Modif d'un arbre -> selection d'un noeud à modifier / ajouter
-	@GetMapping("/modifArbre")
+	@PostMapping("/modifArbre")
 	@JsonView(JsonViews.Common.class)
 	public Arbre modifArbre(@PathVariable Long id) {
 		return arbreService.getById(id);
 	}
 
 	// Modif / ajout Node
-	@GetMapping("/updateNode")
+	@PostMapping("/updateNode")
 	@JsonView(JsonViews.Common.class) // TODO : voir la view à mettre car lien node parent
 	public Node updateNode(@PathVariable(required=false) Long id) {
 		// test si id existe
