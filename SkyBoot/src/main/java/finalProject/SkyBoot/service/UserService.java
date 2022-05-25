@@ -47,10 +47,10 @@ public class UserService {
 		return userRepository.seConnecter(login, password).orElseThrow(RuntimeException::new);
 	}
 
-	public void create(User user) {
+	public User create(User user) {
 		// encodage du mot de passe quand on saura faire
 		// user.setPassword(fonctionEncodage(user.getPassword()));
-		userRepository.save(user);
+		return userRepository.save(user);
 	}
 
 	public User update(User user) {
