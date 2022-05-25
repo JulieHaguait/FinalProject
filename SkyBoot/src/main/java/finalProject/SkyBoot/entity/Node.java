@@ -45,8 +45,11 @@ public class Node {
 	@JoinColumn(name = "tref_id", foreignKey = @ForeignKey(name = "NODE_TREF_ID_FK"))
 	private Arbre tref;
 	@ManyToOne
-	@JoinColumn(name = "trip_id", foreignKey = @ForeignKey(name = "NODE_TRIP_ID_FK"))
-	private ArbreInProgress trip;
+	@JoinColumn(name = "trip_progress_id", foreignKey = @ForeignKey(name = "NODE_TRIP_PROGRESS_ID_FK"))
+	private ArbreInProgress tripProgress;
+	@ManyToOne
+	@JoinColumn(name = "trip_ref_id", foreignKey = @ForeignKey(name = "NODE_TRIP_REF__ID_FK"))
+	private ArbreInProgress tripRef;
 	
 
 	// --- Constructeur
@@ -151,12 +154,20 @@ public class Node {
 		this.tref = tref;
 	}
 
-	public ArbreInProgress getTrip() {
-		return trip;
+	public ArbreInProgress getTripProgress() {
+		return tripProgress;
 	}
 
-	public void setTrip(ArbreInProgress trip) {
-		this.trip = trip;
+	public void setTripProgress(ArbreInProgress tripProgress) {
+		this.tripProgress = tripProgress;
+	}
+	
+	public ArbreInProgress getTripRef() {
+		return tripRef;
+	}
+
+	public void setTripRef(ArbreInProgress tripRef) {
+		this.tripRef = tripRef;
 	}
 
 	// --- HashCode	
