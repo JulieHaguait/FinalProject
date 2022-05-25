@@ -4,15 +4,20 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "tree_in_progress")
@@ -21,82 +26,88 @@ public class ArbreInProgress {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqTrip")
-	private Long Id;
-	
+	private Long id;
+
+	@JsonView({ JsonViews.Common.class })
 	private double progression;
 
 	@OneToOne
 	@JoinColumn(name = "tree_id", foreignKey = @ForeignKey(name = "TRIP_TREE_ID_FK"))
+	@JsonView(JsonViews.ArbreInProgressWithArbre.class)
 	private Arbre tref;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "skykid_id", foreignKey = @ForeignKey(name = "TRIP_SKYKID_ID_FK"))
+	@JsonView(JsonViews.ArbreInProgressWithSkyKid.class)
 	private SkyKid skyKid;
+
+	@OneToMany
+	@JsonView(JsonViews.ArbreInProgressWithNodeBought.class)
+	private Set<Node> nodeBought;
 	
-	private Set<Node> NodeBought;
-	
+	@JsonView(JsonViews.ArbreInProgressWithRealm.class)
+	@Enumerated(EnumType.STRING)
+	private Realm realm;
+
 	// --- Constructor
-	
+
 	public ArbreInProgress() {
 		super();
 	}
-	
-	
-	// --- Getters / Setters
-	
-	public Long getId() {
-		return Id;
-	}
 
+	// --- Getters / Setters
+
+	public Long getId() {
+		return id;
+	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
-
 
 	public double getProgression() {
 		return progression;
 	}
 
-
 	public void setProgression(double progression) {
 		this.progression = progression;
 	}
-
 
 	public Arbre getTref() {
 		return tref;
 	}
 
-
 	public void setTref(Arbre tref) {
 		this.tref = tref;
 	}
-
 
 	public SkyKid getSkyKid() {
 		return skyKid;
 	}
 
-
 	public void setSkyKid(SkyKid skyKid) {
 		this.skyKid = skyKid;
 	}
 
-
 	public Set<Node> getNodeBought() {
-		return NodeBought;
+		return nodeBought;
 	}
-
 
 	public void setNodeBought(Set<Node> nodeBought) {
-		NodeBought = nodeBought;
+		this.nodeBought = nodeBought;
 	}
 
+	public Realm getRealm() {
+		return realm;
+	}
+
+	public void setRealm(Realm realm) {
+		this.realm = realm;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -108,7 +119,7 @@ public class ArbreInProgress {
 		if (getClass() != obj.getClass())
 			return false;
 		ArbreInProgress other = (ArbreInProgress) obj;
-		return Objects.equals(Id, other.Id);
+		return Objects.equals(id, other.id);
 	}
-	
+
 }

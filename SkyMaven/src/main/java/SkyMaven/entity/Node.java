@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -24,8 +23,8 @@ public class Node {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqNode")
 	private Long id;
 	@ManyToOne
-	@JoinColumn(name = "node_Enfants_id", foreignKey = @ForeignKey(name = "NODE_NODE_ENFANTS_ID_FK"))
-	private Node nodeEnfants;
+	@JoinColumn(name = "node_Parent_id", foreignKey = @ForeignKey(name = "NODE_NODE_PARENT_ID_FK"))
+	private Node nodeParent;
 	
 	@OneToOne(mappedBy = "node")
 	private MusicSheet musicSheet;
@@ -42,6 +41,12 @@ public class Node {
 	@OneToOne(mappedBy = "node")
 	@Column(name="buy_heart")
 	private HeartBuying heartBuying;
+	@ManyToOne
+	@JoinColumn(name = "tref_id", foreignKey = @ForeignKey(name = "NODE_TREF_ID_FK"))
+	private Arbre tref;
+	@ManyToOne
+	@JoinColumn(name = "trip_id", foreignKey = @ForeignKey(name = "NODE_TRIP_ID_FK"))
+	private ArbreInProgress trip;
 	
 
 	// --- Constructeur
@@ -50,12 +55,12 @@ public class Node {
 	}
 
 	// --- Getters & setters
-	public Node getNodeEnfants() {
-		return nodeEnfants;
+	public Node getNodeParent() {
+		return nodeParent;
 	}
 	
-	public void setNodeEnfants(Node nodeEnfants) {
-		this.nodeEnfants = nodeEnfants;
+	public void setNodeParent(Node nodeParent) {
+		this.nodeParent = nodeParent;
 	}
 	
 	public MusicSheet getMusicSheet() {
@@ -123,6 +128,41 @@ public class Node {
 	}
 	
 	
+	
+	
+	
+	public Spell getSpell() {
+		return spell;
+	}
+
+	public void setSpell(Spell spell) {
+		this.spell = spell;
+	}
+
+	public HeartBuying getHeartBuying() {
+		return heartBuying;
+	}
+
+	public void setHeartBuying(HeartBuying heartBuying) {
+		this.heartBuying = heartBuying;
+	}
+
+	public Arbre getTref() {
+		return tref;
+	}
+
+	public void setTref(Arbre tref) {
+		this.tref = tref;
+	}
+
+	public ArbreInProgress getTrip() {
+		return trip;
+	}
+
+	public void setTrip(ArbreInProgress trip) {
+		this.trip = trip;
+	}
+
 	// --- HashCode	
 	@Override
 	public int hashCode() {

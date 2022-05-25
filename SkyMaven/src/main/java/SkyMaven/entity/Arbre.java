@@ -5,16 +5,15 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ForeignKey;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "tree")
@@ -24,18 +23,15 @@ public class Arbre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqTree")
 	private Long id;
-	
+
+	@JsonView({ JsonViews.Common.class })
 	@Column(name = "name")
 	private String nom;
-	
-	@Enumerated(EnumType.STRING)
-	private Realm realm;
-	
+
+	@JsonView(JsonViews.ArbreWithNode.class)
 	@OneToMany
-	@JoinColumn(name = "node_id", foreignKey = @ForeignKey(name = "TREE_NODE_ID_FK"))
 	private Set<Node> nodes;
 
-	
 	// --- Constructor
 	public Arbre() {
 		super();
@@ -43,9 +39,10 @@ public class Arbre {
 
 	public Arbre(String nom, Realm realm) {
 		this.nom = nom;
-		this.realm = realm;
+
 	}
-	
+
+	// --- Getters / Setters
 	public String getNom() {
 		return nom;
 	}
@@ -54,15 +51,6 @@ public class Arbre {
 		this.nom = nom;
 	}
 
-	public Realm getRealm() {
-		return realm;
-	}
-
-	public void setRealm(Realm realm) {
-		this.realm = realm;
-	}
-
-	// --- Getters / Setters	
 	public Long getId() {
 		return id;
 	}
@@ -78,7 +66,7 @@ public class Arbre {
 	public void setNodes(Set<Node> nodes) {
 		this.nodes = nodes;
 	}
-	
+
 	// -- HashCode
 	@Override
 	public int hashCode() {
@@ -96,7 +84,5 @@ public class Arbre {
 		Arbre other = (Arbre) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
+
 }

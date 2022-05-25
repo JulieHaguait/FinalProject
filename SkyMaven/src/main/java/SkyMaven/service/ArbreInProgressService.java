@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import SkyMaven.entity.Arbre;
 import SkyMaven.entity.ArbreInProgress;
+import SkyMaven.entity.Realm;
 import SkyMaven.repository.ArbreInProgressRepository;
 
 @Service
@@ -19,6 +21,15 @@ private ArbreInProgressRepository tripRepository;
 	}
 	public ArbreInProgress getById(Long id) {
 		return tripRepository.findById(id).orElseThrow(RuntimeException::new);
+	}
+	
+	public ArbreInProgress getByIdWithNodes(Long id) {
+		return tripRepository.findByIdWithNodes(id).orElseThrow(RuntimeException::new);
+	}
+	
+	public List<ArbreInProgress> getByRealm(String realm) {
+		Realm realmEnum=Realm.valueOf(realm);
+		return tripRepository.findByRealm(realmEnum);
 	}
 
 	public void create(ArbreInProgress trip) {
