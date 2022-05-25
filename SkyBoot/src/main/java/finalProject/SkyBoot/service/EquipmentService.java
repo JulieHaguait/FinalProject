@@ -17,6 +17,9 @@ public class EquipmentService {
 	@Autowired
 	CosmeticService cs;
 	
+	public Equipment create(Equipment e) {
+		return equipmentRepository.save(e);
+	}
 	
 	public Equipment update(Equipment e) {
 		Equipment equipEnBase = new Equipment();
