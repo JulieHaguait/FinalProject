@@ -25,6 +25,10 @@ private ArbreInProgressRepository tripRepository;
 		return tripRepository.findByIdWithNodes(id).orElseThrow(RuntimeException::new);
 	}
 	
+	public ArbreInProgress getByIdWithNodesWithNodesRef(Long id) {
+		return tripRepository.findByIdWithNodesWithNodesRef(id).orElseThrow(RuntimeException::new);
+	}
+	
 	public List<ArbreInProgress> getByRealm(String realm) {
 		Realm realmEnum=Realm.valueOf(realm);
 		return tripRepository.findByRealm(realmEnum);

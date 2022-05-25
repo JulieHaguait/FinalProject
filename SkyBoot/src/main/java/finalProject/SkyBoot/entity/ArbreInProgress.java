@@ -45,6 +45,10 @@ public class ArbreInProgress {
 	@JsonView(JsonViews.ArbreInProgressWithNodeBought.class)
 	private Set<Node> nodeBought;
 	
+	@OneToMany
+	//JsonView plus tard !
+	private Set<Node> nodeRef;
+	
 	@JsonView(JsonViews.ArbreInProgressWithRealm.class)
 	@Enumerated(EnumType.STRING)
 	private Realm realm;
@@ -94,6 +98,14 @@ public class ArbreInProgress {
 	public void setNodeBought(Set<Node> nodeBought) {
 		this.nodeBought = nodeBought;
 	}
+	
+	public Set<Node> getNodeRef() {
+		return nodeRef;
+	}
+
+	public void setNodeRef() {
+		this.nodeRef = this.tref.getNodes();
+	}//on récupère la liste de noeuds du tref pour l'affichage dans la boutique !!!!!!!!!
 
 	public Realm getRealm() {
 		return realm;

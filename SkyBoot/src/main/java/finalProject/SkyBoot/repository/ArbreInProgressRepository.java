@@ -17,5 +17,8 @@ public interface ArbreInProgressRepository extends JpaRepository<ArbreInProgress
 	
 	@Query("Select a from ArbreInPreogress where a.realm=:realm")
 	List<ArbreInProgress> findByRealm(@Param("realm") Realm realmEnum);
+	
+	@Query("Select a from Arbre left join fetch a.nodeBought left join fetch a.nodeRef where a.id=:id")
+	Optional<ArbreInProgress> findByIdWithNodesWithNodesRef(@Param("id") Long id);
 
 }

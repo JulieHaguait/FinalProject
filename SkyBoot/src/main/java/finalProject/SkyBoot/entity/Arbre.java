@@ -27,7 +27,7 @@ public class Arbre {
 	@Column(name = "name")
 	private String nom;
 
-	@JsonView(JsonViews.ArbreWithNode.class)
+	@JsonView(JsonViews.ArbreWithNode.class) // attention !!!!
 	@OneToMany
 	private Set<Node> nodes;
 

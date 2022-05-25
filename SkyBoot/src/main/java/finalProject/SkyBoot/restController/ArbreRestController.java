@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.catalina.Realm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,14 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import SkyBoot.entity.ArbreInProgress;
-import SkyBoot.entity.JsonViews.ArbreInProgressWithNodeBought;
-import SkyBoot.entity.JsonViews.ArbreInProgressWithRealm;
-import SkyBoot.entity.JsonViews.ArbreWithNode;
-import SkyBoot.entity.JsonViews.Common;
-import SkyBoot.service.ArbreInProgressService;
-import SkyBoot.service.ArbreService;
-import SkyBoot.service.NodeService;
+import finalProject.SkyBoot.entity.ArbreInProgress;
+import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithNodeBought;
+import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithRealm;
+import finalProject.SkyBoot.entity.JsonViews.ArbreWithNode;
+import finalProject.SkyBoot.entity.JsonViews.Common;
+import finalProject.SkyBoot.entity.Realm;
+import finalProject.SkyBoot.service.ArbreInProgressService;
+import finalProject.SkyBoot.service.ArbreService;
+import finalProject.SkyBoot.service.NodeService;
 
 @RestController
 @RequestMapping("/api/boutique")
@@ -34,12 +34,11 @@ public class ArbreRestController {
 	private NodeService nodeService;
 
 	
-	@JsonView(Common.class) // ?
+	//@JsonView(Common.class) // ?// pas besoin de JSonView :)
 	@GetMapping("") // page d'accueil de la boutique avec les noms des royaumes
-	// vue json qu'on veut
-	public Realm[] listRealms() {
+		public Realm[] listRealms() {
 		return Realm.values();
-	}// -------------Demander � Olivier parceque c'est un Enum et on sait pas !
+	}
 
 	
 	@JsonView({ArbreInProgressWithRealm.class})
@@ -54,6 +53,11 @@ public class ArbreRestController {
 	@GetMapping("/{realm}/{id}")
 	@JsonView({ ArbreInProgressWithNodeBought.class, ArbreWithNode.class })
 	public List<Object> getNodes(@PathVariable String realm, @PathVariable Long id) {
+		// on recommence !!!
+		
+		
+		//plus besoin de la suite !
+		
 		ArbreInProgress trip = tripService.getByIdWithNodes(id);
 		Long idTref = trip.getTref().getId();
 		List<Object> pourReturn = new ArrayList<Object>();
@@ -61,5 +65,6 @@ public class ArbreRestController {
 		return pourReturn;
 		// return [trip, arbreService.getByIdWithNodes(idTref)];
 	}/// -------------HELP OLIVIER (on veut deux listes XD)
+	//----------------REPONSE : CREER UNE CLASSE SUPPLEMENTAIRE !!! YOUPI
 
 }

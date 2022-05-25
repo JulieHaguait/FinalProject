@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import SkyBoot.entity.JsonViews;
-import SkyBoot.entity.SkyKid;
-import SkyBoot.service.UserService;
+import finalProject.SkyBoot.entity.JsonViews;
+import finalProject.SkyBoot.entity.SkyKid;
+import finalProject.SkyBoot.service.UserService;
 
 @RestController
 @RequestMapping("/api/skykid")
@@ -47,10 +47,10 @@ public class SkyKidRestController {
 		userService.deleteByIdSkyKid(id);
 	}
 	
-	@PostMapping("/inscription")
+	//@PostMapping("/inscription")
 	
 	
-	@GetMapping("/{id}/gestion")
+	//@GetMapping("/{id}/gestion")
 	
 	// modif login
 	// modif nom / pseudo
