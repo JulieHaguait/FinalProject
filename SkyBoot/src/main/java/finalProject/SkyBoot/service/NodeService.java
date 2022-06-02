@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import finalProject.SkyBoot.entity.Arbre;
+import finalProject.SkyBoot.entity.ArbreInProgress;
 import finalProject.SkyBoot.entity.Node;
 import finalProject.SkyBoot.exception.NodeException;
 import finalProject.SkyBoot.repository.NodeRepository;
@@ -13,8 +16,16 @@ public class NodeService {
 	@Autowired
 	private NodeRepository nodeRepository;
 
-	public List<Node> getAllByArbre(Long arbre) {
-		return nodeRepository.findAllByArbreId(arbre);
+	public List<Node> getAllByArbre(Arbre arbre) {
+		return nodeRepository.findByTref(arbre);
+	}
+	
+	public List<Node> getAllByTripRef(ArbreInProgress arbre) {
+		return nodeRepository.findByTripRef(arbre);
+	}
+	
+	public List<Node> getAllByTripProgress(ArbreInProgress arbre) {
+		return nodeRepository.findByTripProgress(arbre);
 	}
 
 	public Node getById(Long id) {

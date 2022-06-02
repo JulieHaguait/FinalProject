@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "tree")
-@SequenceGenerator(name = "seqTree", sequenceName = "seq_tree", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "seqTree", sequenceName = "seq_tree", initialValue = 100, allocationSize = 1)
 public class Arbre {
 
 	@Id

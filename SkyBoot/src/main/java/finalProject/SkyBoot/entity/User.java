@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,20 +22,21 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonView;
 
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name="user")
+@Table(name="compte") // user réservé !!!
 @SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
-@JsonTypeInfo(
+/*@JsonTypeInfo(
 		use=JsonTypeInfo.Id.NAME,
 		include=JsonTypeInfo.As.PROPERTY,
 		property="type"
-		)
-@JsonSubTypes({
+		)*/
+/*@JsonSubTypes({
 	@Type(value=Admin.class, name="admin"),
 	@Type(value=SkyKid.class, name="skykid"),
-})
+})*/
 
-public abstract class User implements UserDetails {
+public class User implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqUser")

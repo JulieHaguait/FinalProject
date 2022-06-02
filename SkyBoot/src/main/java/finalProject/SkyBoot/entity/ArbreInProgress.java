@@ -28,7 +28,7 @@ import finalProject.SkyBoot.entity.JsonViews.Common;
 
 @Entity
 @Table(name = "tree_in_progress")
-@SequenceGenerator(name = "seqTrip", sequenceName = "seq_trip", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "seqTrip", sequenceName = "seq_trip", initialValue = 100, allocationSize = 1)
 public class ArbreInProgress {
 
 	@Id

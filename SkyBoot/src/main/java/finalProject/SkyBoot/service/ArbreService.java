@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import finalProject.SkyBoot.entity.Node;
 import finalProject.SkyBoot.entity.Arbre;
+import finalProject.SkyBoot.entity.ArbreInProgress;
 import finalProject.SkyBoot.repository.ArbreRepository;
 
 @Service
@@ -38,7 +39,7 @@ public class ArbreService {
 	}
 
 	public void delete(Arbre arbre) {
-		List<Node> ns = nds.getAllByArbre(arbre.getId());
+		List<Node> ns = nds.getAllByArbre(arbre);
 		for (Node n : ns) {
 			nds.delete(n);
 		}

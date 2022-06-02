@@ -39,7 +39,6 @@ public class Node {
 	@OneToOne(mappedBy = "node")
 	private WingBuff wingBuff;
 	@OneToOne(mappedBy = "node")
-	@Column(name="buy_heart")
 	private HeartBuying heartBuying;
 	@ManyToOne
 	@JoinColumn(name = "tref_id", foreignKey = @ForeignKey(name = "NODE_TREF_ID_FK"))

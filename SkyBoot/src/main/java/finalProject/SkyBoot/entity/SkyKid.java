@@ -3,24 +3,24 @@ package finalProject.SkyBoot.entity;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
-@SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
+@DiscriminatorValue("skykid")
 public class SkyKid extends User {
 	
 	// --- Attributs
 	@OneToOne
 	@JoinColumn(name="closet_id", foreignKey=@ForeignKey(name="SKYKID_CLOSET_ID_FK"))
 	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
-	private Equipment equipement = new Equipment();
+	private Equipment equipment = new Equipment();
 	
 	@Column(name="winged_light")
 	@JsonView(JsonViews.Common.class)
@@ -47,12 +47,12 @@ public class SkyKid extends User {
 	}
 	
 	// --- Getters / Setters
-	public Equipment getEquipement() {
-		return equipement;
+	public Equipment getEquipment() {
+		return equipment;
 	}
 
-	public void setEquipement(Equipment equipement) {
-		this.equipement = equipement;
+	public void setEquipment(Equipment equipment) {
+		this.equipment = equipment;
 	}
 
 	public int getNbEnfant() {

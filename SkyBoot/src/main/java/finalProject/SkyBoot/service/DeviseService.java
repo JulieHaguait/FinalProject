@@ -1,13 +1,15 @@
 package finalProject.SkyBoot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import finalProject.SkyBoot.entity.Devise;
 import finalProject.SkyBoot.repository.DeviseRepository;
 
-
+@Service
 public class DeviseService {
 
 	@Autowired
@@ -17,8 +19,8 @@ public class DeviseService {
 		return deviseRepository.findAll();
 	}
 	
-	public Devise getById(Long id) {
-		return deviseRepository.getById(id);
+	public Optional<Devise> getById(Long id) {
+		return deviseRepository.findById(id);
 	}
 	
 	

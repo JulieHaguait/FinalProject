@@ -12,13 +12,13 @@ import finalProject.SkyBoot.entity.Monnaie;
 
 public interface MonnaieRepository extends JpaRepository<Monnaie, Long> {
 
-	@Query("Select bb from BougieBlanche bb")
+	@Query("Select m from BougieBlanche m")
 	List<BougieBlanche> findAllBougieBlanche();
 
-	@Query("Select br from BougieRouge br")
+	@Query("Select m from BougieRouge m")
 	List<BougieRouge> findAllBougieRouge();
 
-	@Query("Select e from Emote e")
+	@Query("Select m from Coeur m")
 	List<Coeur> findAllCoeur();
 	
 	

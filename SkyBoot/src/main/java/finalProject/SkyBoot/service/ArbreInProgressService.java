@@ -50,7 +50,7 @@ private NodeService nodeService;
 	public void deleteById(Long id) {
 		ArbreInProgress trip = new ArbreInProgress();
 		trip.setId(id);
-		trip.setSkyKid(null);
+		//trip.setSkyKid(null);
 		trip.setTref(null);
 		Set <Node> nodeBoughts = trip.getNodeBought();
 		for(Node node : nodeBoughts) {

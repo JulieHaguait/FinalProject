@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "spell_slot")
-@SequenceGenerator(name = "seqSpellSlot", sequenceName = "seq_spellSlot", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "seqSpellSlot", sequenceName = "seq_spellSlot", initialValue = 100, allocationSize = 1)
 public class SpellSlot {
 
 	@Id

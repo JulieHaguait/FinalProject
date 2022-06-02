@@ -1,10 +1,11 @@
 package finalProject.SkyBoot.entity;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
+
 
 @Entity
-@SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
+@DiscriminatorValue("admin")
 public class Admin extends User {
 
 	public Admin() {

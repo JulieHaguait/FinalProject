@@ -13,16 +13,16 @@ import finalProject.SkyBoot.entity.Pant;
 
 public interface CosmeticRepository extends JpaRepository<Cosmetic, Long>{
 
-	@Query("Select c from Cosmetic c where type=C")
+	@Query("Select c from Cape c")
 	List<Cape> findAllCapes();
 	
-	@Query("Select c from Cosmetic c where type=H")
+	@Query("Select c from Cheveux c")
 	List<Cheveux> findAllCheveux();
 	
-	@Query("Select c from Cosmetic c where type=M")
+	@Query("Select c from Masque c")
 	List<Masque> findAllMasques();
 	
-	@Query("Select c from Cosmetic c where type=P")
+	@Query("Select c from Pant c")
 	List<Pant> findAllPants();
 
 	

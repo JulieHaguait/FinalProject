@@ -10,7 +10,7 @@ import finalProject.SkyBoot.entity.Arbre;
 
 public interface ArbreRepository extends JpaRepository<Arbre, Long> {
 
-	@Query("Select a from Arbre left join fetch a.nodes where a.id=:id")
+	@Query("Select a from Arbre a left join fetch a.nodes where a.id=:id")
 	Optional<Arbre> findByIdWithNodes(@Param("id") Long id);
 
 }

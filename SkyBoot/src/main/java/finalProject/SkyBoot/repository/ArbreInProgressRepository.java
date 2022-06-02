@@ -12,13 +12,13 @@ import finalProject.SkyBoot.entity.ArbreInProgress;
 
 public interface ArbreInProgressRepository extends JpaRepository<ArbreInProgress, Long> {
 
-	@Query("Select a from Arbre left join fetch a.nodeBought where a.id=:id")
+	@Query("Select a from ArbreInProgress a left join fetch a.nodeBought where a.id=:id")
 	Optional<ArbreInProgress> findByIdWithNodes(@Param("id") Long id);
 	
-	@Query("Select a from ArbreInPreogress where a.realm=:realm")
+	@Query("Select a from ArbreInProgress a where a.realm=:realm")
 	List<ArbreInProgress> findByRealm(@Param("realm") Realm realmEnum);
 	
-	@Query("Select a from Arbre left join fetch a.nodeBought left join fetch a.nodeRef where a.id=:id")
+	@Query("Select a from ArbreInProgress a left join fetch a.nodeBought left join fetch a.nodeRef where a.id=:id")
 	Optional<ArbreInProgress> findByIdWithNodesWithNodesRef(@Param("id") Long id);
 
 }

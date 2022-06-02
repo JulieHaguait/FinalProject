@@ -1,18 +1,12 @@
-logging:
-  level:
-    formation:
-      soprasteria:
-        formationSpringBoot:
-          services: trace
-    root: info
+
 server:
   servlet:
-    context-path: /boot
+    context-path: /sky
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     password: postgres
-    url: jdbc:postgresql://localhost:5432/quest
+    url: jdbc:postgresql://localhost:5432/sky
     username: postgres
   jpa:
     hibernate:
@@ -21,8 +15,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
         format_sql: true
-        show_sql: false
-  mvc:
-    view:
-      prefix: /WEB-INF/pages/
-      suffix: .jsp
+        show_sql: true
+      
+  main:
+    allow-circular-references: true

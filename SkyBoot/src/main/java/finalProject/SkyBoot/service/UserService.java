@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import finalProject.SkyBoot.entity.Admin;
@@ -12,6 +13,8 @@ import finalProject.SkyBoot.entity.Devise;
 import finalProject.SkyBoot.entity.Equipment;
 import finalProject.SkyBoot.entity.SkyKid;
 import finalProject.SkyBoot.entity.User;
+import finalProject.SkyBoot.repository.AdminRepository;
+import finalProject.SkyBoot.repository.SkyKidRepository;
 import finalProject.SkyBoot.repository.UserRepository;
 
 
@@ -19,10 +22,21 @@ import finalProject.SkyBoot.repository.UserRepository;
 public class UserService {
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private SkyKidRepository skykidRepository;
+	
+	@Autowired
+	private AdminRepository adminRepository;
+	
 	@Autowired
 	private EquipmentService equipmentService;
+	
 	@Autowired
 	private ArbreInProgressService tripService;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private DeviseService deviseService;
@@ -32,11 +46,11 @@ public class UserService {
 	}
 	
 	public List<SkyKid> getAllSkyKid(){
-		return userRepository.findAllSkyKid();
+		return skykidRepository.findAllSkyKid();
 	}
 	
 	public List<Admin> getAllAdmin(){
-		return userRepository.findAllAdmin();
+		return adminRepository.findAllAdmin();
 	}
 	
 	public User getById(Long id) {
@@ -49,7 +63,7 @@ public class UserService {
 
 	public User create(User user) {
 		// encodage du mot de passe quand on saura faire
-		// user.setPassword(fonctionEncodage(user.getPassword()));
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
 
@@ -67,7 +81,7 @@ public class UserService {
 		SkyKid user = new SkyKid();
 		user.setId(id);
 		//suppression en cascade de l'equipment
-		Equipment e = user.getEquipement();	
+		Equipment e = user.getEquipment();	
 		equipmentService.deleteById(e.getId());
 		//suppression de toute types de monnaie associee au compte
 		Set <Devise> ds = user.getDevise();
@@ -90,7 +104,7 @@ public class UserService {
 		
 
 	public SkyKid getSkyKidWithAllInfos(Long id) {
-		return userRepository.findAllInfos(id).orElseThrow(RuntimeException::new);
+		return skykidRepository.findAllInfos(id).orElseThrow(RuntimeException::new);
 	}
 	
 	public User getByLogin(String login) {
