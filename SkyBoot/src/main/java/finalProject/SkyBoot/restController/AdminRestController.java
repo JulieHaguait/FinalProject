@@ -62,7 +62,7 @@ public class AdminRestController {
 	}
 	
 	// Suppression d'un SkiKid
-	@DeleteMapping("/modifUser")
+	@DeleteMapping("/modifUser/{id}")
 	@JsonView(Common.class)
 	@ResponseStatus(code = HttpStatus.OK)
 	public void deleteSkykid(@PathVariable Long id) {
