@@ -3,6 +3,7 @@ package finalProject.SkyBoot.restController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -23,6 +24,7 @@ import finalProject.SkyBoot.service.UserService;
 
 @RestController
 @RequestMapping("/api/skykid")
+@CrossOrigin(origins = "*")
 public class SkyKidRestController {
 
 	@Autowired

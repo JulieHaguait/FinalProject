@@ -2,7 +2,6 @@ package finalProject.SkyBoot.entity;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -22,30 +21,40 @@ public class Node {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqNode")
 	private Long id;
+	
 	@ManyToOne
 	@JoinColumn(name = "node_Parent_id", foreignKey = @ForeignKey(name = "NODE_NODE_PARENT_ID_FK"))
 	private Node nodeParent;
 	
 	@OneToOne(mappedBy = "node")
 	private MusicSheet musicSheet;
+	
 	@OneToOne(mappedBy = "node")
 	private Prop prop;
+	
 	@OneToOne(mappedBy = "node")
 	private Cosmetic cosmetic;
+	
 	@OneToOne(mappedBy = "node")
 	private Spell spell;
+	
 	@OneToOne(mappedBy = "node")
 	private Emote emote;
+	
 	@OneToOne(mappedBy = "node")
 	private WingBuff wingBuff;
+	
 	@OneToOne(mappedBy = "node")
 	private HeartBuying heartBuying;
+	
 	@ManyToOne
 	@JoinColumn(name = "tref_id", foreignKey = @ForeignKey(name = "NODE_TREF_ID_FK"))
 	private Arbre tref;
+	
 	@ManyToOne
 	@JoinColumn(name = "trip_progress_id", foreignKey = @ForeignKey(name = "NODE_TRIP_PROGRESS_ID_FK"))
 	private ArbreInProgress tripProgress;
+	
 	@ManyToOne
 	@JoinColumn(name = "trip_ref_id", foreignKey = @ForeignKey(name = "NODE_TRIP_REF__ID_FK"))
 	private ArbreInProgress tripRef;
@@ -57,76 +66,69 @@ public class Node {
 	}
 
 	// --- Getters & setters
-	public Node getNodeParent() {
-		return nodeParent;
-	}
 	
-	public void setNodeParent(Node nodeParent) {
-		this.nodeParent = nodeParent;
-	}
-	
-	public MusicSheet getMusicSheet() {
-		return musicSheet;
-	}
-		
-	public void setMusicSheet(MusicSheet musicSheet) {
-		this.musicSheet = musicSheet;
-	}
-	
-	public Prop getProp() {
-		return prop;
-	}
-	
-	public void setProp(Prop prop) {
-		this.prop = prop;
-	}
-	
-	public Cosmetic getCosmetic() {
-		return cosmetic;
-	}
-	
-	public void setCosmetic(Cosmetic cosmetic) {
-		this.cosmetic = cosmetic;
-	}
-	
-	public Emote getEmote() {
-		return emote;
-	}
-	
-	public void setEmote(Emote emote) {
-		this.emote = emote;
-	}
-	
-	public WingBuff getWingBuff() {
-		return wingBuff;
-	}
-	
-	public void setWingBuff(WingBuff wingBuff) {
-		this.wingBuff = wingBuff;
-	}
-	
-	public HeartBuying getCoeurAchat() {
-		return heartBuying;
-	}
-	
-	public void setCoeurAchat(HeartBuying heartBuying) {
-		this.heartBuying = heartBuying;
-	}
-
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
+	public Node getNodeParent() {
+		return nodeParent;
+	}
+
+	public void setNodeParent(Node nodeParent) {
+		this.nodeParent = nodeParent;
+	}
+
+	public MusicSheet getMusicSheet() {
+		return musicSheet;
+	}
+
+	public void setMusicSheet(MusicSheet musicSheet) {
+		this.musicSheet = musicSheet;
+	}
+
+	public Prop getProp() {
+		return prop;
+	}
+
+	public void setProp(Prop prop) {
+		this.prop = prop;
+	}
+
+	public Cosmetic getCosmetic() {
+		return cosmetic;
+	}
+
+	public void setCosmetic(Cosmetic cosmetic) {
+		this.cosmetic = cosmetic;
+	}
+
 	public Spell getSpell() {
 		return spell;
 	}
 
 	public void setSpell(Spell spell) {
 		this.spell = spell;
+	}
+
+	public Emote getEmote() {
+		return emote;
+	}
+
+	public void setEmote(Emote emote) {
+		this.emote = emote;
+	}
+
+	public WingBuff getWingBuff() {
+		return wingBuff;
+	}
+
+	public void setWingBuff(WingBuff wingBuff) {
+		this.wingBuff = wingBuff;
 	}
 
 	public HeartBuying getHeartBuying() {
@@ -152,7 +154,7 @@ public class Node {
 	public void setTripProgress(ArbreInProgress tripProgress) {
 		this.tripProgress = tripProgress;
 	}
-	
+
 	public ArbreInProgress getTripRef() {
 		return tripRef;
 	}
