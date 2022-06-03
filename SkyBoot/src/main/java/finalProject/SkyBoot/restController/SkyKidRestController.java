@@ -54,14 +54,6 @@ public class SkyKidRestController {
 		userService.deleteByIdSkyKid(id);
 	}
 	
-	// S'inscrire
-	@PostMapping("/inscription")
-	@JsonView(Common.class)
-	public User create() {
-		SkyKid skyKid = new SkyKid();
-		return userService.create((User)skyKid);
-	}
-	
 	// aller sur page Gestion
 	@GetMapping("/{id}/gestion")
 	@JsonView(Common.class)

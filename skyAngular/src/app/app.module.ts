@@ -7,8 +7,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { routes } from './routes';
 
+import { InscriptionComponent } from './components/free-for-all/inscription/inscription.component';
+import { ConnexionComponent } from './components/free-for-all/connexion/connexion.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { HomeComponent } from './components/home/home.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,   InscriptionComponent, ConnexionComponent, MenuComponent, HomeComponent,],
   imports: [
     BrowserModule,
     HttpClientModule,

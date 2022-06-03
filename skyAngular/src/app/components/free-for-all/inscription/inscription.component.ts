@@ -17,14 +17,15 @@ import { InscriptionService } from 'src/app/services/inscription.service';
   styleUrls: ['./inscription.component.css'],
 })
 export class InscriptionComponent implements OnInit {
-  form: FormGroup;
+  monForm: FormGroup;
 
   constructor(
     private inscriptionService: InscriptionService,
     private router: Router
   ) {
-    this.form = new FormGroup({
-      type: new FormControl('Skykid'),
+    this.monForm = new FormGroup({
+      login: new FormControl('', Validators.required),
+      type: new FormControl('skykid'),
       passwordGroup: new FormGroup(
         {
           password: new FormControl('', Validators.required),
@@ -58,9 +59,9 @@ export class InscriptionComponent implements OnInit {
 
   submit() {
     let compte = {
-      login: this.form.get('login')?.value,
-      type: this.form.get('type')?.value,
-      password: this.form.get('passwordGroup.password')?.value,
+      login: this.monForm.get('login')?.value,
+      type: this.monForm.get('type')?.value,
+      password: this.monForm.get('passwordGroup.password')?.value,
     };
     this.inscriptionService.inscription(compte).subscribe((data) => {
       this.router.navigate(['/home'], { queryParams: { inscription: true } });
