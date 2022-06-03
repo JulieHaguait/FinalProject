@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithArbre;
@@ -32,6 +34,7 @@ import finalProject.SkyBoot.entity.JsonViews.Common;
 public class ArbreInProgress {
 
 	@Id
+	@JsonView({ Common.class })
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqTrip")
 	private Long id;
 
@@ -59,6 +62,9 @@ public class ArbreInProgress {
 	@JsonView(ArbreInProgressWithRealm.class)
 	@Enumerated(EnumType.STRING)
 	private Realm realm;
+	
+	//@Autowired
+	//private Arb
 
 	// --- Constructor
 	public ArbreInProgress() {
@@ -110,9 +116,9 @@ public class ArbreInProgress {
 		return nodeRef;
 	}
 
-	public void setNodeRef() {
-		this.nodeRef = this.tref.getNodes();
-	}//on récupère la liste de noeuds du tref pour l'affichage dans la boutique !!!!!!!!!
+	public void setNodeRef(Set<Node> nodeRef) {
+		this.nodeRef = nodeRef;
+	}
 
 	public Realm getRealm() {
 		return realm;

@@ -13,6 +13,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import finalProject.SkyBoot.entity.JsonViews.Common;
+
 @Entity
 @Table(name = "Node")
 @SequenceGenerator(name = "seqNode", sequenceName = "seq_Node", initialValue = 100, allocationSize = 1)
@@ -20,43 +24,55 @@ public class Node {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqNode")
+	@JsonView({ Common.class })
 	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name = "node_Parent_id", foreignKey = @ForeignKey(name = "NODE_NODE_PARENT_ID_FK"))
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private Node nodeParent;
 	
 	@OneToOne(mappedBy = "node")
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private MusicSheet musicSheet;
 	
 	@OneToOne(mappedBy = "node")
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private Prop prop;
 	
 	@OneToOne(mappedBy = "node")
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private Cosmetic cosmetic;
 	
 	@OneToOne(mappedBy = "node")
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private Spell spell;
 	
 	@OneToOne(mappedBy = "node")
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private Emote emote;
 	
 	@OneToOne(mappedBy = "node")
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private WingBuff wingBuff;
 	
 	@OneToOne(mappedBy = "node")
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private HeartBuying heartBuying;
 	
 	@ManyToOne
 	@JoinColumn(name = "tref_id", foreignKey = @ForeignKey(name = "NODE_TREF_ID_FK"))
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private Arbre tref;
 	
 	@ManyToOne
 	@JoinColumn(name = "trip_progress_id", foreignKey = @ForeignKey(name = "NODE_TRIP_PROGRESS_ID_FK"))
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private ArbreInProgress tripProgress;
 	
 	@ManyToOne
 	@JoinColumn(name = "trip_ref_id", foreignKey = @ForeignKey(name = "NODE_TRIP_REF__ID_FK"))
+	//@JsonView({ Common.class })--------------> regler JsonView :)
 	private ArbreInProgress tripRef;
 	
 

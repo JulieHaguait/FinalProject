@@ -20,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Arbre {
 
 	@Id
+	@JsonView({ JsonViews.Common.class })
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqTree")
 	private Long id;
 

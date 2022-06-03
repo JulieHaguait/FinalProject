@@ -37,6 +37,8 @@ import finalProject.SkyBoot.entity.Spell;
 import finalProject.SkyBoot.entity.SpellSlot;
 import finalProject.SkyBoot.entity.WingBuff;
 import finalProject.SkyBoot.repository.DeviseRepository;
+import finalProject.SkyBoot.repository.HeartBuyingRepository;
+import finalProject.SkyBoot.repository.WingBuffRepository;
 import finalProject.SkyBoot.service.ArbreInProgressService;
 import finalProject.SkyBoot.service.ArbreService;
 import finalProject.SkyBoot.service.CosmeticService;
@@ -90,33 +92,55 @@ class SkyBootApplicationTests {
 	private UserService userService;
 	
 	@Autowired
-	private DeviseRepository devRepo;
+	private HeartBuyingRepository heartBuyingRepository;
+	
+	@Autowired
+	private WingBuffRepository wingBuffRepository;
 	
 	@Test
 	@Transactional
 	@Commit
 	@Disabled
 	void testNode() {
-		Node n1 = new Node();
-		System.out.println(n1);
 		
-		Node n2 = new Node();
-		System.out.println(n2);
+		// --- Pointing Candlemaker
+				Node n1 = new Node();
+				nodeService.create(n1);
+				Node n2 = new Node();
+				nodeService.create(n2);
+				Node n3 = new Node();
+				nodeService.create(n3);
+				
 		
-		nodeService.create(n1);
-		nodeService.create(n2);
+		// --- Arbre ref
+
+				Arbre arbre1_1 = new Arbre("Pointing_CandleMaker",Realm.Isle);
+				trefService.create(arbre1_1);
+				
+				n1.setTref(arbre1_1);
+				nodeService.update(n1);
+				n2.setTref(arbre1_1);
+				nodeService.update(n2);
+				n3.setTref(arbre1_1);
+				nodeService.update(n3);
+				
+				List<Node> listeDeNoeuds = nodeService.getAllByArbre(trefService.getByNom("Pointing_CandleMaker"));
+				Set<Node> nodesArbre1 = new HashSet<Node>();
+				Collections.addAll(nodesArbre1, listeDeNoeuds.get(0), listeDeNoeuds.get(1), listeDeNoeuds.get(2));
+						
+				arbre1_1.setNodes(nodesArbre1);
+				trefService.update(arbre1_1);
+				
+				/*
+				Set<Node> nodesArbre1 = new HashSet<Node>();
+				Collections.addAll(nodesArbre1, nodeService.getById(n1.getId()), nodeService.getById(n2.getId()),nodeService.getById(n3.getId()), nodeService.getById(n4.getId()), nodeService.getById(n5.getId()), nodeService.getById(n6.getId()), nodeService.getById(n7.getId()),nodeService.getById( n8.getId()),nodeService.getById( n9.getId()),nodeService.getById( n10.getId()));
+					*/
+				ArbreInProgress test = new ArbreInProgress();
+				test.setNodeRef(nodesArbre1);
+				test.setTref(arbre1_1);
+				tripService.create(test);
 		
-		if(n1 == n2) {
-			System.out.println("AAAAA MAIS ZUT");
-		}else{
-			System.out.println("hein? mais pourquoi tu veux pas les mettre and un set");
-		}
 		
-		Set<Node> truc = new HashSet<Node>();
-		truc.add(n1);
-		truc.add(n2);
-		
-		System.out.println(truc);
 	}
 	
 	
@@ -154,20 +178,36 @@ class SkyBootApplicationTests {
 		Cape cape3 = new Cape("rouge",10);
 		Cape cape4 = new Cape("vert",15);
 		Cape cape5 = new Cape("sarcelle",20);
+		cosService.create(cape1);
+		cosService.create(cape2);
+		cosService.create(cape3);
+		cosService.create(cape4);
+		cosService.create(cape5);
 		
 		Cheveux cheveux1 = new Cheveux("base",0);
 		Cheveux cheveux2 = new Cheveux("Cirier_Pointant",0);
 		Cheveux cheveux3 = new Cheveux("Voyageur_Refusant",1);
 		Cheveux cheveux4 = new Cheveux("Fabricant_De_Cloche",2);
 		Cheveux cheveux5 = new Cheveux("Fabriquant_De_Bateaux",3);
+		cosService.create(cheveux1);
+		cosService.create(cheveux2);
+		cosService.create(cheveux3);
+		cosService.create(cheveux4);
+		cosService.create(cheveux5);
 		
 		Masque m1 = new Masque("base",0);
 		Masque m2 = new Masque();
-		Masque m3 = new Masque();	
+		Masque m3 = new Masque();
+		cosService.create(m1);
+		cosService.create(m2);
+		cosService.create(m3);
 		
 		Pant pbase = new Pant("base", 0);
 		Pant p1 = new Pant("first", 4);
 		Pant p2 = new Pant("second", 4);
+		cosService.create(pbase);
+		cosService.create(p1);
+		cosService.create(p2);
 		
 		Prop prop1 = new Prop("harpe", 5, "instrument à cordes pincées");
 		Prop prop2 = new Prop("djembé", 5, "instrument à percussion");		
@@ -233,11 +273,19 @@ class SkyBootApplicationTests {
 		HeartBuying heartBuying2 = new HeartBuying("HeartBuyingArbre2",3);
 		HeartBuying heartBuying3 = new HeartBuying("HeartBuyingArbre3",3);
 		HeartBuying heartBuying4 = new HeartBuying("HeartBuyingArbre4",3);
+		itemService.create(heartBuying1);
+		itemService.create(heartBuying2);
+		itemService.create(heartBuying3);
+		itemService.create(heartBuying4);
 		
 		Spell s1 = new Spell("FullCharge", 1, "Recharge complete");		
 		Spell s2 = new Spell("Shrink", 5, "Shrink 5 min");		
 		Spell s3 = new Spell("Giant", 1, "Giant 5 min");		
 		Spell s4 = new Spell("Trainee", 5, "Trainee noire 30 min");	
+		spellService.create(s1);
+		spellService.create(s2);
+		spellService.create(s3);
+		spellService.create(s4);
 
 		SpellSlot ss1 = new SpellSlot(1);
 		ss1.setSpell(s1);
@@ -247,11 +295,17 @@ class SkyBootApplicationTests {
 		ss3.setSpell(s3);
 		SpellSlot ss4 = new SpellSlot(4);
 		ss4.setSpell(s4);
+		spellSlotService.create(ss1);
+		spellSlotService.create(ss2);
+		spellSlotService.create(ss3);
+		spellSlotService.create(ss4);
 		
 		WingBuff wb1 = new WingBuff();
 		wb1.setPrix(1);	
 		WingBuff wb2 = new WingBuff();
 		wb2.setPrix(1);
+		itemService.create(wb1);
+		itemService.create(wb2);
 		
 		
 		// --- Isle Emote
@@ -259,16 +313,28 @@ class SkyBootApplicationTests {
 		Emote pointing2 = new Emote("Pointing", 1, 2);
 		Emote pointing3 = new Emote("Pointing", 2, 3);
 		Emote pointing4 = new Emote("Pointing", 2, 4);
+		emService.create(pointing1);
+		emService.create(pointing2);
+		emService.create(pointing3);
+		emService.create(pointing4);
 		
 		Emote ushering1 = new Emote("Ushering", 0, 1);
 		Emote ushering2 = new Emote("Ushering", 1, 2);
 		Emote ushering3 = new Emote("Ushering", 2, 3);
 		Emote ushering4 = new Emote("Ushering", 2, 4);
+		emService.create(ushering1);
+		emService.create(ushering2);
+		emService.create(ushering3);
+		emService.create(ushering4);
 		
 		Emote rejecting1 = new Emote("Rejecting", 0, 1);
 		Emote rejecting2 = new Emote("Rejecting", 1, 2);
 		Emote rejecting3 = new Emote("Rejecting", 2, 3);
 		Emote rejecting4 = new Emote("Rejecting", 2, 4);
+		emService.create(rejecting1);
+		emService.create(rejecting2);
+		emService.create(rejecting3);
+		emService.create(rejecting4);
 		
 		
 		// --- Prairie Emote
@@ -276,12 +342,20 @@ class SkyBootApplicationTests {
 		Emote butterfly2 = new Emote("Butterfly", 1, 2);		
 		Emote butterfly3 = new Emote("Butterfly", 2, 3);	
 		Emote butterfly4 = new Emote("Butterfly", 2, 4);
+		emService.create(butterfly1);
+		emService.create(butterfly2);
+		emService.create(butterfly3);
+		emService.create(butterfly4);
 		
 		
 		Emote applauding1 = new Emote("Applauding", 0, 1);
 		Emote applauding2 = new Emote("Applauding", 1, 2);
 		Emote applauding3 = new Emote("Applauding", 3, 3);		
 		Emote applauding4 = new Emote("Applauding", 3, 4);
+		emService.create(applauding1);
+		emService.create(applauding2);
+		emService.create(applauding3);
+		emService.create(applauding4);
 		
 		
 		Emote waving1 = new Emote("Waving", 0, 1);
@@ -290,31 +364,54 @@ class SkyBootApplicationTests {
 		Emote waving4 = new Emote("Waving", 2, 4);	
 		Emote waving5 = new Emote("Waving", 3, 5);
 		Emote waving6 = new Emote("Waving", 3, 6);
-		
+		emService.create(waving1);
+		emService.create(waving2);
+		emService.create(waving3);
+		emService.create(waving4);
+		emService.create(waving5);
+		emService.create(waving6);
+	
 		
 		Emote slumbering1 = new Emote("Slumbering", 0, 1);
 		Emote slumbering2 = new Emote("Slumbering", 1, 2);
 		Emote slumbering3 = new Emote("Slumbering", 2, 3);
 		Emote slumbering4 = new Emote("Slumbering", 2, 4);
+		emService.create(slumbering1);
+		emService.create(slumbering2);
+		emService.create(slumbering3);
+		emService.create(slumbering4);
 		
 		Emote ceremonial = new Emote("Ceremonial", 0, 1);
+		emService.create(ceremonial);
 		
 		Emote exhausted1 = new Emote("Exhausted", 0, 1);
 		Emote exhausted2 = new Emote("Exhausted", 1, 2);
 		Emote exhausted3 = new Emote("Exhausted", 5, 3);
 		Emote exhausted4 = new Emote("Exhausted", 5, 4);	
+		emService.create(exhausted1);
+		emService.create(exhausted2);
+		emService.create(exhausted3);
+		emService.create(exhausted4);
 		
 		Emote birdWhisperer = new Emote("birdWhisperer", 0, 1);	
+		emService.create(birdWhisperer);
 		
 		Emote laughing1 = new Emote("Laughing", 0, 1);
 		Emote laughing2 = new Emote("Laughing", 1, 2);	
 		Emote laughing3 = new Emote("Laughing", 5, 3);	
 		Emote laughing4 = new Emote("Laughing", 5, 4);
+		emService.create(laughing1);
+		emService.create(laughing2);
+		emService.create(laughing3);
+		emService.create(laughing4);
 		
 		// --- music sheet
 		MusicSheet ms1 = new MusicSheet();		
 		MusicSheet ms2 = new MusicSheet();
-		MusicSheet ms3 = new MusicSheet();	
+		MusicSheet ms3 = new MusicSheet();
+		itemService.create(ms1);
+		itemService.create(ms2);
+		itemService.create(ms3);
 		
 		// --- Pointing Candlemaker
 		Node n1 = new Node();
@@ -390,7 +487,7 @@ class SkyBootApplicationTests {
 		n18.setNodeParent(n17);	
 		
 		Node n19 = new Node();
-		n19.setSpell(s2);
+		n19.setSpell(s3);
 		n19.setNodeParent(n17);
 		
 		Node n20 = new Node();
@@ -422,42 +519,66 @@ class SkyBootApplicationTests {
 		nodeService.create(n19);
 		nodeService.create(n20);
 		
+		pointing1.setNode(n1);
+		pointing2.setNode(n2);
+		pointing3.setNode(n7);
+		pointing4.setNode(n8);
+		emService.update(pointing1);
+		emService.update(pointing2);
+		emService.update(pointing3);
+		emService.update(pointing4);
 		
+		ushering1.setNode(n11);
+		ushering2.setNode(n12);
+		ushering3.setNode(n17);
+		ushering4.setNode(n18);
+		emService.update(ushering1);
+		emService.update(ushering2);
+		emService.update(ushering3);
+		emService.update(ushering4);
+		
+		cheveux1.setNode(n3);
+		cheveux2.setNode(n13);
+		cosService.update(cheveux1);
+		cosService.update(cheveux2);
+		
+		p1.setNode(n10);
+		p2.setNode(n20);
+		cosService.update(p1);
+		cosService.update(p2);
+		
+		wb1.setNode(n6);
+		wb2.setNode(n16);
+		wingBuffRepository.save(wb1);
+		wingBuffRepository.save(wb2);
+		
+		heartBuying1.setNode(n4);
+		heartBuying2.setNode(n15);
+		heartBuyingRepository.save(heartBuying1);
+		heartBuyingRepository.save(heartBuying2);
+		
+		s1.setNode(n4);
+		s2.setNode(n9);
+		s3.setNode(n19);
+		s4.setNode(n14);
+		spellService.update(s1);
+		spellService.update(s2);
+		spellService.update(s3);
+		spellService.update(s4);
 		
 
 		// --- Arbre ref
 		// Isle
 		Arbre arbre1_1 = new Arbre("Pointing_CandleMaker",Realm.Isle);
-		Set<Node> nodesArbre1 = new HashSet<Node>();
-		Collections.addAll(nodesArbre1, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10);
-
-//		System.out.println(n1);
-//		System.out.println(n2);
-//		nodesArbre1.add(n1);
-//		nodesArbre1.add(n2);
-//		nodesArbre1.add(n3);
-//		nodesArbre1.add(n4);
-//		nodesArbre1.add(n5);
-//		nodesArbre1.add(n6);
-//		nodesArbre1.add(n7);
-//		nodesArbre1.add(n8);
-//		nodesArbre1.add(n9);
-//		nodesArbre1.add(n10);
-//				
-		System.out.println(nodesArbre1);
-		System.out.println("------");
-		
-		for(Node n : nodesArbre1) {
-			System.out.println(n);
-			n.setTref(arbre1_1);
-			
-		}
-		
 		trefService.create(arbre1_1);
-		
-		
-		
-		
+		Set<Node> nodesArbre1 = new HashSet<Node>();
+		Collections.addAll(nodesArbre1, nodeService.getById(n1.getId()), nodeService.getById(n2.getId()),nodeService.getById(n3.getId()), nodeService.getById(n4.getId()), nodeService.getById(n5.getId()), nodeService.getById(n6.getId()), nodeService.getById(n7.getId()),nodeService.getById( n8.getId()),nodeService.getById( n9.getId()),nodeService.getById( n10.getId()));
+			
+		for(Node nbase : nodesArbre1) {
+			nbase.setTref(arbre1_1);
+			nodeService.update(nbase);
+		}
+		trefService.update(arbre1_1);
 		
 		
 		Arbre arbre1_2 = new Arbre("Ushering_Stargazer",Realm.Isle);
@@ -467,7 +588,6 @@ class SkyBootApplicationTests {
 		for(Node n : nodesArbre2) {
 			n.setTref(arbre1_2);
 		}
-		
 		trefService.create(arbre1_2);
 
 		
@@ -485,20 +605,36 @@ class SkyBootApplicationTests {
 		
 		// --- Arbre In progress
 		ArbreInProgress arbreInProg1_1 = new ArbreInProgress();
+		tripService.create(arbreInProg1_1);
 		arbreInProg1_1.setTref(arbre1_1);
-		arbreInProg1_1.setNodeRef();
+		tripService.update(arbreInProg1_1);
+		
+		 for(Node nbase : nodesArbre1) {
+				nbase.setTripRef(arbreInProg1_1);
+				nodeService.update(nbase);
+			}
+		 
+		 
 		arbreInProg1_1.setRealm(Realm.Isle);
 		arbreInProg1_1.setSkyKid(Julie);
-		tripService.create(arbreInProg1_1);
+		tripService.update(arbreInProg1_1);
 		
 		n1.setTripProgress(arbreInProg1_1);
 		
+		
+		
 		ArbreInProgress arbreInProg1_2 = new ArbreInProgress();
-		arbreInProg1_2.setTref(arbre1_2);
-		arbreInProg1_2.setNodeRef();
-		arbreInProg1_2.setRealm(Realm.Isle);
-		arbreInProg1_1.setSkyKid(Julie);
 		tripService.create(arbreInProg1_2);
+		arbreInProg1_2.setTref(arbre1_2);
+		
+		for(Node nbase : nodesArbre2) {
+			nbase.setTripRef(arbreInProg1_2);
+			nodeService.update(nbase);
+		}
+		
+		arbreInProg1_2.setRealm(Realm.Isle);
+		arbreInProg1_2.setSkyKid(Julie);
+		tripService.update(arbreInProg1_2);
 		
 		n11.setTripProgress(arbreInProg1_2);
 		
@@ -517,25 +653,13 @@ class SkyBootApplicationTests {
 		// mise ne base
 		
 		
-		cosService.create(cheveux1);
-		cosService.create(cheveux2);
-		cosService.create(cheveux3);
-		cosService.create(cheveux4);
-		cosService.create(cheveux5);
 		
-		cosService.create(cape1);
-		cosService.create(cape2);
-		cosService.create(cape3);
-		cosService.create(cape4);
-		cosService.create(cape5);
 		
-		cosService.create(m1);
-		cosService.create(m2);
-		cosService.create(m3);
 		
-		cosService.create(pbase);
-		cosService.create(p1);
-		cosService.create(p2);
+		
+		
+		
+		
 		
 		itemService.create(prop1);
 		itemService.create(prop2);
@@ -555,85 +679,31 @@ class SkyBootApplicationTests {
 		devService.create(devise5);
 		devService.create(devise6);
 		
-		itemService.create(heartBuying1);
-		itemService.create(heartBuying2);
-		itemService.create(heartBuying3);
-		itemService.create(heartBuying4);
 		
-		spellService.create(s1);
-		spellService.create(s2);
-		spellService.create(s3);
-		spellService.create(s4);
 		
-		spellSlotService.create(ss1);
-		spellSlotService.create(ss2);
-		spellSlotService.create(ss3);
-		spellSlotService.create(ss4);
 		
-		itemService.create(wb1);
-		itemService.create(wb2);
-
 		
-		emService.create(pointing1);
-		emService.create(pointing2);
-		emService.create(pointing3);
-		emService.create(pointing4);
 		
-		emService.create(ushering1);
-		emService.create(ushering2);
-		emService.create(ushering3);
-		emService.create(ushering4);
-		
-		emService.create(rejecting1);
-		emService.create(rejecting2);
-		emService.create(rejecting3);
-		emService.create(rejecting4);
-		
-		emService.create(butterfly1);
-		emService.create(butterfly2);
-		emService.create(butterfly3);
-		emService.create(butterfly4);
-		
-		emService.create(applauding1);
-		emService.create(applauding2);
-		emService.create(applauding3);
-		emService.create(applauding4);
-		
-		emService.create(waving1);
-		emService.create(waving2);
-		emService.create(waving3);
-		emService.create(waving4);
-		emService.create(waving5);
-		emService.create(waving6);
-		
-		emService.create(slumbering1);
-		emService.create(slumbering2);
-		emService.create(slumbering3);
-		emService.create(slumbering4);
-		
-		emService.create(ceremonial);
-		
-		emService.create(exhausted1);
-		emService.create(exhausted2);
-		emService.create(exhausted3);
-		emService.create(exhausted4);
-		
-		emService.create(birdWhisperer);
-		
-		emService.create(laughing1);
-		emService.create(laughing2);
-		emService.create(laughing3);
-		emService.create(laughing4);
-		
-		itemService.create(ms1);
-		itemService.create(ms2);
-		itemService.create(ms3);
 		
 
 		// --- Pointing Candlemaker
-		for(Node n : nodesArbre1) {
-			nodeService.update(n);	
+		for(Node nbase : nodesArbre1) {
+			nodeService.update(nbase);	
 		}
+		
+		// --- Pointing Candlemaker
+				nodeService.create(n1);
+				nodeService.create(n2);
+				nodeService.create(n3);
+				nodeService.create(n4);
+				nodeService.create(n5);
+				nodeService.create(n6);
+				nodeService.create(n7);
+				nodeService.create(n8);
+				nodeService.create(n9);
+				nodeService.create(n10);
+				
+				
 		
 		// --- Ushering Stargazer
 		nodeService.update(n11);

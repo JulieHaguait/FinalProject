@@ -26,15 +26,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name="compte") // user réservé !!!
 @SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
-/*@JsonTypeInfo(
+@JsonTypeInfo(
 		use=JsonTypeInfo.Id.NAME,
 		include=JsonTypeInfo.As.PROPERTY,
 		property="type"
-		)*/
-/*@JsonSubTypes({
+		)
+@JsonSubTypes({
 	@Type(value=Admin.class, name="admin"),
 	@Type(value=SkyKid.class, name="skykid"),
-})*/
+})
 
 public class User implements UserDetails {
 	

@@ -34,4 +34,14 @@ public class Cosmetic extends Item{
 		super(libelle,prix);
 	}
 
+	public Node getNode() {
+		return node;
+	}
+
+	public void setNode(Node node) {
+		this.node = node;
+	}
+
+	
+	
 }

@@ -3,10 +3,16 @@ package finalProject.SkyBoot.entity;
 import java.util.Objects;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.SequenceGenerator;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import finalProject.SkyBoot.entity.JsonViews.Common;
 
 @MappedSuperclass
 public abstract class Item {
@@ -15,10 +21,13 @@ public abstract class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqItem")
 	@Column(name = "id")
+	@JsonView({ Common.class })
 	protected Long id;
 	@Column(name="tag")
+	@JsonView({ Common.class })
 	protected String libelle;
 	@Column(name = "price")
+	@JsonView({ Common.class })
 	protected int prix;
 
 	// --- Constructeurs

@@ -21,6 +21,10 @@ public class ArbreService {
 	public List<Arbre> getAll() {
 		return arbreRepository.findAll();
 	}
+	
+	public Arbre getByNom(String nom) {
+		return arbreRepository.findByNom(nom).orElseThrow(RuntimeException::new);
+	}
 
 	public Arbre getById(Long id) {
 		return arbreRepository.findById(id).orElseThrow(RuntimeException::new);

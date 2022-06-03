@@ -30,6 +30,9 @@ private NodeService nodeService;
 		return tripRepository.findByIdWithNodes(id).orElseThrow(RuntimeException::new);
 	}
 	
+	
+	
+	
 	public ArbreInProgress getByIdWithNodesWithNodesRef(Long id) {
 		return tripRepository.findByIdWithNodesWithNodesRef(id).orElseThrow(RuntimeException::new);
 	}
