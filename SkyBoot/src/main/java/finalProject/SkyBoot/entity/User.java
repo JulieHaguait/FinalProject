@@ -40,9 +40,9 @@ public class User implements UserDetails {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqUser")
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.modifLogin.class})
 	protected Long id;
-	@JsonView(JsonViews.Common.class)
+	@JsonView({JsonViews.Common.class, JsonViews.modifLogin.class})
 	protected String login;
 	protected String password;
 

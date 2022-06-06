@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import finalProject.SkyBoot.entity.Admin;
 import finalProject.SkyBoot.entity.Arbre;
 import finalProject.SkyBoot.entity.JsonViews.Common;
+import finalProject.SkyBoot.entity.JsonViews.modifLogin;
 import finalProject.SkyBoot.entity.Node;
 import finalProject.SkyBoot.entity.SkyKid;
 import finalProject.SkyBoot.entity.User;
@@ -56,8 +58,8 @@ public class AdminRestController {
 
 	// Modification d'un SkyKid (login) si inapproprié
 	@PatchMapping("/modifUser")
-	@JsonView(Common.class)
-	public User modifUser(@PathVariable SkyKid skyKid) {
+	@JsonView(modifLogin.class)
+	public User modifUser(@RequestBody SkyKid skyKid) {
 		return userService.update(skyKid);
 	}
 	

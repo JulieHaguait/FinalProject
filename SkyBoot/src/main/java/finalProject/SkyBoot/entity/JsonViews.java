@@ -38,5 +38,9 @@ public class JsonViews {
 	public static class ItemWithNode extends SkyKidWithTripEquipment {
 
 	}
+	
+	public static class modifLogin {
+		
+	}
 
 }
