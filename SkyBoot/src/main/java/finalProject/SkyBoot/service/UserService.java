@@ -63,6 +63,7 @@ public class UserService {
 
 	public User create(User user) {
 		// encodage du mot de passe quand on saura faire
+		System.out.println(user.getPassword() + " - " + user.getLogin());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
@@ -109,5 +110,9 @@ public class UserService {
 	
 	public User getByLogin(String login) {
 		return userRepository.findByLogin(login).orElseThrow(RuntimeException::new);
+	}
+	
+	public boolean checkLoginExist(String login) {
+		return userRepository.findByLogin(login).isPresent();
 	}
 }
