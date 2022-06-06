@@ -79,7 +79,7 @@ public class AdminRestController {
 	}
 
 	// Modif d'un arbre -> selection d'un noeud à modifier / ajouter
-	@PostMapping("/modifArbre")
+	@PostMapping("/modifArbre/{id}")
 	@JsonView(Common.class)
 	public Arbre modifArbre(@PathVariable Long id) {
 		return arbreService.getById(id);
