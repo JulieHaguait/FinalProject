@@ -29,7 +29,7 @@ public class SecurityConfig {
 							.antMatchers(HttpMethod.GET,"api/auth", "/api/auth/connexion", "/api/auth/inscription").permitAll()
 							
 							.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
-							.antMatchers(HttpMethod.POST, "/api/admin/**").hasRole("ADMIN")
+							.antMatchers(HttpMethod.POST, "/api/admin/**", "/api/admin/createNode").hasRole("ADMIN")
 							.antMatchers(HttpMethod.PATCH, "/api/admin/**").hasRole("ADMIN")
 							.antMatchers(HttpMethod.PUT, "/api/admin/**").hasRole("ADMIN")
 							.antMatchers(HttpMethod.DELETE, "/api/admin/**").hasRole("ADMIN")

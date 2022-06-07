@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -29,43 +31,64 @@ public class SkyKidRestController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	// accueil avec toutes les infos
 	// vu qu'on veut afficher la completion des arbres
-	// arbreInProgress
+	// arbreInProgress + fonctionne
 	@GetMapping("/{id}")
 	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
-	public SkyKid getById(@PathVariable Long id) {
-		return (SkyKid) userService.getById(id);
+	public SkyKid getById(@PathVariable Long id, @AuthenticationPrincipal User user) {
+		if (user.getId() == id) {
+			return (SkyKid) userService.getById(id);
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
 	}
-	
-	// page inventaire
+
+	// page inventaire + fonctionne
 	@GetMapping("/{id}/inventaire")
 	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
-	public SkyKid getInventaire(@PathVariable Long id) {
-		return userService.getSkyKidWithAllInfos(id);
+	public SkyKid getInventaire(@PathVariable Long id, @AuthenticationPrincipal User user) {
+		if (user.getId() == id) {
+			return userService.getSkyKidWithAllInfos(id);
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
 	}
-	
+
 	// Supprimer son compte
-	@DeleteMapping("/{id}/gestion")
+	@DeleteMapping("/{id}/gestion/delete")
 	@JsonView(Common.class)
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long id) {
-		userService.deleteByIdSkyKid(id);
+	public void delete(@PathVariable Long id, @AuthenticationPrincipal User user) {
+		if (user.getId() == id) {
+			userService.deleteByIdSkyKid(id);
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
 	}
-	
-	// aller sur page Gestion
+
+	// aller sur page Gestion + fonctionne
 	@GetMapping("/{id}/gestion")
 	@JsonView(Common.class)
-	public SkyKid affSkyKid(@AuthenticationPrincipal User user) {
-		return (SkyKid) userService.getById(user.getId());
+	public SkyKid affSkyKid(@PathVariable Long id, @AuthenticationPrincipal User user) {
+		if (user.getId() == id) {
+			return (SkyKid) userService.getById(user.getId());
+		} else {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
 	}
-	
-	// modification du skykid -> login
-	@PatchMapping("{id}/gestion")
+
+	// modification du skykid -> login + fonctionne
+	@PatchMapping("{id}/gestion/modifLogin")
 	@JsonView(Common.class)
-	public SkyKid modifSkyKid(@AuthenticationPrincipal User user) {
-		return (SkyKid) userService.update(user);
+	public SkyKid modifSkyKid(@PathVariable Long id, @AuthenticationPrincipal User user, @RequestBody SkyKid skykid) {
+		if (user.getId() == id) {
+			return (SkyKid) userService.update(skykid);
+		} else {
+			System.out.println("oui");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
 	}
-	
+
 }

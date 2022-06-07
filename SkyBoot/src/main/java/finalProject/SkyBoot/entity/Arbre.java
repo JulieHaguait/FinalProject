@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
+import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithRealm;
 
 @Entity
 @Table(name = "tree")
@@ -28,10 +32,14 @@ public class Arbre {
 	@Column(name = "name")
 	private String nom;
 
-	@JsonView(JsonViews.ArbreWithNode.class) // attention !!!!
-	@OneToMany
+	@JsonView(JsonViews.Common.class) // attention !!!!
+	@OneToMany(mappedBy = "tref")
 	private Set<Node> nodes;
 
+	@JsonView(JsonViews.Common.class)
+	@Enumerated(EnumType.STRING)
+	private Realm realm;
+	
 	// --- Constructor
 	public Arbre() {
 		super();

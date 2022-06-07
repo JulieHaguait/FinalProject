@@ -1,5 +1,6 @@
 package finalProject.SkyBoot.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,21 @@ public class ArbreService {
 
 	
 	public List<Arbre> getAll() {
-		return arbreRepository.findAll();
+		List<Arbre> larbre = arbreRepository.findAllWithNodes();
+		
+		/*List<Arbre> result = new ArrayList<Arbre>();
+		
+		for(Arbre a: larbre) {
+			System.out.println(a.getId());
+			Arbre resultArbre = getByIdWithNodes(a.getId());
+			System.out.println(resultArbre.getNodes());
+			result.add(resultArbre);
+		}
+		
+		System.out.println(result.get(0) + "-" + result.get(1))
+		;*/
+		
+		return larbre;
 	}
 	
 	public Arbre getByNom(String nom) {

@@ -62,14 +62,20 @@ public class UserService {
 	}
 
 	public User create(User user) {
-		// encodage du mot de passe quand on saura faire
-		System.out.println(user.getPassword() + " - " + user.getLogin());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		
+		if(user instanceof SkyKid) {
+			Equipment e = equipmentService.create(new Equipment());
+			((SkyKid) user).setEquipment(e);
+		}
+		
 		return userRepository.save(user);
 	}
 
 	public User update(User user) {
 		User userEnBase = getById(user.getId());
+		System.out.println(userEnBase.getLogin());
+		System.out.println(user.getLogin());
 		userEnBase.setLogin(user.getLogin());
 		return userRepository.save(userEnBase);
 	}
@@ -79,16 +85,20 @@ public class UserService {
 	}
 
 	public void deleteByIdSkyKid(Long id) {
-		SkyKid user = new SkyKid();
-		user.setId(id);
+		SkyKid user = (SkyKid) userRepository.findById(id).orElseThrow();
+		
 		//suppression en cascade de l'equipment
-		Equipment e = user.getEquipment();	
-		equipmentService.deleteById(e.getId());
+		
+		if( user.getEquipment() != null){
+			equipmentService.deleteById(user.getEquipment().getId());
+		}
+		
 		//suppression de toute types de monnaie associee au compte
 		Set <Devise> ds = user.getDevise();
 		for(Devise d : ds) {
             deviseService.delete(d);
 		}
+		
 		//suppression de tous les trip associees au compte
 		Set <ArbreInProgress> trips = user.getTrips();
 		for(ArbreInProgress trip : trips) {

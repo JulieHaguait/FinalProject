@@ -62,9 +62,6 @@ public class ArbreInProgress {
 	@JsonView(ArbreInProgressWithRealm.class)
 	@Enumerated(EnumType.STRING)
 	private Realm realm;
-	
-	//@Autowired
-	//private Arb
 
 	// --- Constructor
 	public ArbreInProgress() {

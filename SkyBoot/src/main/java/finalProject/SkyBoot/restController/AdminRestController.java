@@ -19,11 +19,13 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import finalProject.SkyBoot.entity.Admin;
 import finalProject.SkyBoot.entity.Arbre;
+import finalProject.SkyBoot.entity.ArbreInProgress;
 import finalProject.SkyBoot.entity.JsonViews.Common;
 import finalProject.SkyBoot.entity.JsonViews.modifLogin;
 import finalProject.SkyBoot.entity.Node;
 import finalProject.SkyBoot.entity.SkyKid;
 import finalProject.SkyBoot.entity.User;
+import finalProject.SkyBoot.service.ArbreInProgressService;
 import finalProject.SkyBoot.service.ArbreService;
 import finalProject.SkyBoot.service.NodeService;
 import finalProject.SkyBoot.service.UserService;
@@ -41,16 +43,19 @@ public class AdminRestController {
 	
 	@Autowired
 	private NodeService nodeService;
+	
+	@Autowired
+	private ArbreInProgressService arbreInProgressService;
 
-	// Page accueil d'un admin, besoin de ses infos
-	@GetMapping("/{id}")
+	// Page accueil d'un admin, besoin de ses infos + fonctionne
+	@GetMapping("/{id}") 
 	@JsonView(Common.class)
 	public Admin getById(@PathVariable Long id) {
 		return (Admin) userService.getById(id);
 	}
 
-	// Page modification d'un utilisateur
-	@GetMapping("/modifUser")
+	// Page modification d'un utilisateur + fonctionne
+	@GetMapping("/modifUser") 
 	@JsonView(Common.class)
 	public List<SkyKid> affUser() {
 		return userService.getAllSkyKid();
@@ -63,8 +68,8 @@ public class AdminRestController {
 		return userService.update(skyKid);
 	}
 	
-	// Suppression d'un SkiKid
-	@DeleteMapping("/modifUser/{id}")
+	// Suppression d'un SkyKid + fonctionne
+	@DeleteMapping("/deleteUser/{id}")
 	@JsonView(Common.class)
 	@ResponseStatus(code = HttpStatus.OK)
 	public void deleteSkykid(@PathVariable Long id) {
@@ -72,32 +77,51 @@ public class AdminRestController {
 	}
 	
 	// Page modification de la BDD -> selection d'un arbre
-	@GetMapping("/selectArbre")
+	@GetMapping("/selectArbre") //+ fonctionne
 	@JsonView(Common.class)
 	public List<Arbre> modifArbre() {
 		return arbreService.getAll();
 	}
 
 	// Modif d'un arbre -> selection d'un noeud à modifier / ajouter
-	@PostMapping("/modifArbre/{id}")
+	// modification de son nom / royaume + fonctionne
+	@PatchMapping("/modifArbre")
 	@JsonView(Common.class)
-	public Arbre modifArbre(@PathVariable Long id) {
-		return arbreService.getById(id);
+	public Arbre modifArbre(@RequestBody Arbre arbre) {		
+		return arbreService.update(arbre);
 	}
 
-	// Ajout Node
-	@PostMapping("/updateNode")
+	// Ajout Node + fonctionne
+	@PostMapping("/createNode")
 	@JsonView(Common.class)
-	public Node createNode() {
-		Node n = new Node();
-		return nodeService.create(n);	
+	public Node createNode(@RequestBody Node node) {
+		return nodeService.create(node);	
 	}
 	
-	// Modif Node
+	// Modif Node + fonctionne
 	@PatchMapping("/updateNode")
 	@JsonView(Common.class)
-	public Node updateNode(@PathVariable Long id) {
-		return nodeService.getById(id);
+	public Node updateNode(@RequestBody Node node) {
+		nodeService.update(node);
+		Node nodeBase = nodeService.getById(node.getId());
+		if(nodeBase.getNodeParent() != null) {
+			Arbre a = arbreService.getById(nodeBase.getNodeParent().getTref().getId());
+			nodeBase.setTref(a);
+			nodeService.update(nodeBase);
+			
+			ArbreInProgress ap = arbreInProgressService.getById(nodeBase.getNodeParent().getTripRef().getId());
+			nodeBase.setTripRef(ap);
+		}
+			
+		return nodeService.update(nodeBase);
+	}
+	
+	// Delete Node + fonctionne
+	@DeleteMapping("/deleteNode/{id}")
+	@JsonView(Common.class)
+	@ResponseStatus(code = HttpStatus.OK)
+	public void deleteNode(@PathVariable Long id) {
+		nodeService.deleteById(id);
 	}
 	
 }
