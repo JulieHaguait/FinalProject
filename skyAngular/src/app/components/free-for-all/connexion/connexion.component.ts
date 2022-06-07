@@ -1,6 +1,8 @@
-import { ConnexionService } from './../../../services/connexion.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { ConnexionService } from 'src/app/services/connexion.service';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -14,38 +16,58 @@ import { map, Observable } from 'rxjs';
 @Component({
   selector: 'app-connexion',
   templateUrl: './connexion.component.html',
-  styleUrls: ['./connexion.component.css']
+  styleUrls: ['./connexion.component.css'],
 })
-
 export class ConnexionComponent implements OnInit {
   monForm: FormGroup;
-  constructor( private connexionService: ConnexionService, private router: Router) {
-      this.monForm = new FormGroup({
-      login: new FormControl('', Validators.required),
+  login = '';
+  password = '';
+  showError = false;
+  message = '';
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private connexionService: ConnexionService
+  ) {
+    this.monForm = new FormGroup({
+      login: new FormControl('', Validators.required, this.checkLogin()),
       password: new FormControl('', Validators.required),
-      })
-    }
-
-    ngOnInit(): void {}
-
-    checkLogin(): AsyncValidatorFn {
-      return (control: AbstractControl): Observable<ValidationErrors | null> => {
-        return this.connexionService.checkLogin(control.value).pipe(
-          map((bool) => {
-            return bool ? { loginExist: true } : null;
-          })
-        );
-      };
-    }
-
-    submit() {
-    let compte = {
-      login: this.monForm.get('login')?.value,
-      password: this.monForm.get('password')?.value,
-    };
-    this.connexionService.inscription(compte).subscribe((data) => {
-      this.router.navigate(['/home'], { queryParams: { inscription: true } });
     });
   }
 
+  checkLogin(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return this.connexionService.checkLogin(control.value).pipe(
+        map((bool) => {
+          return bool ? { loginExist: true } : null;
+        })
+      );
+    };
+  }
+
+  ngOnInit(): void {}
+
+  submit(form: any) {
+    let user = {
+      login: this.monForm.get('login')?.value,
+
+      type: this.monForm.get('type')?.value,
+      password: this.monForm.get('passwordGroup.password')?.value,
+    };
+    this.authService.auth(this.login, this.password).subscribe({
+      next: (user: User) => {
+        this.showError = false;
+        sessionStorage.setItem('token', btoa(`${this.login}:${this.password}`));
+        sessionStorage.setItem('user', JSON.stringify(user));
+        sessionStorage.setItem('type', btoa(`${user.type}`));
+        this.router.navigateByUrl('/home');
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.message = "*erreur d'authentification";
+        this.showError = true;
+      },
+    });
+  }
 }

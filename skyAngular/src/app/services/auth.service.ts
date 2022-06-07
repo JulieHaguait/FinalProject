@@ -11,7 +11,7 @@ export class AuthService {
     let monHeaders = new HttpHeaders({
       Authorization: 'Basic ' + btoa(`${login}:${password}`),
     });
-    return this.httpClient.get<User>('http://localhost:8080/boot/api/auth', {
+    return this.httpClient.get<User>('http://localhost:8080/sky/api/auth', {
       headers: monHeaders,
     });
   }
