@@ -55,15 +55,21 @@ private NodeService nodeService;
 		trip.setId(id);
 		//trip.setSkyKid(null);
 		trip.setTref(null);
-		Set <Node> nodeBoughts = trip.getNodeBought();
-		for(Node node : nodeBoughts) {
-            nodeService.deleteById(node.getId());
-		}
-		Set<Node> nodeRefs = trip.getNodeRef();
-		for (Node nodeRef : nodeRefs) {
-			nodeRef.setTripRef(null);
+		
+		if(trip.getNodeBought() != null) {
+			Set <Node> nodeBoughts = trip.getNodeBought();
+			for(Node node : nodeBoughts) {
+	            nodeService.deleteById(node.getId());
+			}
 		}
 		
+		if(trip.getNodeRef() != null) {
+			Set<Node> nodeRefs = trip.getNodeRef();
+			for (Node nodeRef : nodeRefs) {
+				nodeRef.setTripRef(null);
+			}
+		}
+
 		tripRepository.delete(trip);
 	}
 }

@@ -1,5 +1,6 @@
 package finalProject.SkyBoot.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +14,9 @@ public interface ArbreRepository extends JpaRepository<Arbre, Long> {
 	@Query("Select a from Arbre a left join fetch a.nodes where a.id=:id")
 	Optional<Arbre> findByIdWithNodes(@Param("id") Long id);
 	
+	
+	@Query("Select distinct a from Arbre a join fetch a.nodes")
+	List<Arbre> findAllWithNodes();
 	
 	@Query("Select a from Arbre a where a.nom=:nom")
 	Optional<Arbre> findByNom(@Param("nom") String nom);

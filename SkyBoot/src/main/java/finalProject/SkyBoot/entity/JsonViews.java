@@ -7,7 +7,7 @@ public class JsonViews {
 
 	}
 
-	public static class ArbreWithNode extends Common {
+	public static class Boutique extends Common {
 
 	}
 

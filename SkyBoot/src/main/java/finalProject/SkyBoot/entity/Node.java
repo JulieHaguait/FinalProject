@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import finalProject.SkyBoot.entity.JsonViews.Boutique;
 import finalProject.SkyBoot.entity.JsonViews.Common;
 
 @Entity
@@ -29,35 +30,35 @@ public class Node {
 	
 	@ManyToOne
 	@JoinColumn(name = "node_Parent_id", foreignKey = @ForeignKey(name = "NODE_NODE_PARENT_ID_FK"))
-	//@JsonView({ Common.class })--------------> regler JsonView :)
+	@JsonView({Boutique.class }) //--------------> regler JsonView :)
 	private Node nodeParent;
 	
 	@OneToOne(mappedBy = "node")
-	//@JsonView({ Common.class })--------------> regler JsonView :)
+	@JsonView({ Common.class }) // --------------> regler JsonView :)
 	private MusicSheet musicSheet;
 	
 	@OneToOne(mappedBy = "node")
-	//@JsonView({ Common.class })--------------> regler JsonView :)
+	@JsonView({ Common.class })  // --------------> regler JsonView :)
 	private Prop prop;
 	
 	@OneToOne(mappedBy = "node")
-	//@JsonView({ Common.class })--------------> regler JsonView :)
+	 @JsonView({ Common.class }) // --------------> regler JsonView :)
 	private Cosmetic cosmetic;
 	
 	@OneToOne(mappedBy = "node")
-	//@JsonView({ Common.class })--------------> regler JsonView :)
+	@JsonView({ Common.class }) // --------------> regler JsonView :)
 	private Spell spell;
 	
 	@OneToOne(mappedBy = "node")
-	//@JsonView({ Common.class })--------------> regler JsonView :)
+	@JsonView({ Common.class }) //--------------> regler JsonView :)
 	private Emote emote;
 	
 	@OneToOne(mappedBy = "node")
-	//@JsonView({ Common.class })--------------> regler JsonView :)
+	@JsonView({ Common.class })// --------------> regler JsonView :)
 	private WingBuff wingBuff;
 	
 	@OneToOne(mappedBy = "node")
-	//@JsonView({ Common.class })--------------> regler JsonView :)
+	@JsonView({ Common.class }) //--------------> regler JsonView :)
 	private HeartBuying heartBuying;
 	
 	@ManyToOne

@@ -28,32 +28,28 @@ public class AuthRestController {
 	@Autowired
 	private UserService userService;
 	
-	// S'inscrire
+	// S'inscrire SkyKid + fonctionne 
 	@PostMapping("/inscription")
 	@PreAuthorize("isAnonymous()")
 	@JsonView(Common.class)
-	public User create(@RequestBody SkyKid skykid) {
-		System.out.println(skykid.getLogin() + " - " + skykid.getPassword());
-		
+	public User create(@RequestBody SkyKid skykid) {		
 		// to make sure the login is unique
 		if(userService.checkLoginExist(skykid.getLogin())) {
 			throw new ResponseStatusException(HttpStatus.CONFLICT);
 		}	
 		return userService.create(skykid);
 	}
-	
 
-	// connexion
+	// connexion + fonctionne
 	@GetMapping("")
 	@JsonView(Common.class)
 	public User authentification(@AuthenticationPrincipal User user) {
-		// pas besoin d'infos en entrée
-		// dans la security config, on a besoin d'être id
-		// pour venir là
-		// on peut avoir une méthode qui ne fait rien,
-		// on essaie juste de l'appeler
-		// mais peut-être intéressant de récup notre compte
-		// selon si on a besoin d'info de la bdd
-		return user;
+		User userEnBase = new User();
+		if(user instanceof SkyKid){
+			userEnBase = userService.getSkyKidWithAllInfos(user.getId());
+		} else {
+			userEnBase = userService.getById(user.getId());
+		}
+		return userEnBase;
 	}
 }
