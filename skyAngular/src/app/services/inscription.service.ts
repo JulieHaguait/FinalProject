@@ -7,7 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class InscriptionService {
-  url = 'http://localhost:8080/sky/api';
+  url = 'http://localhost:8080/sky/api/auth';
 
   constructor(private httpClient: HttpClient) {}
 
@@ -19,9 +19,10 @@ export class InscriptionService {
     return this.httpClient.get<boolean>(this.url + '/login/' + login);
   }
 
+  /*
   private get headers(): HttpHeaders {
     return new HttpHeaders({
       Authorization: 'Basic ' + btoa('admin:admin'),
     });
-  }
+  }*/
 }

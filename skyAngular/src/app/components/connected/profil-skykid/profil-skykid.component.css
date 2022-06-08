@@ -1,0 +1,53 @@
+section {
+  padding: 0 100px;
+  background-image: url("https://img2.storyblok.com/fit-in/0x400/filters:format(webp)/f/108104/4800x2700/b013471e75/4_valley_44b314c1f1.jpeg");
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.card1 {
+  border: none;
+  width: 400px;
+  padding: 40px;
+  position: absolute;
+  top: 24%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 2555, 0.2);
+  box-shadow: 0 5px 15 px rgba(0, 0, 0, 0.5);
+}
+
+.card2 {
+  border: beige;
+  width: 600px;
+  padding: 40px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 2555, 0.2);
+  box-shadow: 0 5px 15 px rgba(0, 0, 0, 0.5);
+}
+.card3 {
+  border: none;
+  width: 400px;
+  padding: 40px;
+  position: absolute;
+  top: 30%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 2555, 0.2);
+  box-shadow: 0 5px 15 px rgba(0, 0, 0, 0.5);
+}
+.card4 {
+  border: none;
+  width: 1500px;
+  padding: 40px;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 2555, 0.2);
+  box-shadow: 0 5px 15 px rgba(0, 0, 0, 0.5);
+}

@@ -64,7 +64,9 @@ export class InscriptionComponent implements OnInit {
       password: this.monForm.get('passwordGroup.password')?.value,
     };
     this.inscriptionService.inscription(compte).subscribe((data) => {
-      this.router.navigate(['/home'], { queryParams: { inscription: true } });
+      this.router.navigate(['/inscription-success'], {
+        queryParams: { inscription: true },
+      });
     });
   }
 }

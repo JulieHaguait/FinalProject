@@ -48,7 +48,7 @@ export class ConnexionComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  submit(form: any) {
+  submit() {
     let user = {
       login: this.monForm.get('login')?.value,
 
@@ -60,8 +60,14 @@ export class ConnexionComponent implements OnInit {
         this.showError = false;
         sessionStorage.setItem('token', btoa(`${this.login}:${this.password}`));
         sessionStorage.setItem('user', JSON.stringify(user));
-        sessionStorage.setItem('type', btoa(`${user.type}`));
-        this.router.navigateByUrl('/home');
+        // sessionStorage.setItem('type', btoa(`${user.type}`));
+        if (user.login == 'admin') {
+          sessionStorage.setItem('type', 'admin');
+          this.router.navigateByUrl('/profil-admin');
+        } else {
+          sessionStorage.setItem('type', 'skykid');
+          this.router.navigateByUrl('/profil-skykid');
+        }
       },
       error: (error: any) => {
         console.log(error);
