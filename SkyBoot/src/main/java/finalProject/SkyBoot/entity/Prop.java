@@ -15,9 +15,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Prop extends Item{
 	
 	@OneToOne
-	@JoinColumn(name="node_id",foreignKey = @ForeignKey(name="PROP_NODE_ID_FK"))
+	@JoinColumn(name="node_ref_id",foreignKey = @ForeignKey(name="PROP_NODE_REF_ID_FK"))
 	@JsonView(JsonViews.ItemWithNode.class)
-	protected Node node;
+	protected NodeRef nodeRef;
 	
 	@JsonView(JsonViews.Common.class)
 	private String descriptionAction;
@@ -32,12 +32,12 @@ public class Prop extends Item{
 		this.descriptionAction = descriptionAction;
 	}
 
-	public Node getNode() {
-		return node;
+	public NodeRef getNodeRef() {
+		return nodeRef;
 	}
 
-	public void setNode(Node node) {
-		this.node = node;
+	public void setNode(NodeRef nodeRef) {
+		this.nodeRef = nodeRef;
 	}
 
 	public String getDescriptionAction() {

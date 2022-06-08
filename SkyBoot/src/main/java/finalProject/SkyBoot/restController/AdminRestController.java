@@ -16,18 +16,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
-
 import finalProject.SkyBoot.entity.Admin;
-import finalProject.SkyBoot.entity.Arbre;
-import finalProject.SkyBoot.entity.ArbreInProgress;
+import finalProject.SkyBoot.entity.Item;
 import finalProject.SkyBoot.entity.JsonViews.Common;
 import finalProject.SkyBoot.entity.JsonViews.modifLogin;
 import finalProject.SkyBoot.entity.Node;
+import finalProject.SkyBoot.entity.NodeRef;
 import finalProject.SkyBoot.entity.SkyKid;
 import finalProject.SkyBoot.entity.User;
-import finalProject.SkyBoot.service.ArbreInProgressService;
-import finalProject.SkyBoot.service.ArbreService;
-import finalProject.SkyBoot.service.NodeService;
+import finalProject.SkyBoot.service.ItemService;
+import finalProject.SkyBoot.service.NodeRefService;
 import finalProject.SkyBoot.service.UserService;
 
 @RestController
@@ -39,13 +37,11 @@ public class AdminRestController {
 	private UserService userService;
 	
 	@Autowired
-	private ArbreService arbreService;
+	private NodeRefService nrService;
 	
 	@Autowired
-	private NodeService nodeService;
+	private ItemService itemService;
 	
-	@Autowired
-	private ArbreInProgressService arbreInProgressService;
 
 	// Page accueil d'un admin, besoin de ses infos + fonctionne
 	@GetMapping("/{id}") 
@@ -77,43 +73,55 @@ public class AdminRestController {
 	}
 	
 	// Page modification de la BDD -> selection d'un arbre
-	@GetMapping("/selectArbre") //+ fonctionne
+	@GetMapping("/selectSpirit") //+ fonctionne
 	@JsonView(Common.class)
-	public List<Arbre> modifArbre() {
-		return arbreService.getAll();
+	public List<NodeRef> selectSpirit() {
+		return nrService.getAllWithSpiritName();
 	}
 
 	// Modif d'un arbre -> selection d'un noeud à modifier / ajouter
 	// modification de son nom / royaume + fonctionne
-	@PatchMapping("/modifArbre")
+	@PatchMapping("/modifSpirit/{spiritName}")
 	@JsonView(Common.class)
-	public Arbre modifArbre(@RequestBody Arbre arbre) {		
-		return arbreService.update(arbre);
+	public List<NodeRef> modifSpirit(@RequestBody NodeRef modifSpirit, @PathVariable String spiritName) {	
+		List<NodeRef> nrs = nrService.getAllBySpirit(spiritName);
+		for(NodeRef nr : nrs) {
+			modifSpirit.getSpiritName();
+			if(modifSpirit.getSpiritName() != null && modifSpirit.getSpiritName() != spiritName){
+				 nr.setSpiritName(modifSpirit.getSpiritName());
+				 nrService.update(nr);
+			}
+			if(modifSpirit.getRealm() != null && modifSpirit.getRealm() != nr.getRealm()){
+				 nr.setRealm(modifSpirit.getRealm());
+				 nrService.update(nr);
+			}
+		}	
+		return nrService.getAllBySpirit(modifSpirit.getSpiritName());
 	}
 
-	// Ajout Node + fonctionne
+	// Ajout Node + fonctionne MAIS ITEM DOIT ËTRE CREER AVANT
 	@PostMapping("/createNode")
 	@JsonView(Common.class)
-	public Node createNode(@RequestBody Node node) {
-		return nodeService.create(node);	
+	public NodeRef createNode(@RequestBody NodeRef nodeRef) {
+		// côté angular, faut obliger à avoir un item  !Required!
+		return nrService.create(nodeRef);	
 	}
 	
 	// Modif Node + fonctionne
-	@PatchMapping("/updateNode")
+	@PatchMapping("/updateNode/{id}")
 	@JsonView(Common.class)
-	public Node updateNode(@RequestBody Node node) {
-		nodeService.update(node);
-		Node nodeBase = nodeService.getById(node.getId());
-		if(nodeBase.getNodeParent() != null) {
-			Arbre a = arbreService.getById(nodeBase.getNodeParent().getTref().getId());
-			nodeBase.setTref(a);
-			nodeService.update(nodeBase);
-			
-			ArbreInProgress ap = arbreInProgressService.getById(nodeBase.getNodeParent().getTripRef().getId());
-			nodeBase.setTripRef(ap);
+	public NodeRef updateNode(@RequestBody NodeRef nodeModif, @PathVariable Long id) {
+		NodeRef nodeBase = nrService.getById(id);
+		//Modification item du nodeRef
+		if(nodeBase.getItem() != nodeModif.getItem()) {
+			nodeBase.setItem(nodeModif.getItem());	
+		}
+		//Modification nodeParent du nodeRef
+		if(nodeBase.getNodeParent().getId() != nodeModif.getNodeParent().getId()) {
+			nodeBase.setNodeParent(nodeModif.getNodeParent());	
 		}
 			
-		return nodeService.update(nodeBase);
+		return nrService.update(nodeBase);
 	}
 	
 	// Delete Node + fonctionne
@@ -121,7 +129,31 @@ public class AdminRestController {
 	@JsonView(Common.class)
 	@ResponseStatus(code = HttpStatus.OK)
 	public void deleteNode(@PathVariable Long id) {
-		nodeService.deleteById(id);
+		nrService.deleteById(id);
 	}
+	
+	// Ajout Item 
+	@PostMapping("/createItem")
+	@JsonView(Common.class)
+	public Item createItem(@RequestBody Item item) {
+		return itemService.create(item);	
+	}
+	
+	// Update Item -----> à tester
+	@PatchMapping("/updateItem/{id}")
+	@JsonView(Common.class)
+	public Item updateItem(@RequestBody Item itemModif, @PathVariable Long id) {
+		Item itemBase=itemService.getById(id);
+		if(itemBase.getLibelle() != itemModif.getLibelle()) {
+			itemBase.setLibelle(itemModif.getLibelle());	
+		}
+		if(itemBase.getPrix() != itemModif.getPrix()) {
+			itemBase.setPrix(itemModif.getPrix());	
+		}
+		return itemService.update(itemBase);
+	}
+	
+	
+	
 	
 }

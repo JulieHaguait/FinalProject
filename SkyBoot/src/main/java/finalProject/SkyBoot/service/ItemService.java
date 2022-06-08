@@ -48,9 +48,8 @@ public class ItemService {
 		return itemRepository.findById(id).orElseThrow(RuntimeException::new);
 	}
 
-	public void create(Item item) {
-		
-		itemRepository.save(item);
+	public Item create(Item item) {
+		return itemRepository.save(item);
 	}
 
 	public Item update(Item item) {

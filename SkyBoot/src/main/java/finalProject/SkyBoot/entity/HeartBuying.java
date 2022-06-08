@@ -16,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class HeartBuying extends Item{
 
 	@OneToOne
-	@JoinColumn(name = "node_id", foreignKey = @ForeignKey(name = "HEARTBUYING_NODE_ID_FK"))
+	@JoinColumn(name = "node_ref_id", foreignKey = @ForeignKey(name = "HEARTBUYING_NODE_REF_ID_FK"))
 	@JsonView(JsonViews.ItemWithNode.class)
-	private Node node;
+	private NodeRef nodeRef;
 
 
 	// --- Constructor
@@ -29,11 +29,11 @@ public class HeartBuying extends Item{
 		super(libelle, prix);
 	}
 	
-	public Node getNode() {
-		return node;
+	public NodeRef getNodeRef() {
+		return nodeRef;
 	}
-	public void setNode(Node node) {
-		this.node = node;
+	public void setNodeRef(NodeRef nodeRef) {
+		this.nodeRef = nodeRef;
 	}
 
 }

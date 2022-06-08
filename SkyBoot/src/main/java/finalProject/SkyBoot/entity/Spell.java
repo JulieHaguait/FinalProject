@@ -21,9 +21,9 @@ public class Spell extends Item{
 	private String descriptionAction;
 	
 	@OneToOne
-	@JoinColumn(name = "node_id", foreignKey = @ForeignKey(name = "SPELL_NODE_ID_FK"))
-	@JsonView(JsonViews.ItemWithNode.class)
-	private Node node;
+	@JoinColumn(name = "node_ref_id", foreignKey = @ForeignKey(name = "SPELL_NODE_REF_ID_FK"))
+	@JsonView(JsonViews.Common.class)
+	private NodeRef nodeRef;
 	
 	public Spell(String libelle, int prix, String descriptionAction)
 	{
@@ -45,12 +45,12 @@ public class Spell extends Item{
 		this.descriptionAction = descriptionAction;
 	}
 
-	public Node getNode() {
-		return node;
+	public NodeRef getNodeRef() {
+		return nodeRef;
 	}
 
-	public void setNode(Node node) {
-		this.node = node;
+	public void setNodeRef(NodeRef nodeRef) {
+		this.nodeRef = nodeRef;
 	}
 	
 

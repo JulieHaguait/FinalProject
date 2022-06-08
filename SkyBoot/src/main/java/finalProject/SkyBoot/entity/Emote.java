@@ -18,9 +18,9 @@ public class Emote extends Item {
 	private int level;
 	
 	@OneToOne
-	@JoinColumn(name = "node_id", foreignKey = @ForeignKey(name = "EMOTE_NODE_ID_FK"))
+	@JoinColumn(name = "node_ref_id", foreignKey = @ForeignKey(name = "EMOTE_NODE_REF_ID_FK"))
 	@JsonView(JsonViews.ItemWithNode.class)
-	private Node node;
+	private NodeRef nodeRef;
 	
 	// --- Constructeur	
 	public Emote()
@@ -48,12 +48,12 @@ public class Emote extends Item {
 		this.level = level;
 	}
 
-	public Node getNode() {
-		return node;
+	public NodeRef getNodeRef() {
+		return nodeRef;
 	}
 
-	public void setNode(Node node) {
-		this.node = node;
+	public void setNodeRef(NodeRef nodeRef) {
+		this.nodeRef = nodeRef;
 	}  
 
 }

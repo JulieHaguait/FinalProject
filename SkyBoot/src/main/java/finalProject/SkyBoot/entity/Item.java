@@ -7,15 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-
+import javax.persistence.ForeignKey;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import finalProject.SkyBoot.entity.JsonViews.Common;
 
-@MappedSuperclass
-public abstract class Item {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Item {
 
 	// --- Attributs
 	@Id
@@ -29,6 +34,9 @@ public abstract class Item {
 	@Column(name = "price")
 	@JsonView({ Common.class })
 	protected int prix;
+	
+	@OneToOne(mappedBy = "item")
+	protected NodeRef nodeRef;
 
 	// --- Constructeurs
 	public Item(String libelle, int prix) {

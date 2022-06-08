@@ -31,7 +31,7 @@ public class SpellService {
 	public Spell update(Spell spell) {
 		Spell spellEnBase = getById(spell.getId());
 		spellEnBase.setLibelle(spell.getLibelle());
-		spellEnBase.setNode(spell.getNode());
+		spellEnBase.setNodeRef(spell.getNodeRef());
 		spellEnBase.setPrix(spell.getPrix()); 
 		return spellRepository.save(spell);
 	}
