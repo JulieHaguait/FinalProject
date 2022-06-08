@@ -37,6 +37,12 @@ public class UserService {
 
 	@Autowired
 	private DeviseService deviseService;
+	
+	@Autowired
+	private NodeRefService nrService;
+	
+	@Autowired
+	private NodeService nodeService;
 
 	public List<User> getAll() {
 		return userRepository.findAll();
@@ -64,25 +70,23 @@ public class UserService {
 		if (user instanceof SkyKid) {
 			Equipment e = equipmentService.create(new Equipment());
 			Node n_1 = new Node();
+			n_1.setNodeRef(nrService.getById(120L));
 			Node n_2 = new Node();
+			n_2.setNodeRef(nrService.getById(121L));
 			Node n_3 = new Node();
+			n_3.setNodeRef(nrService.getById(122L));
 			Node n_4 = new Node();
-//			n_1.setSkyKid((SkyKid) user);
-//			n_1.setNodeRef(nodeCape);
-//			n_2.setSkyKid((SkyKid) user);
-//			n_2.setNodeRef(nodePant);
-//			n_3.setSkyKid((SkyKid) user);
-//			n_3.setNodeRef(nodeCheveux);
-//			n_4.setSkyKid((SkyKid) user);
-//			n_4.setNodeRef(nodeMasque);
-//
-//			nodeService.create(n_1);
-//			nodeService.create(n_2);
-//			nodeService.create(n_3);
-//			nodeService.create(n_4);
-//			((SkyKid) user).setEquipment(e);
-
-			// lui donner les premiers noeuds de chaque arbre
+			n_4.setNodeRef(nrService.getById(123L));
+			n_1.setSkyKid((SkyKid) user);
+			n_2.setSkyKid((SkyKid) user);
+			n_3.setSkyKid((SkyKid) user);
+			n_4.setSkyKid((SkyKid) user);
+			
+			nodeService.create(n_1);
+			nodeService.create(n_2);
+			nodeService.create(n_3);
+			nodeService.create(n_4);
+			((SkyKid) user).setEquipment(e);
 		}
 
 		return userRepository.save(user);

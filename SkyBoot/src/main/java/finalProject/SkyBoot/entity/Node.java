@@ -33,10 +33,8 @@ public class Node {
 	@JoinColumn(name = "node_ref", foreignKey = @ForeignKey(name = "NODE_NODE_REF_ID_FK"))
 	private NodeRef nodeRef;
 	
-	@OneToOne
-	@JsonView({ Common.class })
-	@JoinColumn(name = "skykid_id", foreignKey = @ForeignKey(name = "NODE_SKYKID_ID_FK"))
-	private SkyKid skyKid;
+	@ManyToOne
+	private LinkNode linkNode;
 	
 	
 	
@@ -49,8 +47,6 @@ public class Node {
 		super();
 		this.nodeRef = nodeRef;
 	}
-
-
 
 
 	// --- Getters & setters
@@ -71,13 +67,7 @@ public class Node {
 		this.nodeRef = nodeRef;
 	}
 	
-	public SkyKid getSkyKid() {
-		return skyKid;
-	}
 	
-	public void setSkyKid(SkyKid skyKid) {
-		this.skyKid = skyKid;
-	}
 
 	// --- HashCode	
 	@Override

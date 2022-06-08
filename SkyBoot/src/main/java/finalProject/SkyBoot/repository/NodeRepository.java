@@ -26,5 +26,8 @@ public interface NodeRepository extends JpaRepository<Node, Long> {
 	
 	@Query("Select n from Node n left join n.nodeRef nr where nr.id=:id")
 	Optional<Node> findByNodeRefId(@Param("id") Long id);
+	
+	@Query("Select n from Node n left join n.skyKid s where s.id=:id")
+	List<Node> findBySkyKidId(@Param("id") Long id);
 
 }

@@ -41,29 +41,27 @@ public class NodeRefRestController {
 	
 	
 	@JsonView({ ArbreInProgressWithRealm.class })
-	@GetMapping("/{realm}")
-	public List<NodeRef> getConstellation(@PathVariable String realm) {
-		return nrService.getAllByRealm(Realm.valueOf(realm));
+	@GetMapping("/{id}/{realm}")
+	public LinkNode getConstellation(@PathVariable (name="realm") String realm, @PathVariable (name="id") Long id) {
+		return linkNodeService.getBySkyKidId();
 	}
 	
-	@JsonView(Common.class)
-	@GetMapping("{id}/{realm}")
-	public List<Node> getConstellation(@PathVariable Long id, String realm) {
-		SkyKid KidBase = new SkyKid();
-		KidBase.setId(id);
-		return nodeService.getAllByRealm(Realm.valueOf(realm));
-	}
-	
-//	// Achat !!!
-//	@GetMapping("/{realm}/{spiritName}")
-//	//@JsonView({ ArbreInProgressWithNodeBoughtWithNodeRef.class })
-//	public List<NodeRef> getNodes(@PathVariable String realm,@PathVariable String spiritName) {
-//		List<NodeRef> nodesBoutique=nrService.getAllBySpirit(spiritName);
-//		
-//		
-//		ArbreInProgress trip = tripService.getByIdWithNodesWithNodesRef(id);
-//		return trip;
+//	@JsonView(Common.class)
+//	@GetMapping("{id}/{realm}")
+//	public List<Node> getConstellation(@PathVariable Long id, String realm) {
+//		SkyKid KidBase = new SkyKid();
+//		KidBase.setId(id);
+//		return nodeService.getAllByRealm(Realm.valueOf(realm));
 //	}
+	
+	// Achat !!!
+	@GetMapping("/{realm}/{spiritName}")
+	//@JsonView({ ArbreInProgressWithNodeBoughtWithNodeRef.class })
+	public List<NodeRef> getNodes(@PathVariable String realm,@PathVariable String spiritName) {
+		List<NodeRef> nodesBoutique=nrService.getAllBySpirit(spiritName);
+		
+		return nodesBoutique;
+	}
 	
 	
 	
