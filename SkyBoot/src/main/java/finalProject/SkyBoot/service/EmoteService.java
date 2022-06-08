@@ -31,7 +31,7 @@ public class EmoteService {
 		Emote emoteEnBase = getById(emote.getId());
 		emoteEnBase.setLevel(emote.getLevel());
 		emoteEnBase.setLibelle(emote.getLibelle());
-		emoteEnBase.setNode(emote.getNode());
+		emoteEnBase.setNodeRef(emote.getNodeRef());
 		emoteEnBase.setPrix(emote.getPrix()); 
 		return emoteRepository.save(emote);
 	}

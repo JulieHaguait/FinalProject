@@ -21,9 +21,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 public class Cosmetic extends Item{
 	
 	@OneToOne
-	@JoinColumn(name="node_id",foreignKey = @ForeignKey(name="COSMETIC_NODE_ID_FK"))
+	@JoinColumn(name="node_ref_id",foreignKey = @ForeignKey(name="COSMETIC_NODE_REF_ID_FK"))
 	@JsonView(JsonViews.ItemWithNode.class)
-	protected Node node;
+	protected NodeRef nodeRef;
 	
 	public Cosmetic(){
 		super();
@@ -34,12 +34,12 @@ public class Cosmetic extends Item{
 		super(libelle,prix);
 	}
 
-	public Node getNode() {
-		return node;
+	public NodeRef getNodeRef() {
+		return nodeRef;
 	}
 
-	public void setNode(Node node) {
-		this.node = node;
+	public void setNodeRef(NodeRef nodeRef) {
+		this.nodeRef = nodeRef;
 	}
 
 	

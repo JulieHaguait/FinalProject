@@ -12,6 +12,7 @@ import finalProject.SkyBoot.entity.Emote;
 import finalProject.SkyBoot.entity.HeartBuying;
 import finalProject.SkyBoot.entity.MusicSheet;
 import finalProject.SkyBoot.entity.WingBuff;
+import finalProject.SkyBoot.entity.NodeRef;
 
 
 
@@ -32,4 +33,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 	
 	@Query("Select hb from HeartBuying hb")
 	List<HeartBuying> findAllHeartBuying();
+	
+	@Query("Update Item i set i.nodeRef = null where i.nodeRef=:nodeRef")
+	void updateNull(NodeRef nodeRef);
+	
 }

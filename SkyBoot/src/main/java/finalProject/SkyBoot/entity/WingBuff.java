@@ -12,8 +12,8 @@ import javax.persistence.Table;
 public class WingBuff extends Item {
 	
 	@OneToOne
-	@JoinColumn(name = "node_id", foreignKey = @ForeignKey(name = "WINGBUFF_NODE_ID_FK"))
-	private Node node;
+	@JoinColumn(name = "node_ref_id", foreignKey = @ForeignKey(name = "WINGBUFF_NODE_REF_ID_FK"))
+	private NodeRef nodeRef;
 
 	public WingBuff()
 	{
@@ -25,12 +25,12 @@ public class WingBuff extends Item {
 		super("WingBuff",prix);
 	}
 
-	public Node getNode() {
-		return node;
+	public NodeRef getNodeRef() {
+		return nodeRef;
 	}
 
-	public void setNode(Node node) {
-		this.node = node;
+	public void setNodeRef(NodeRef nodeRef) {
+		this.nodeRef = nodeRef;
 	}
 	
 }
