@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import finalProject.SkyBoot.entity.JsonViews.Common;
@@ -30,6 +31,7 @@ public class SkyKid extends User {
 
 	@OneToMany(mappedBy = "monnaie")
 	@JsonView(JsonViews.Common.class)
+	//@JsonIgnore
 	private Set<Devise> devise;
 
 	@Column(name = "wing_buff")

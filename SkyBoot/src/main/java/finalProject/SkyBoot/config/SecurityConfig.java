@@ -26,7 +26,7 @@ public class SecurityConfig {
 							.antMatchers(HttpMethod.OPTIONS).permitAll()
 							
 							.antMatchers(HttpMethod.POST, "/api/auth/inscription").permitAll()
-							.antMatchers(HttpMethod.GET,"api/auth", "/api/auth/connexion", "/api/auth/inscription").permitAll()
+							.antMatchers(HttpMethod.GET, "/api/auth/login/**", "/api/auth/inscription").permitAll()
 							
 							.antMatchers(HttpMethod.GET, "/api/admin/**").hasRole("ADMIN")
 							.antMatchers(HttpMethod.POST, "/api/admin/**", "/api/admin/createNode").hasRole("ADMIN")

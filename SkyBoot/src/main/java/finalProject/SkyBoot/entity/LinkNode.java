@@ -36,7 +36,7 @@ public class LinkNode {
 	private List<Node> allBought;
 	
 	@OneToOne(mappedBy = "linkNode")
-	@JsonView({ Common.class })
+	//@JsonView({ Common.class })
 	private SkyKid skyKid;
 	
 	public LinkNode() {

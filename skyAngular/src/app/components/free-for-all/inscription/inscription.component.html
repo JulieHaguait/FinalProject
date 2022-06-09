@@ -85,8 +85,7 @@
               <button
                 type="submit"
                 class="btn btn-primary mb-2"
-                routerLink="/inscription-success"
-                routerLinkActive="active"
+                [disabled]="monForm.invalid"
               >
                 Valider
               </button>

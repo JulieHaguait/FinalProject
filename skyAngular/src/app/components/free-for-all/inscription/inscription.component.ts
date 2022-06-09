@@ -24,7 +24,7 @@ export class InscriptionComponent implements OnInit {
     private router: Router
   ) {
     this.monForm = new FormGroup({
-      login: new FormControl('', Validators.required),
+      login: new FormControl('', Validators.required, this.checkLogin()),
       type: new FormControl('skykid'),
       passwordGroup: new FormGroup(
         {

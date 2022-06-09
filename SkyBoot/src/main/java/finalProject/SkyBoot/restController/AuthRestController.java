@@ -52,4 +52,10 @@ public class AuthRestController {
 		}
 		return userEnBase;
 	}
+	
+	
+	@GetMapping("/login/{login}")
+	public boolean check(@PathVariable String login) {
+		return userService.checkLoginExist(login);
+	}
 }
