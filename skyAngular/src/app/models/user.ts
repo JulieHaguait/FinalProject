@@ -1,6 +1,17 @@
 export class User {
-  public constructor(private _login?: string, private _type?: string) {}
+  public constructor(
+    private _id?: number,
+    private _login?: string,
+    private _type?: string
+  ) {}
 
+  get id(): number | undefined {
+    return this._id;
+  }
+
+  set id(value: number | undefined) {
+    this._id = value;
+  }
   get login(): string | undefined {
     return this._login;
   }

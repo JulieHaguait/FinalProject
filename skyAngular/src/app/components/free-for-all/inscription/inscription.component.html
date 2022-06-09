@@ -7,7 +7,7 @@
             <h1>Inscription</h1>
             <h6>Enregistre toi</h6>
           </div>
-          <form (ngSubmit)="submit()" class="mb-3">
+          <form (ngSubmit)="submit()" [formGroup]="monForm" class="mb-3">
             <div class="mb-3">
               <label class="form-label" for="form3Example3c">Identifiant</label>
               <input

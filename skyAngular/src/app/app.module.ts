@@ -15,9 +15,20 @@ import { InscriptionSuccessComponent } from './components/free-for-all/inscripti
 import { AuthInterceptor } from './interceptors/auth-interceptor';
 import { ProfilAdminComponent } from './components/connected/profil-admin/profil-admin.component';
 import { ProfilSkykidComponent } from './components/connected/profil-skykid/profil-skykid.component';
-import { EditAdminComponent } from './components/connected/admin/edit-admin/edit-admin.component';
-
-import { ListAdminComponent } from './components/connected/admin/list-admin/list-admin.component';
+import { IleComponent } from './components/connected/skykid/realm/ile/ile.component';
+import { PrairieComponent } from './components/connected/skykid/realm/prairie/prairie.component';
+import { ForetComponent } from './components/connected/skykid/realm/foret/foret.component';
+import { ValleeComponent } from './components/connected/skykid/realm/vallee/vallee.component';
+import { DesertComponent } from './components/connected/skykid/realm/desert/desert.component';
+import { ChambreComponent } from './components/connected/skykid/realm/chambre/chambre.component';
+import { BbComponent } from './components/connected/skykid/monnaie/bb/bb.component';
+import { BrComponent } from './components/connected/skykid/monnaie/br/br.component';
+import { BeComponent } from './components/connected/skykid/monnaie/be/be.component';
+import { CoeurComponent } from './components/connected/skykid/monnaie/coeur/coeur.component';
+import { CoiffeComponent } from './components/connected/skykid/inventaire/coiffe/coiffe.component';
+import { PantalonComponent } from './components/connected/skykid/inventaire/pantalon/pantalon.component';
+import { CapeComponent } from './components/connected/skykid/inventaire/cape/cape.component';
+import { ChapeauComponent } from './components/connected/skykid/inventaire/chapeau/chapeau.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +40,22 @@ import { ListAdminComponent } from './components/connected/admin/list-admin/list
     InscriptionSuccessComponent,
     ProfilAdminComponent,
     ProfilSkykidComponent,
-    EditAdminComponent,
-
-    ListAdminComponent,
+    IleComponent,
+    PrairieComponent,
+    ForetComponent,
+    ValleeComponent,
+    DesertComponent,
+    ChambreComponent,
+    BrComponent,
+    BbComponent,
+    BeComponent,
+    CoeurComponent,
+    CoiffeComponent,
+    CapeComponent,
+    PantalonComponent,
+    ChapeauComponent,
   ],
+
   imports: [
     BrowserModule,
     HttpClientModule,
