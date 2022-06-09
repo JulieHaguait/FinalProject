@@ -13,7 +13,15 @@ export class BrComponent implements OnInit {
   BougiesR: number = 0;
   totalBR: number = 0;
 
-  constructor(private router: Router, private skykidService: SkykidService) {}
+  constructor(private router: Router, private skykidService: SkykidService) {
+    skykidService.getSkykidById(this.user.id!).subscribe((data) => {
+      for (var i = 0; i < 3; i++) {
+        if (data.devise[i].id == 101) {
+          this.totalBR = data.devise[i].quantite;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {}
 

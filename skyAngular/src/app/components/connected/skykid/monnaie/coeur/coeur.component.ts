@@ -13,7 +13,15 @@ export class CoeurComponent implements OnInit {
   Coeur: number = 0;
   totalC: number = 0;
 
-  constructor(private router: Router, private skykidService: SkykidService) {}
+  constructor(private router: Router, private skykidService: SkykidService) {
+    skykidService.getSkykidById(this.user.id!).subscribe((data) => {
+      for (var i = 0; i < 3; i++) {
+        if (data.devise[i].id == 102) {
+          this.totalC = data.devise[i].quantite;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {}
 

@@ -13,7 +13,15 @@ export class BbComponent implements OnInit {
   totalBB: number = 0;
   user: User = JSON.parse(sessionStorage.getItem('user')!);
 
-  constructor(private router: Router, private skykidService: SkykidService) {}
+  constructor(private router: Router, private skykidService: SkykidService) {
+    skykidService.getSkykidById(this.user.id!).subscribe((data) => {
+      for (var i = 0; i < 3; i++) {
+        if (data.devise[i].id == 100) {
+          this.totalBB = data.devise[i].quantite;
+        }
+      }
+    });
+  }
 
   ngOnInit(): void {}
   ajouter() {
