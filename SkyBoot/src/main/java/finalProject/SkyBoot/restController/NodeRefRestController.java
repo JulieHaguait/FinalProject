@@ -1,7 +1,5 @@
 package finalProject.SkyBoot.restController;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,17 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import finalProject.SkyBoot.entity.Realm;
-import finalProject.SkyBoot.entity.SkyKid;
-import finalProject.SkyBoot.entity.User;
-import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithNodeBoughtWithNodeRef;
-import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithRealm;
 import finalProject.SkyBoot.entity.JsonViews.Common;
 import finalProject.SkyBoot.entity.LinkNode;
-import finalProject.SkyBoot.entity.NodeRef;
-import finalProject.SkyBoot.entity.Node;
 import finalProject.SkyBoot.service.LinkNodeService;
-import finalProject.SkyBoot.service.NodeRefService;
-import finalProject.SkyBoot.service.NodeService;
 
 @RestController
 @RequestMapping("/api/skykid/boutique")// id du skykid dans l'url ???

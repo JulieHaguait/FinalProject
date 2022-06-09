@@ -4,7 +4,48 @@
       <div class="col-md-6">
         <div class="card">
           <div class="text-center">
-            <h4>Royaumes</h4>
+            <!-- menu déroulant pour select le nom d'esprit-->
+            <select class="form-control">
+              <option [ngValue]="nameSelect" value="Pointing_Candlemaker">
+                Pointing_Candlemaker
+              </option>
+              <option [ngValue]="nameSelect" value="Ushering_Stargazer">
+                Ushering_Stargazer
+              </option>
+            </select>
+
+            <!-- <table class="table">
+              <tr *ngFor="let nodeRef of nodesRef | async">
+                <td *ngIf="nameSelect == nodeRef.spiritName">
+                  {{ nodeRef.id }}
+                </td>
+                <td *ngIf="nameSelect == nodeRef.spiritName">
+                  {{ nodeRef.realm }}
+                </td>
+                <td *ngIf="nameSelect == nodeRef.spiritName">
+                  {{ nodeRef.spiritName }}
+                </td>
+                <td *ngIf="nameSelect == nodeRef.spiritName">
+                  {{ nodeRef.item?.id }} - {{ nodeRef.item?.libelle }}
+                </td>
+                <td *ngIf="nameSelect == nodeRef.spiritName">
+                  {{ nodeRef.nodeParent?.id }}
+                </td>
+                <td>
+                  <a
+                    routerLink="node-ref/edit/{{ nodeRef.id }}"
+                    class="btn btn-danger"
+                  ></a>
+                </td>
+              </tr>
+            </table> -->
+            <a routerLink="node-ref/edit/" class="btn btn-link"
+              >créer un nouveau node</a
+            >
+
+            <div>Les nodes coming soon :)</div>
+
+            <!-- <h4>Royaumes</h4>
             <hr />
             <a
               href="/profil-admin/gestion-boutique/ile"
@@ -36,7 +77,7 @@
               href="/profil-admin/gestion-boutique/chambre"
               class="btn btn-primary mb-2"
               >Chambre Forte</a
-            ><br />
+            ><br /> -->
           </div>
         </div>
       </div>

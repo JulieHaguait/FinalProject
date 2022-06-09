@@ -18,7 +18,6 @@ public class MusicSheet extends Item{
 	
 	@OneToOne
 	@JoinColumn(name="node_ref_id",foreignKey = @ForeignKey(name="MUSICSHEET_NODE_REF_ID_FK"))
-	@JsonView(JsonViews.ItemWithNode.class)
 	protected NodeRef nodeRef;
 	
 	public MusicSheet() {
