@@ -31,6 +31,11 @@ public class NodeRefService {
 		return nrRepository.findByNodeParent(nodeParent);
 	}
 	
+	public List<NodeRef> getAllNodeRoot(){
+		return nrRepository.findAllNodeRoot();
+	}
+	
+	
 	public List<NodeRef> getAll() {
 		return nrRepository.findAll();
 	}

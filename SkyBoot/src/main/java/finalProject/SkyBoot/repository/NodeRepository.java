@@ -24,10 +24,10 @@ public interface NodeRepository extends JpaRepository<Node, Long> {
 	@Query("Select n from Node n left join fetch n.nodeRef nr where nr.spiritName=:name")
 	List<Node> findBySpirit(@Param("name") String name);
 	
-	@Query("Select n from Node n left join n.nodeRef nr where nr.id=:id")
+	@Query("Select n from Node n left join fetch n.nodeRef nr where nr.id=:id")
 	Optional<Node> findByNodeRefId(@Param("id") Long id);
 	
-	@Query("Select n from Node n left join n.skyKid s where s.id=:id")
-	List<Node> findBySkyKidId(@Param("id") Long id);
+	@Query("Select n from Node n left join fetch NodeRef nr where nr.nodeParent is null")
+	List<Node> findAllNodeRoot();
 
 }

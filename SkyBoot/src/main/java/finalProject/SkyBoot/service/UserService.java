@@ -1,5 +1,7 @@
 package finalProject.SkyBoot.service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -9,9 +11,13 @@ import org.springframework.stereotype.Service;
 
 import finalProject.SkyBoot.entity.Admin;
 import finalProject.SkyBoot.entity.Cape;
+import finalProject.SkyBoot.entity.Cheveux;
 import finalProject.SkyBoot.entity.Devise;
 import finalProject.SkyBoot.entity.Equipment;
+import finalProject.SkyBoot.entity.LinkNode;
+import finalProject.SkyBoot.entity.Masque;
 import finalProject.SkyBoot.entity.Node;
+import finalProject.SkyBoot.entity.Pant;
 import finalProject.SkyBoot.entity.SkyKid;
 import finalProject.SkyBoot.entity.User;
 import finalProject.SkyBoot.repository.AdminRepository;
@@ -43,6 +49,12 @@ public class UserService {
 	
 	@Autowired
 	private NodeService nodeService;
+	
+	@Autowired
+	private LinkNodeService lnService;
+	
+	@Autowired
+	private ItemService itemService;
 
 	public List<User> getAll() {
 		return userRepository.findAll();
@@ -69,24 +81,30 @@ public class UserService {
 
 		if (user instanceof SkyKid) {
 			Equipment e = equipmentService.create(new Equipment());
-			Node n_1 = new Node();
-			n_1.setNodeRef(nrService.getById(120L));
-			Node n_2 = new Node();
-			n_2.setNodeRef(nrService.getById(121L));
-			Node n_3 = new Node();
-			n_3.setNodeRef(nrService.getById(122L));
-			Node n_4 = new Node();
-			n_4.setNodeRef(nrService.getById(123L));
-			n_1.setSkyKid((SkyKid) user);
-			n_2.setSkyKid((SkyKid) user);
-			n_3.setSkyKid((SkyKid) user);
-			n_4.setSkyKid((SkyKid) user);
-			
-			nodeService.create(n_1);
-			nodeService.create(n_2);
-			nodeService.create(n_3);
-			nodeService.create(n_4);
+			LinkNode ln = new LinkNode();
+			lnService.create(ln);
 			((SkyKid) user).setEquipment(e);
+			userRepository.save(user);
+			ln.setSkyKid((SkyKid) user);
+			((SkyKid) user).setLinkNode(ln);
+			lnService.update(ln);
+			
+//			n_1.setNodeRef(nrService.getById(120L));
+//			n_2.setNodeRef(nrService.getById(121L));
+//			n_3.setNodeRef(nrService.getById(122L));
+//			n_4.setNodeRef(nrService.getById(123L));			
+//			nodeService.create(n_1);
+//			nodeService.create(n_2);
+//			nodeService.create(n_3);
+//			nodeService.create(n_4);
+//			Collections.addAll(listNode, n_1, n_2, n_3, n_4);
+//			ln.setAllBought(listNode);
+			e.setCape((Cape) itemService.getById(100L));
+			e.setMasque((Masque) itemService.getById(112L));
+			e.setHair((Cheveux) itemService.getById(106L));
+			e.setPant((Pant) itemService.getById(116L));
+			((SkyKid) user).setEquipment(e);
+			equipmentService.update(e);
 		}
 
 		return userRepository.save(user);

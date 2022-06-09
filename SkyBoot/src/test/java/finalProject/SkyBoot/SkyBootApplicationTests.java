@@ -103,22 +103,6 @@ class SkyBootApplicationTests {
 		admin1.setLogin("admin");
 		admin1.setPassword("root");
 		userService.create(admin1);
-
-		SkyKid Julie = new SkyKid();
-		Julie.setLogin("Luna");
-		Julie.setNbEnfant(106);
-		Julie.setPassword("tik");
-		Julie.setWingBuff(0);
-		Julie.setEquipment(null);
-		Julie.setDevise(null);
-				
-		SkyKid Hamza = new SkyKid();
-		Hamza.setLogin("Taif");
-		Hamza.setNbEnfant(24);
-		Hamza.setPassword("taif");
-		Hamza.setWingBuff(0);
-		Hamza.setEquipment(null);
-		Hamza.setDevise(null);
 		
 		Cape cape0 = new Cape("debut",0);
 		Cape cape1 = new Cape("brune",0);
@@ -162,24 +146,8 @@ class SkyBootApplicationTests {
 		cosService.create(p1);
 		cosService.create(p2);
 		
-		Prop prop1 = new Prop("harpe", 5, "instrument aà cordes pincees");
-		Prop prop2 = new Prop("djembe", 5, "instrument aà percussions");		
-		
-		Equipment equipJulie = new Equipment();
-		equipJulie.setCape(cape5);
-		equipJulie.setHair(cheveux5);
-		equipJulie.setMasque(m3);
-		equipJulie.setPant(p2);
-		equipJulie.setProp(prop2);
-		Julie.setEquipment(equipJulie);
-		
-		Equipment equipHamza = new Equipment();
-		equipHamza.setCape(cape1);
-		equipHamza.setHair(cheveux1);
-		equipHamza.setMasque(m1);
-		equipHamza.setPant(p0);
-		equipHamza.setProp(prop1);	
-		Hamza.setEquipment(equipHamza);
+		Prop prop1 = new Prop("harpe", 5, "instrument a cordes pincees");
+		Prop prop2 = new Prop("djembe", 5, "instrument a percussions");		
 		
 		BougieBlanche bb = new BougieBlanche();
 		bb.setLibelle("Bougie blanche");
@@ -214,13 +182,7 @@ class SkyBootApplicationTests {
 		devise6.setQuantite(2);
 		devise6.setMonnaie(coeur);	
 		
-		Set<Devise> argent1 = new HashSet<Devise>();	
-		Collections.addAll(argent1, devise1, devise2, devise3);
-		Julie.setDevise(argent1);
 		
-		Set<Devise> argent2 = new HashSet<Devise>();
-		Collections.addAll(argent2, devise4, devise5, devise6);
-		Hamza.setDevise(argent2);
 		
 		HeartBuying heartBuying1 = new HeartBuying("HeartBuyingArbre1",3);
 		HeartBuying heartBuying2 = new HeartBuying("HeartBuyingArbre2",3);
@@ -498,6 +460,7 @@ class SkyBootApplicationTests {
 		n20.setNodeParent(n17);
 		
 		
+		
 		// --- Pointing Candlemaker
 		nrService.create(n1);
 		nrService.create(n2);
@@ -574,9 +537,6 @@ class SkyBootApplicationTests {
 		itemService.create(prop1);
 		itemService.create(prop2);
 		
-		equService.create(equipJulie);
-		equService.create(equipHamza);
-		
 		monnaieService.create(bb);
 		monnaieService.create(br);
 		monnaieService.create(coeur);
@@ -620,36 +580,35 @@ class SkyBootApplicationTests {
 		nrService.update(n19);
 		nrService.update(n20);
 			
+			
+		// --- Creation SkyKid
+		
+		SkyKid Julie = new SkyKid();
+		Julie.setLogin("Luna");
+		Julie.setNbEnfant(106);
+		Julie.setPassword("tik");
+		Julie.setWingBuff(0);
+		
+				
+		SkyKid Hamza = new SkyKid();
+		Hamza.setLogin("Taif");
+		Hamza.setNbEnfant(24);
+		Hamza.setPassword("taif");
+		Hamza.setWingBuff(0);
+		
+		
+		Set<Devise> argent1 = new HashSet<Devise>();	
+		Collections.addAll(argent1, devise1, devise2, devise3);
+		Julie.setDevise(argent1);
+		
+		Set<Devise> argent2 = new HashSet<Devise>();
+		Collections.addAll(argent2, devise4, devise5, devise6);
+		Hamza.setDevise(argent2);
+		
 		userService.create(Julie);
 		userService.create(Hamza);
 		
-		// --- Creation de nodes Skykid
 		
-		Node n_1 = new Node();
-		Node n_2 = new Node();
-		Node n_3 = new Node();
-		Node n_4 = new Node();
-		
-		nodeService.create(n_1);
-		nodeService.create(n_2);
-		nodeService.create(n_3);
-		nodeService.create(n_4);
-		
-		n_1.setSkyKid(Julie);
-		n_1.setNodeRef(nodeCape);
-		n_2.setSkyKid(Julie);
-		n_2.setNodeRef(nodePant);
-		n_3.setSkyKid(Julie);
-		n_3.setNodeRef(nodeCheveux);
-		n_4.setSkyKid(Julie);
-		n_4.setNodeRef(nodeMasque);
-		
-		nodeService.update(n_1);
-		nodeService.update(n_2);
-		nodeService.update(n_3);
-		nodeService.update(n_4);
-		
-
 	}
 
 	@Test

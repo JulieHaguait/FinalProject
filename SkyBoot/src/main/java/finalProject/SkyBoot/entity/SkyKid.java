@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import finalProject.SkyBoot.entity.JsonViews.Common;
+
 @Entity
 @DiscriminatorValue("skykid")
 public class SkyKid extends User {
@@ -33,6 +35,11 @@ public class SkyKid extends User {
 	@Column(name = "wing_buff")
 	@JsonView(JsonViews.Common.class)
 	private int wingBuff = 0;
+	
+	@OneToOne
+	@JsonView({ Common.class })
+	@JoinColumn(name = "linkNode_id", foreignKey = @ForeignKey(name = "SKYKID_LINK_NODE_ID_FK"))
+	private LinkNode linkNode;
 
 	// --- Constructeurs
 	public SkyKid() {
@@ -70,6 +77,14 @@ public class SkyKid extends User {
 
 	public void setWingBuff(int wingBuff) {
 		this.wingBuff = wingBuff;
+	}
+
+	public LinkNode getLinkNode() {
+		return linkNode;
+	}
+
+	public void setLinkNode(LinkNode linkNode) {
+		this.linkNode = linkNode;
 	}
 
 	

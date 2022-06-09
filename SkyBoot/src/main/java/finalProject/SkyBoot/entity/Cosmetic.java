@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Table(name = "cosmetique")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type",discriminatorType = DiscriminatorType.STRING,length = 2)
-@SequenceGenerator(name="seqItem", sequenceName="seq_item", initialValue=100, allocationSize=1)
 public class Cosmetic extends Item{
 	
 	@OneToOne

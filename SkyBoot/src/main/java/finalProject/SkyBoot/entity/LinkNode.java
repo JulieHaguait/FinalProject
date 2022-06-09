@@ -7,12 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -21,24 +21,23 @@ import finalProject.SkyBoot.service.NodeRefService;
 import finalProject.SkyBoot.service.NodeService;
 
 @Entity
+@Table(name = "linkNode")
 @SequenceGenerator(name="seqLinkNode", sequenceName="seq_link_node", initialValue=100, allocationSize=1)
 public class LinkNode {
 // ---
+	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqLinkNode")
 	private Long id;
-	@ManyToMany
-	@JoinTable(name = "nodeRef")
+	
+	@OneToMany(mappedBy = "linkNode")
 	private List<NodeRef> allRefs;
-	@OneToMany(mappedBy = "node")
+	
+	@OneToMany(mappedBy = "linkNode")
 	private List<Node> allBought;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "linkNode")
 	@JsonView({ Common.class })
-	@JoinColumn(name = "skykid_id", foreignKey = @ForeignKey(name = "LINK_NODE_SKYKID_ID_FK"))
 	private SkyKid skyKid;
-	
-	private NodeRefService nrService;
-	private NodeService nodeService;
 	
 	public LinkNode() {
 		super();
@@ -50,19 +49,23 @@ public class LinkNode {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public List<NodeRef> getAllRefs() {
 		return allRefs;
 	}
+
 	public void setAllRefs(List<NodeRef> allRefs) {
-		this.allRefs = nrService.getAll();
+		this.allRefs = allRefs;
 	}
+
 	public List<Node> getAllBought() {
 		return allBought;
 	}
+
 	public void setAllBought(List<Node> allBought) {
-		this.allBought = nodeService.getBySkyKidId(id);
+		this.allBought = allBought;
 	}
-	
+
 	public SkyKid getSkyKid() {
 		return skyKid;
 	}

@@ -20,6 +20,7 @@ import finalProject.SkyBoot.entity.JsonViews.Common;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@SequenceGenerator(name="seqItem", sequenceName="seq_item", initialValue=100, allocationSize=1)
 public class Item {
 
 	// --- Attributs
@@ -37,6 +38,12 @@ public class Item {
 	
 	@OneToOne(mappedBy = "item")
 	protected NodeRef nodeRef;
+
+	@OneToOne
+	@JoinColumn(name = "monnaie_id", foreignKey = @ForeignKey(name = "ITEM_MONNAIE_ID_FK"))
+	private Monnaie monnaie;
+	
+
 
 	// --- Constructeurs
 	public Item(String libelle, int prix) {
@@ -71,6 +78,22 @@ public class Item {
 
 	public void setPrix(int prix) {
 		this.prix = prix;
+	}
+	
+	public NodeRef getNodeRef() {
+		return nodeRef;
+	}
+
+	public void setNodeRef(NodeRef nodeRef) {
+		this.nodeRef = nodeRef;
+	}
+
+	public Monnaie getMonnaie() {
+		return monnaie;
+	}
+
+	public void setMonnaie(Monnaie monnaie) {
+		this.monnaie = monnaie;
 	}
 
 	// --- hashCode

@@ -40,11 +40,11 @@ public class NodeRefRestController {
 	}
 	
 	
-	@JsonView({ ArbreInProgressWithRealm.class })
-	@GetMapping("/{id}/{realm}")
-	public LinkNode getConstellation(@PathVariable (name="realm") String realm, @PathVariable (name="id") Long id) {
-		return linkNodeService.getBySkyKidId();
-	}
+//	@JsonView({ ArbreInProgressWithRealm.class })
+//	@GetMapping("/{id}/{realm}")
+//	public LinkNode getConstellation(@PathVariable (name="realm") String realm, @PathVariable (name="id") Long id) {
+//		return linkNodeService.getBySkyKidId();
+//	}
 	
 //	@JsonView(Common.class)
 //	@GetMapping("{id}/{realm}")

@@ -14,6 +14,7 @@ import finalProject.SkyBoot.repository.NodeRepository;
 
 @Service
 public class NodeService {
+	
 	@Autowired
 	private NodeRepository nodeRepository;
 
@@ -29,10 +30,6 @@ public class NodeService {
 		return nodeRepository.findByNodeRefId(id);
 	}
 	
-	public List<Node> getBySkyKidId(Long id) {
-		return nodeRepository.findBySkyKidId(id);
-	}
-
 	public Node getById(Long id) {
 		return nodeRepository.findById(id).orElseThrow(NodeException::new);
 	}

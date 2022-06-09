@@ -1,5 +1,6 @@
 package finalProject.SkyBoot.entity;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ import finalProject.SkyBoot.entity.JsonViews.Common;
 public class NodeRef {
 
 	@Id
-	@JsonView({})
+	@JsonView({Common.class})
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqNodeRef")
 	private Long id;
 
@@ -48,7 +49,12 @@ public class NodeRef {
 	@JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "NODE_REF_ITEM_ID_FK"))
 	@JsonView({ Common.class }) // --------------> regler JsonView :)
 	private Item item;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "link_node_id", foreignKey = @ForeignKey(name = "NODE_REF_LINK_NODE_ID_FK"))
+	private LinkNode linkNode;
+	
+	
 	// --- Constructor
 	public NodeRef() {
 

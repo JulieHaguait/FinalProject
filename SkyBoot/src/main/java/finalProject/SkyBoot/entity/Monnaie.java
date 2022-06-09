@@ -34,6 +34,7 @@ public abstract class Monnaie {
 	@JsonView(JsonViews.Common.class)
 	protected String libelle;
 	
+	
 	public Monnaie() {
 		super();
 	}

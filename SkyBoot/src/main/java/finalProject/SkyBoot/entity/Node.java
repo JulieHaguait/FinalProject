@@ -2,7 +2,6 @@ package finalProject.SkyBoot.entity;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,6 +32,7 @@ public class Node {
 	private NodeRef nodeRef;
 	
 	@ManyToOne
+	@JoinColumn(name = "link_node", foreignKey = @ForeignKey(name = "NODE_LINK_NODE_ID_FK"))
 	private LinkNode linkNode;
 	
 	
@@ -66,14 +65,21 @@ public class Node {
 	public void setNodeRef(NodeRef nodeRef) {
 		this.nodeRef = nodeRef;
 	}
-	
-	
 
-	// --- HashCode	
+	public LinkNode getLinkNode() {
+		return linkNode;
+	}
+
+	public void setLinkNode(LinkNode linkNode) {
+		this.linkNode = linkNode;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,5 +91,9 @@ public class Node {
 		Node other = (Node) obj;
 		return Objects.equals(id, other.id);
 	}
+
+
+
+	
 
 }
