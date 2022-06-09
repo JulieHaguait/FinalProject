@@ -5,12 +5,12 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    password: RMNCrtr4210!
+    password: postgres
     url: jdbc:postgresql://localhost:5432/sky
     username: postgres
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
