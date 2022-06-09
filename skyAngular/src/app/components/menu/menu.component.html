@@ -21,19 +21,23 @@
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav">
-          <li *ngIf="logged" class="nav-item active">
-            Bonjour {{ user?.login }}
+          <li class="nav-item">
+            <a href="/home" class="nav-link" style="color: black">Accueil</a>
           </li>
-          <li *ngIf="logged" class="nav-item active">
-            <a class="nav-link" href="#">Profil</a>
+          <li *ngIf="logged && isSkykid" class="nav-item active">
+            <a class="nav-link" href="/profil-skykid" style="color: black"
+              >Profil</a
+            >
           </li>
-          <li *ngIf="logged" class="nav-item">
-            <a class="nav-link" href="#">Inventaire</a>
+          <li *ngIf="logged && isAdmin" class="nav-item">
+            <a class="nav-link" href="/profil-admin" style="color: black"
+              >Gestion</a
+            >
           </li>
           <li *ngIf="" class="nav-item">
-            <a class="nav-link" href="#">Inventaire</a>
+            <a class="nav-link" href="#" style="color: black">Inventaire</a>
           </li>
-          <li *ngIf="logged" class="nav-item dropdown">
+          <li *ngIf="logged && isSkykid" class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -41,6 +45,7 @@
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              style="color: black"
             >
               Boutique
             </a>
@@ -52,9 +57,7 @@
               <li><a class="dropdown-item" href="#">5</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="/home" class="nav-link" style="color: black">Accueil</a>
-          </li>
+
           <button
             *ngIf="logged"
             (click)="logout()"

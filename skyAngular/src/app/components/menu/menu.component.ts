@@ -23,6 +23,24 @@ export class MenuComponent implements OnInit {
     return null;
   }
 
+  get isSkykid(): boolean | null {
+    let u = JSON.parse(sessionStorage.getItem('user')!) as User;
+    if (u.type == 'skykid') {
+      return true as boolean;
+    } else {
+      return false as boolean;
+    }
+  }
+
+  get isAdmin() {
+    let u = JSON.parse(sessionStorage.getItem('user')!) as User;
+    if (u.type == 'admin') {
+      return true as boolean;
+    } else {
+      return false as boolean;
+    }
+  }
+
   logout() {
     sessionStorage.clear();
     this.router.navigateByUrl('/home');

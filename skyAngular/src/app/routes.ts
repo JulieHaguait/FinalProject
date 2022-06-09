@@ -14,7 +14,6 @@ import { DesertComponent } from './components/connected/skykid/realm/desert/dese
 import { ChambreComponent } from './components/connected/skykid/realm/chambre/chambre.component';
 import { BbComponent } from './components/connected/skykid/monnaie/bb/bb.component';
 import { BrComponent } from './components/connected/skykid/monnaie/br/br.component';
-import { BeComponent } from './components/connected/skykid/monnaie/be/be.component';
 import { CoeurComponent } from './components/connected/skykid/monnaie/coeur/coeur.component';
 import { CoiffeComponent } from './components/connected/skykid/inventaire/coiffe/coiffe.component';
 import { PantalonComponent } from './components/connected/skykid/inventaire/pantalon/pantalon.component';
@@ -89,10 +88,6 @@ export const routes: Routes = [
   {
     path: 'br',
     component: BrComponent,
-  },
-  {
-    path: 'be',
-    component: BeComponent,
   },
   {
     path: 'coeur',
