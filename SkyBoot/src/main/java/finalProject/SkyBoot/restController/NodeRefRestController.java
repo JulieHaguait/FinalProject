@@ -17,8 +17,10 @@ import finalProject.SkyBoot.entity.User;
 import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithNodeBoughtWithNodeRef;
 import finalProject.SkyBoot.entity.JsonViews.ArbreInProgressWithRealm;
 import finalProject.SkyBoot.entity.JsonViews.Common;
+import finalProject.SkyBoot.entity.LinkNode;
 import finalProject.SkyBoot.entity.NodeRef;
 import finalProject.SkyBoot.entity.Node;
+import finalProject.SkyBoot.service.LinkNodeService;
 import finalProject.SkyBoot.service.NodeRefService;
 import finalProject.SkyBoot.service.NodeService;
 
@@ -28,54 +30,21 @@ import finalProject.SkyBoot.service.NodeService;
 public class NodeRefRestController {
 
 	@Autowired
-	private NodeRefService nrService;
-	
-	@Autowired
-	private NodeService nodeService;
+	private LinkNodeService lnService;
 
-	// @JsonView(Common.class) // ?// pas besoin de JSonView :)
+	@JsonView(Common.class) // ?// pas besoin de JSonView :)
 	@GetMapping("") // page d'accueil de la boutique avec les noms des royaumes
 	public Realm[] listRealms() {
 		return Realm.values();
 	}
 	
-	
-//	@JsonView({ ArbreInProgressWithRealm.class })
-//	@GetMapping("/{id}/{realm}")
-//	public LinkNode getConstellation(@PathVariable (name="realm") String realm, @PathVariable (name="id") Long id) {
-//		return linkNodeService.getBySkyKidId();
-//	}
-	
-//	@JsonView(Common.class)
-//	@GetMapping("{id}/{realm}")
-//	public List<Node> getConstellation(@PathVariable Long id, String realm) {
-//		SkyKid KidBase = new SkyKid();
-//		KidBase.setId(id);
-//		return nodeService.getAllByRealm(Realm.valueOf(realm));
-//	}
-	
-	// Achat !!!
-	@GetMapping("/{realm}/{spiritName}")
-	//@JsonView({ ArbreInProgressWithNodeBoughtWithNodeRef.class })
-	public List<NodeRef> getNodes(@PathVariable String realm,@PathVariable String spiritName) {
-		List<NodeRef> nodesBoutique=nrService.getAllBySpirit(spiritName);
-		
-		return nodesBoutique;
+	//------------> Achat !!!
+	@JsonView({ Common.class })
+	@GetMapping("/{id}/{realm}")
+	public LinkNode getConstellations(@PathVariable (name="realm") String realm, @PathVariable (name="id") Long id) {
+		return lnService.getByRealmBySkyKidId(id, realm);
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-
-//	@GetMapping("/{realm}/{id}")
-//	//@JsonView({ ArbreInProgressWithNodeBoughtWithNodeRef.class })
-//	public ArbreInProgress getNodes(@PathVariable String realm, @PathVariable Long id) {
-//		ArbreInProgress trip = tripService.getByIdWithNodesWithNodesRef(id);
-//		return trip;
-//	}
 
 }
