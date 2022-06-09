@@ -1,8 +1,8 @@
+import { InscriptionService } from './../../../services/inscription.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { ConnexionService } from 'src/app/services/connexion.service';
 import {
   AbstractControl,
   AsyncValidatorFn,
@@ -28,7 +28,7 @@ export class ConnexionComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private connexionService: ConnexionService
+    private inscriptionService: InscriptionService
   ) {
     this.monForm = new FormGroup({
       login: new FormControl('', Validators.required, this.checkLogin()),
@@ -38,7 +38,7 @@ export class ConnexionComponent implements OnInit {
 
   checkLogin(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return this.connexionService.checkLogin(control.value).pipe(
+      return this.inscriptionService.checkLogin(control.value).pipe(
         map((bool) => {
           return bool ? { loginExist: true } : null;
         })

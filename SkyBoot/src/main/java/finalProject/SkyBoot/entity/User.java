@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name="compte") // user réservé !!!
+@Table(name="compte")
 @SequenceGenerator(name="seqUser", sequenceName="seq_user", initialValue=100, allocationSize=1)
 @JsonTypeInfo(
 		use=JsonTypeInfo.Id.NAME,

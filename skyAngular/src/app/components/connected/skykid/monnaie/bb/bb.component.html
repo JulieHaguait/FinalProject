@@ -1,7 +1,7 @@
 <section>
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-50">
         <div class="card">
           <div class="text-center">
             <div>
@@ -9,7 +9,18 @@
               <h2>votre nombre de bougies blanches est de :</h2>
             </div>
             <div>
-              <input />
+              <h6>Combien de bougies blanches voulez-vous ajouter?</h6>
+              <input
+                [(ngModel)]="BougiesB"
+                class="form-control"
+                id="addBB"
+                placeholder="0"
+              />
+              <div>
+                <button class="btn btn-primary" (click)="ajouter()">
+                  Ajouter
+                </button>
+              </div>
             </div>
           </div>
         </div>

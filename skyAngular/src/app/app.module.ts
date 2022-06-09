@@ -29,6 +29,8 @@ import { CoiffeComponent } from './components/connected/skykid/inventaire/coiffe
 import { PantalonComponent } from './components/connected/skykid/inventaire/pantalon/pantalon.component';
 import { CapeComponent } from './components/connected/skykid/inventaire/cape/cape.component';
 import { ChapeauComponent } from './components/connected/skykid/inventaire/chapeau/chapeau.component';
+import { ListSkykidComponent } from './components/connected/admin/list-skykid/list-skykid.component';
+import { EditSkykidComponent } from './components/connected/admin/edit-skykid/edit-skykid.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { ChapeauComponent } from './components/connected/skykid/inventaire/chape
     CapeComponent,
     PantalonComponent,
     ChapeauComponent,
+    ListSkykidComponent,
+    EditSkykidComponent,
   ],
 
   imports: [

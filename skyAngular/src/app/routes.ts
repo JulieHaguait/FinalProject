@@ -20,6 +20,8 @@ import { CoiffeComponent } from './components/connected/skykid/inventaire/coiffe
 import { PantalonComponent } from './components/connected/skykid/inventaire/pantalon/pantalon.component';
 import { CapeComponent } from './components/connected/skykid/inventaire/cape/cape.component';
 import { ChapeauComponent } from './components/connected/skykid/inventaire/chapeau/chapeau.component';
+import { ListSkykidComponent } from './components/connected/admin/list-skykid/list-skykid.component';
+import { EditSkykidComponent } from './components/connected/admin/edit-skykid/edit-skykid.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,6 +33,7 @@ export const routes: Routes = [
     component: InscriptionComponent,
     canActivate: [AnonymousService],
   },
+
   {
     path: 'connexion',
     component: ConnexionComponent,
@@ -42,10 +45,15 @@ export const routes: Routes = [
     component: InscriptionSuccessComponent,
     canActivate: [AnonymousService],
   },
+
   {
     path: 'profil-admin',
     component: ProfilAdminComponent,
   },
+  { path: 'profil-admin/list-skykid', component: ListSkykidComponent },
+  { path: 'profil-admin/edit-skykid', component: EditSkykidComponent },
+  { path: 'profil-admin/edit-skykid/:id', component: EditSkykidComponent },
+
   {
     path: 'profil-skykid',
     component: ProfilSkykidComponent,
