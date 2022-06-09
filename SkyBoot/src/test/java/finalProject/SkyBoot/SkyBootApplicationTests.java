@@ -158,31 +158,6 @@ class SkyBootApplicationTests {
 		Coeur coeur = new Coeur();
 		coeur.setLibelle("Coeur");
 		
-		Devise devise1 = new Devise();
-		devise1.setQuantite(117);
-		devise1.setMonnaie(bb);		
-		
-		Devise devise2 = new Devise();
-		devise2.setQuantite(56);
-		devise2.setMonnaie(br);	
-		
-		Devise devise3 = new Devise();
-		devise3.setQuantite(38);
-		devise3.setMonnaie(coeur);		
-		
-		Devise devise4 = new Devise();
-		devise4.setQuantite(500);
-		devise4.setMonnaie(bb);
-	
-		Devise devise5 = new Devise();
-		devise5.setQuantite(0);
-		devise5.setMonnaie(br);	
-
-		Devise devise6 = new Devise();
-		devise6.setQuantite(2);
-		devise6.setMonnaie(coeur);	
-		
-		
 		
 		HeartBuying heartBuying1 = new HeartBuying("HeartBuyingArbre1",3);
 		HeartBuying heartBuying2 = new HeartBuying("HeartBuyingArbre2",3);
@@ -539,16 +514,7 @@ class SkyBootApplicationTests {
 		
 		monnaieService.create(bb);
 		monnaieService.create(br);
-		monnaieService.create(coeur);
-		
-		devService.create(devise1);
-		devService.create(devise2);
-		devService.create(devise3);
-		
-		devService.create(devise4);
-		devService.create(devise5);
-		devService.create(devise6);
-		
+		monnaieService.create(coeur);		
 		
 		// --- Base
 		nrService.create(nodeCape);
@@ -596,15 +562,7 @@ class SkyBootApplicationTests {
 		Hamza.setPassword("taif");
 		Hamza.setWingBuff(0);
 		
-		
-		Set<Devise> argent1 = new HashSet<Devise>();	
-		Collections.addAll(argent1, devise1, devise2, devise3);
-		Julie.setDevise(argent1);
-		
-		Set<Devise> argent2 = new HashSet<Devise>();
-		Collections.addAll(argent2, devise4, devise5, devise6);
-		Hamza.setDevise(argent2);
-		
+
 		userService.create(Julie);
 		userService.create(Hamza);
 		

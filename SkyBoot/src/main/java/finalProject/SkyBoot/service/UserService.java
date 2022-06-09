@@ -2,6 +2,7 @@ package finalProject.SkyBoot.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import finalProject.SkyBoot.entity.Admin;
 import finalProject.SkyBoot.entity.Cape;
 import finalProject.SkyBoot.entity.Cheveux;
+import finalProject.SkyBoot.entity.Coeur;
 import finalProject.SkyBoot.entity.Devise;
 import finalProject.SkyBoot.entity.Equipment;
 import finalProject.SkyBoot.entity.LinkNode;
@@ -55,6 +57,9 @@ public class UserService {
 	
 	@Autowired
 	private ItemService itemService;
+	
+	@Autowired
+	private MonnaieService monnaieService;
 
 	public List<User> getAll() {
 		return userRepository.findAll();
@@ -89,22 +94,37 @@ public class UserService {
 			((SkyKid) user).setLinkNode(ln);
 			lnService.update(ln);
 			
-//			n_1.setNodeRef(nrService.getById(120L));
-//			n_2.setNodeRef(nrService.getById(121L));
-//			n_3.setNodeRef(nrService.getById(122L));
-//			n_4.setNodeRef(nrService.getById(123L));			
-//			nodeService.create(n_1);
-//			nodeService.create(n_2);
-//			nodeService.create(n_3);
-//			nodeService.create(n_4);
-//			Collections.addAll(listNode, n_1, n_2, n_3, n_4);
-//			ln.setAllBought(listNode);
 			e.setCape((Cape) itemService.getById(100L));
 			e.setMasque((Masque) itemService.getById(112L));
 			e.setHair((Cheveux) itemService.getById(106L));
 			e.setPant((Pant) itemService.getById(116L));
 			((SkyKid) user).setEquipment(e);
 			equipmentService.update(e);
+					
+			Devise devise1 = new Devise();
+			devise1.setQuantite(0);
+			devise1.setMonnaie(monnaieService.getById(100L));
+			devise1.setSkykid((SkyKid) user);
+			deviseService.create(devise1);
+			
+			Devise devise2 = new Devise();
+			devise2.setQuantite(0);
+			devise2.setMonnaie(monnaieService.getById(101L));
+			devise2.setSkykid((SkyKid) user);
+			deviseService.create(devise2);
+
+			
+			Devise devise3 = new Devise();
+			devise3.setQuantite(0);
+			devise3.setMonnaie(monnaieService.getById(102L));
+			devise3.setSkykid((SkyKid) user);
+			deviseService.create(devise3);
+
+			
+			Set<Devise> argent = new HashSet<Devise>();	
+			Collections.addAll(argent, devise1, devise2, devise3);
+			((SkyKid) user).setDevise(argent);
+	
 		}
 
 		return userRepository.save(user);
@@ -112,8 +132,6 @@ public class UserService {
 
 	public User update(User user) {
 		User userEnBase = getById(user.getId());
-		System.out.println(userEnBase.getLogin());
-		System.out.println(user.getLogin());
 		userEnBase.setLogin(user.getLogin());
 		return userRepository.save(userEnBase);
 	}

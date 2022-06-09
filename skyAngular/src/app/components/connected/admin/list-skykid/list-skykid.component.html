@@ -3,8 +3,14 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card">
-          <div>
+          <div class="text-center">
             <table class="table">
+              <tr>
+                <th>id :</th>
+                <th>login :</th>
+                <th>édition</th>
+                <th>suppression</th>
+              </tr>
               <tr *ngFor="let u of users | async">
                 <td>{{ u?.id }}</td>
                 <td>{{ u?.login }}</td>
@@ -12,7 +18,7 @@
                   <a
                     routerLink="/profil-admin/edit-skykid/{{ u.id }}"
                     class="btn btn-primary"
-                    >edition</a
+                    >édition</a
                   >
                 </td>
                 <td>

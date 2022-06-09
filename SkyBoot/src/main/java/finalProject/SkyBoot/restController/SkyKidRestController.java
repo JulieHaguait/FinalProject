@@ -84,7 +84,6 @@ public class SkyKidRestController {
 		if (user.getId() == id) {
 			return (SkyKid) userService.update(skykid);
 		} else {
-			System.out.println("oui");
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 	}

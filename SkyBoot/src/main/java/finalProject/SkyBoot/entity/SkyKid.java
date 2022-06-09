@@ -29,7 +29,7 @@ public class SkyKid extends User {
 	@JsonView(JsonViews.Common.class)
 	private int nbEnfant = 0;
 
-	@OneToMany(mappedBy = "monnaie")
+	@OneToMany(mappedBy = "skykid")
 	@JsonView(JsonViews.Common.class)
 	//@JsonIgnore
 	private Set<Devise> devise;

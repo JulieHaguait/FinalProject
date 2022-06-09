@@ -28,12 +28,27 @@ public class Devise {
 	@JsonView(JsonViews.Common.class)
 	private double quantite;
 	
+	@ManyToOne
+	@JoinColumn(name="skykid_id", foreignKey=@ForeignKey(name="DEVISE_SKYKID_ID_FK"))
+	private SkyKid skykid;
+	
+
+
 	// --- Constructeur
 	public Devise() {
 
 	}
 	
 	// --- Getters / Setters
+	
+	public SkyKid getSkykid() {
+		return skykid;
+	}
+
+	public void setSkykid(SkyKid skykid) {
+		this.skykid = skykid;
+	}
+	
 	public Long getId() {
 		return id;
 	}
