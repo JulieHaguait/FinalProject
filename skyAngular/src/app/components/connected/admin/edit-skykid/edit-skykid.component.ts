@@ -29,7 +29,7 @@ export class EditSkykidComponent implements OnInit {
   save() {
     console.log('update');
     this.skykidService.update(this.user).subscribe(() => {
-      this.router.navigateByUrl('/profil-admin/list-skykidS');
+      this.router.navigateByUrl('/profil-admin/list-skykid');
     });
   }
 }

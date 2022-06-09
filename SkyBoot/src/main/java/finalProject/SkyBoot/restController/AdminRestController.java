@@ -46,8 +46,8 @@ public class AdminRestController {
 	// Page accueil d'un admin, besoin de ses infos + fonctionne
 	@GetMapping("/{id}") 
 	@JsonView(Common.class)
-	public Admin getById(@PathVariable Long id) {
-		return (Admin) userService.getById(id);
+	public SkyKid getById(@PathVariable Long id) {
+		return (SkyKid) userService.getById(id);
 	}
 
 	// Page modification d'un utilisateur + fonctionne
@@ -61,6 +61,7 @@ public class AdminRestController {
 	@PatchMapping("/modifUser")
 	@JsonView(modifLogin.class)
 	public User modifUser(@RequestBody SkyKid skyKid) {
+		System.out.println("coucou");
 		return userService.update(skyKid);
 	}
 	

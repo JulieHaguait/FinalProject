@@ -21,6 +21,7 @@ import { CapeComponent } from './components/connected/skykid/inventaire/cape/cap
 import { ChapeauComponent } from './components/connected/skykid/inventaire/chapeau/chapeau.component';
 import { ListSkykidComponent } from './components/connected/admin/list-skykid/list-skykid.component';
 import { EditSkykidComponent } from './components/connected/admin/edit-skykid/edit-skykid.component';
+import { GestionBoutiqueComponent } from './components/connected/admin/gestion-boutique/gestion-boutique.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -52,6 +53,10 @@ export const routes: Routes = [
   { path: 'profil-admin/list-skykid', component: ListSkykidComponent },
   { path: 'profil-admin/edit-skykid', component: EditSkykidComponent },
   { path: 'profil-admin/edit-skykid/:id', component: EditSkykidComponent },
+  {
+    path: 'profil-admin/gestion-boutique',
+    component: GestionBoutiqueComponent,
+  },
 
   {
     path: 'profil-skykid',

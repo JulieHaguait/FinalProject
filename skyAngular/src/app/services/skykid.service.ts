@@ -33,6 +33,7 @@ export class SkykidService {
     let obj = {
       id: user.id,
       login: user.login,
+      type: user.type,
     };
     return obj;
   }

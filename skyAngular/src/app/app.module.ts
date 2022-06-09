@@ -30,6 +30,7 @@ import { CapeComponent } from './components/connected/skykid/inventaire/cape/cap
 import { ChapeauComponent } from './components/connected/skykid/inventaire/chapeau/chapeau.component';
 import { ListSkykidComponent } from './components/connected/admin/list-skykid/list-skykid.component';
 import { EditSkykidComponent } from './components/connected/admin/edit-skykid/edit-skykid.component';
+import { GestionBoutiqueComponent } from './components/connected/admin/gestion-boutique/gestion-boutique.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { EditSkykidComponent } from './components/connected/admin/edit-skykid/ed
     ChapeauComponent,
     ListSkykidComponent,
     EditSkykidComponent,
+    GestionBoutiqueComponent,
   ],
 
   imports: [
