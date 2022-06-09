@@ -135,8 +135,9 @@ public class UserService {
 		userEnBase.setLogin(user.getLogin());
 			
 		if(user instanceof SkyKid) {
-				
-			for(Devise dBase : ((SkyKid) userEnBase).getDevise()) {
+				if(((SkyKid) user).getDevise()!=null) {
+			for(Devise dBase : ((SkyKid) userEnBase).getDevise())
+			{
 				for(Devise dNew :((SkyKid) user).getDevise() ) {
 					
 					if(dBase.getId() == dNew.getId()) {
@@ -151,6 +152,7 @@ public class UserService {
 					}	
 				}
 			}
+		}
 		}
 		
 		
