@@ -133,6 +133,28 @@ public class UserService {
 	public User update(User user) {
 		User userEnBase = getById(user.getId());
 		userEnBase.setLogin(user.getLogin());
+			
+		if(user instanceof SkyKid) {
+				
+			for(Devise dBase : ((SkyKid) userEnBase).getDevise()) {
+				for(Devise dNew :((SkyKid) user).getDevise() ) {
+					
+					if(dBase.getId() == dNew.getId()) {
+						if(dBase.getQuantite() != dNew.getQuantite()) {
+							// update la table Devise
+							
+							Devise dTruc = deviseService.getById(dBase.getId()).orElseThrow(RuntimeException::new);
+							dTruc.setQuantite(dNew.getQuantite());
+							// dTruc.setSkykid((SkyKid) userEnBase);
+							// deviseService.update(dTruc);		
+						}
+					}	
+				}
+			}
+		}
+		
+		
+		
 		return userRepository.save(userEnBase);
 	}
 

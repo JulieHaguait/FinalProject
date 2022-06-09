@@ -78,7 +78,7 @@ public class SkyKidRestController {
 	}
 
 	// modification du skykid -> login + fonctionne
-	@PatchMapping("{id}/gestion/modifLogin")
+	@PatchMapping("{id}/gestion")
 	@JsonView(Common.class)
 	public SkyKid modifSkyKid(@PathVariable Long id, @AuthenticationPrincipal User user, @RequestBody SkyKid skykid) {
 		if (user.getId() == id) {
