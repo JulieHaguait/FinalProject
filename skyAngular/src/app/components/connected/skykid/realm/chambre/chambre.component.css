@@ -1,6 +1,7 @@
 section {
   padding: 0 100px;
   background-image: url("https://images-ext-1.discordapp.net/external/uO-nbqD9FJhqygEcWEx4fqmXVOnlHTzQDic7Df7H1Iw/https/img2.storyblok.com/fit-in/0x400/filters%3Aformat%28webp%29/f/108104/4800x2700/90a0601dba/2_prairie_7d7846757a.jpeg");
+  background-size: cover;
   height: 100vh;
   display: flex;
   justify-content: center;
