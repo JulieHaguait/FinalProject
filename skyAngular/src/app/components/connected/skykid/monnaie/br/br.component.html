@@ -1,1 +1,37 @@
-<p>br works!</p>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-50">
+        <div class="card">
+          <div class="text-center">
+            <div>
+              <h1>Ajout de bougies Rouges</h1>
+              <h2>votre nombre de bougies rouges est de :</h2>
+            </div>
+            <div>
+              <h6>Combien de bougies rouges voulez-vous ajouter?</h6>
+              <input
+                [(ngModel)]="BougiesR"
+                class="form-control"
+                id="addBB"
+                placeholder="0"
+              />
+              <div>
+                <button class="btn btn-primary" (click)="ajouter()">
+                  Ajouter
+                </button>
+                <button
+                  class="btn btn-warning"
+                  routerLink="/profil-skykid"
+                  routerLinkActive="active"
+                >
+                  Annuler
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

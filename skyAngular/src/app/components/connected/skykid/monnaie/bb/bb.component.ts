@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { SkykidService } from 'src/app/services/skykid.service';
 
 @Component({
   selector: 'app-bb',
@@ -9,10 +11,26 @@ import { Router } from '@angular/router';
 export class BbComponent implements OnInit {
   BougiesB: number = 0;
   totalBB: number = 0;
-  constructor(private router: Router) {}
+  user: User = JSON.parse(sessionStorage.getItem('user')!);
+
+  constructor(private router: Router, private skykidService: SkykidService) {}
 
   ngOnInit(): void {}
   ajouter() {
-    console.log(this.BougiesB);
+    let obj = {
+      id: this.user.id,
+      login: this.user.login,
+      type: this.user.type,
+      devise: [
+        {
+          id: 100,
+          quantite: this.BougiesB,
+        },
+      ],
+    };
+
+    this.skykidService.updateSkykid(obj).subscribe(() => {
+      this.router.navigateByUrl('/profil-skykid');
+    });
   }
 }

@@ -144,7 +144,7 @@ public class UserService {
 							// update la table Devise
 							
 							Devise dTruc = deviseService.getById(dBase.getId()).orElseThrow(RuntimeException::new);
-							dTruc.setQuantite(dNew.getQuantite());
+							dTruc.setQuantite(dTruc.getQuantite() + dNew.getQuantite());
 							// dTruc.setSkykid((SkyKid) userEnBase);
 							// deviseService.update(dTruc);		
 						}
