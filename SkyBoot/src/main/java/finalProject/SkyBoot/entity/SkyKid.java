@@ -22,7 +22,6 @@ public class SkyKid extends User {
 	// --- Attributs
 	@OneToOne
 	@JoinColumn(name = "closet_id", foreignKey = @ForeignKey(name = "SKYKID_CLOSET_ID_FK"))
-	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
 	private Equipment equipment = new Equipment();
 
 	@Column(name = "winged_light")

@@ -17,7 +17,6 @@ public class HeartBuying extends Item{
 
 	@OneToOne
 	@JoinColumn(name = "node_ref_id", foreignKey = @ForeignKey(name = "HEARTBUYING_NODE_REF_ID_FK"))
-	@JsonView(JsonViews.ItemWithNode.class)
 	private NodeRef nodeRef;
 
 

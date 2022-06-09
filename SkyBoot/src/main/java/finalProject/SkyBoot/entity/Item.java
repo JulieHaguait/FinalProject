@@ -29,9 +29,11 @@ public class Item {
 	@Column(name = "id")
 	@JsonView({ Common.class })
 	protected Long id;
+	
 	@Column(name="tag")
 	@JsonView({ Common.class })
 	protected String libelle;
+	
 	@Column(name = "price")
 	@JsonView({ Common.class })
 	protected int prix;

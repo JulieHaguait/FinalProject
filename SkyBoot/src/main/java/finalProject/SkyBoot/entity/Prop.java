@@ -16,7 +16,6 @@ public class Prop extends Item{
 	
 	@OneToOne
 	@JoinColumn(name="node_ref_id",foreignKey = @ForeignKey(name="PROP_NODE_REF_ID_FK"))
-	@JsonView(JsonViews.ItemWithNode.class)
 	protected NodeRef nodeRef;
 	
 	@JsonView(JsonViews.Common.class)

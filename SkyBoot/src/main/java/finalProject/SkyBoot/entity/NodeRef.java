@@ -42,12 +42,11 @@ public class NodeRef {
 	
 	@ManyToOne
 	@JoinColumn(name = "node_Parent_id", foreignKey = @ForeignKey(name = "NODE_REF_NODE_PARENT_ID_FK"))
-	@JsonView({ Boutique.class }) // --------------> regler JsonView :)
 	private NodeRef nodeParent;
 
 	@OneToOne
 	@JoinColumn(name = "item_id", foreignKey = @ForeignKey(name = "NODE_REF_ITEM_ID_FK"))
-	@JsonView({ Common.class }) // --------------> regler JsonView :)
+	//@JsonView({ Common.class }) // --------------> regler JsonView :)
 	private Item item;
 	
 	@ManyToOne

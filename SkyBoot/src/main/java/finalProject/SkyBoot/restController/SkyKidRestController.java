@@ -34,7 +34,6 @@ public class SkyKidRestController {
 	// vu qu'on veut afficher la completion des arbres
 	// arbreInProgress + fonctionne
 	@GetMapping("/{id}")
-	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
 	public SkyKid getById(@PathVariable Long id, @AuthenticationPrincipal User user) {
 		if (user.getId() == id) {
 			return (SkyKid) userService.getById(id);
@@ -45,7 +44,6 @@ public class SkyKidRestController {
 
 	// page inventaire + fonctionne
 	@GetMapping("/{id}/inventaire")
-	@JsonView(JsonViews.SkyKidWithTripEquipment.class)
 	public SkyKid getInventaire(@PathVariable Long id, @AuthenticationPrincipal User user) {
 		if (user.getId() == id) {
 			return userService.getSkyKidWithAllInfos(id);
