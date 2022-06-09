@@ -168,7 +168,9 @@ public class UserService {
 		// suppression en cascade de l'equipment
 
 		if (user.getEquipment() != null) {
-			equipmentService.deleteById(user.getEquipment().getId());
+			Long idEqu = user.getEquipment().getId();
+			user.setEquipment(null);
+			equipmentService.deleteById(idEqu);
 		}
 
 		// suppression de toute types de monnaie associee au compte

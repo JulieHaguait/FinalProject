@@ -20,7 +20,7 @@ export class SkykidService {
   }
 
   public delete(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.urlAdmin}/${id}`);
+    return this.httpClient.delete<void>(`${this.urlAdmin}/deleteUser/${id}`);
   }
 
   public update(user: User): Observable<User> {
