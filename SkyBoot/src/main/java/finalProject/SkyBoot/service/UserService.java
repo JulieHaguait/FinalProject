@@ -135,8 +135,9 @@ public class UserService {
 		userEnBase.setLogin(user.getLogin());
 			
 		if(user instanceof SkyKid) {
-				
-			for(Devise dBase : ((SkyKid) userEnBase).getDevise()) {
+				if(((SkyKid) user).getDevise()!=null) {
+			for(Devise dBase : ((SkyKid) userEnBase).getDevise())
+			{
 				for(Devise dNew :((SkyKid) user).getDevise() ) {
 					
 					if(dBase.getId() == dNew.getId()) {
@@ -144,13 +145,14 @@ public class UserService {
 							// update la table Devise
 							
 							Devise dTruc = deviseService.getById(dBase.getId()).orElseThrow(RuntimeException::new);
-							dTruc.setQuantite(dNew.getQuantite());
+							dTruc.setQuantite(dTruc.getQuantite() + dNew.getQuantite());
 							// dTruc.setSkykid((SkyKid) userEnBase);
 							// deviseService.update(dTruc);		
 						}
 					}	
 				}
 			}
+		}
 		}
 		
 		

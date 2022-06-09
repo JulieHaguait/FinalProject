@@ -79,7 +79,13 @@ public class AdminRestController {
 	public List<NodeRef> selectSpirit() {
 		return nrService.getAllWithSpiritName();
 	}
-
+	
+	@GetMapping("/selectNodeRef")
+	@JsonView(Common.class)
+	public NodeRef selectNodeRef(Long id) {
+		return nrService.getById(id);
+	}
+	
 	// Modif d'un arbre -> selection d'un noeud à modifier / ajouter
 	// modification de son nom / royaume + fonctionne
 	@PatchMapping("/modifSpirit/{spiritName}")
